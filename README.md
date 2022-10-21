@@ -19,9 +19,9 @@ On Git:
         The branches will be used for tracking purposes / backup 
 ----------------------
 ----------------------
-All the controllers will be initialised in the main file (MOBLIMA.java), there will be one instance of each controller at runtime
-The application works by having the controllers communicate with each other.
-Each controller will store an ArrayList of their respective model.
+- All the controllers will be initialised in the main file (MOBLIMA.java), there will be one instance of each controller at runtime
+- The application works by having the controllers communicate with each other.
+- Each controller will store an ArrayList of their respective model.
 
 Eg. In the CustomerController, to call a method in the BookingController:
 MOBLIMA.bookingController.method();
@@ -30,25 +30,25 @@ MOBLIMA.bookingController.method();
 Explanations of the controllers:
 Each controller should support Create/Read/Update/Delete operations (depends on question, might not need to implement all), plus some additional requirements.
 
-CustomerController: Manages the menu display for when user selects "Customer"
+- CustomerController: Manages the menu display for when user selects "Customer"
 
-AdminController:    Manages the menu display for when user selects "Admin"
+- AdminController:    Manages the menu display for when user selects "Admin"
 
-SettingsController: Manages the application settings (Edit base ticket price, Add new holiday, Change multiplier for all the ticket attributes)
+- SettingsController: Manages the application settings (Edit base ticket price, Add new holiday, Change multiplier for all the ticket attributes)
 
-ShowTimeController: Manages the ShowTime class, has to support querying of the showtime based on the Movie and Cineplex provided.
+- ShowTimeController: Manages the ShowTime class, has to support querying of the showtime based on the Movie and Cineplex provided.
 
-MovieController: Manages the Movie class, has to support sorting the movies based on ticket sales / review rating
+- MovieController: Manages the Movie class, has to support sorting the movies based on ticket sales / review rating
 
-BookingController: Manages the Booking class, generates the booking when customer books a movie. Note that one booking can have multiple tickets
+- BookingController: Manages the Booking class, generates the booking when customer books a movie. Note that one booking can have multiple tickets
 
-TicketController: Manages the Ticket class, one ticket is created when the customer books a seat. 
+- TicketController: Manages the Ticket class, one ticket is created when the customer books a seat. 
 
-CineplexController: Manages the Cineplex class, each cineplex will store 3 Cinema objects
+- CineplexController: Manages the Cineplex class, each cineplex will store 3 Cinema objects
 
-CinemaController: Manages the Cinema class, will also manage the respective seats in the Cinema. 
+- CinemaController: Manages the Cinema class, will also manage the respective seats in the Cinema. 
 
-ReviewController: Manages the Review class, used when customers chooses to create a new review
+- ReviewController: Manages the Review class, used when customers chooses to create a new review
 
 ----------------------
 ----------------------
@@ -64,8 +64,10 @@ E.g. The person in charge of the Movie Controller will provide the seed data for
 4) Use the code provided in FileController to write the ArrayList into the respective data folder (E.g. data\movies)
 
 How to get the base filepath?
-System.getProperty("user.dir") gives you the base file path. Then append accordinly
-E.g. String filepath = System.getProperty("user.dir") + \\data\\init\\;
-This will create the filepath string to the init folder. 
+- System.getProperty("user.dir") gives you the base file path, then append accordingly
+- E.g. String filepath = System.getProperty("user.dir") + \\\data\\\init\\\ ;
+
+This will create the string for the filepath to the init folder. 
+(Use double backslash)
 
 ----------------------
