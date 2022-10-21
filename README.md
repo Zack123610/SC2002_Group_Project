@@ -64,8 +64,8 @@ E.g. The person in charge of the Movie Controller will provide the seed data for
 4) Use the code provided in FileController to write the ArrayList into the respective data folder (E.g. data\movies)
 
 How to get the base filepath?
-System.getProperty("user.dir") gives you the base file path. Then append accordinly
-E.g. String filepath = System.getProperty("user.dir") + \\data\\init\\;
+- System.getProperty("user.dir") gives you the base file path, then append accordingly
+- E.g. String filepath = System.getProperty("user.dir") + \\\data\\\init\\\;
 This will create the filepath string to the init folder. 
 
 ----------------------
