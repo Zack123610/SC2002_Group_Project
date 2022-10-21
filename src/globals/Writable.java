@@ -12,6 +12,6 @@ public abstract class Writable implements Serializable {
 	}
 	
 	public String getFilename() {
-		return id.toString() + ".dat";
+		return id.toString() + ".ser";
 	}
 }
