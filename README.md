@@ -9,6 +9,16 @@ General Idea:
 - Controllers: Control the overall logic flow of the entire application. 
 
 ----------------------
+On Git:
+- Master branch will be the official branch used.
+- When pushing your code:
+    - Create a new branch
+    - Push your code to the new branch
+    - Create a pull request to the master branch
+- Impt: Do NOT select the option to delete the branch when merging
+        The branches will be used for tracking purposes / backup 
+----------------------
+----------------------
 All the controllers will be initialised in the main file (MOBLIMA.java), there will be one instance of each controller at runtime
 The application works by having the controllers communicate with each other.
 Each controller will store an ArrayList of their respective model.
