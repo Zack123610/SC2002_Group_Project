@@ -67,5 +67,6 @@ How to get the base filepath?
 - System.getProperty("user.dir") gives you the base file path, then append accordingly
 - E.g. String filepath = System.getProperty("user.dir") + \\\data\\\init\\\;
 This will create the filepath string to the init folder. 
+(Use double backslash)
 
 ----------------------
