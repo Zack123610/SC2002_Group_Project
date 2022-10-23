@@ -16,7 +16,7 @@ public class PlatinumCinema extends Cinema {
 		for (char row : new char[] {'A', 'B'}) {
 			ArrayList<Seat> temp = new ArrayList<>();
 			for (int col=1; col<=5; col++)
-				temp.add(new Seat(String.format("%c%d", row, col)));
+				temp.add(new Seat(String.format("%c%d", row, col),cinemaCode));
 			seatMap.put(row, temp);
 		}
 		

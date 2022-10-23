@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Seat implements Serializable {
-	private boolean occupied = false;
+	public boolean occupied = false;
 	private String seatCode;
+	private String cinema;
 	
-	public Seat(String seatCode) {
+	public Seat(String seatCode, String Cinemacode) {
 		this.seatCode = seatCode;
+		this.cinema = Cinemacode;
 	}
 	
 	public String getSeatCode() {
@@ -20,5 +22,9 @@ public class Seat implements Serializable {
 	}
 	public void setOccupied(boolean occupied) {
 		this.occupied = occupied;
+	}
+	public String CinemaCode()
+	{
+		return this.cinema;
 	}
 }

@@ -9,17 +9,18 @@ import java.util.List;
 
 import customer.Age;
 import movie.ticket.Ticket;
-
+import showtime.Showtime;
+import cineplex.cinema.Seat;
 public class Booking {
 	private String transactionID, name, mobileNo, email;
 	private Age age;
+	private Seat seat;
 	private List<Ticket> tickets;
 	
-	public Booking(String cinemaCode) {
+	public Booking(int Cineplexno,String cinemaCode) {
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmm");
-		transactionID = cinemaCode + dateFormat.format(date);
-		
+		this.transactionID = Cineplexno + cinemaCode + seat.getSeatCode()+ dateFormat.format(date);
 		tickets = new ArrayList<>();
 	}
 
@@ -34,6 +35,9 @@ public class Booking {
 	public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
 	public void setEmail(String email) { this.email = email; }
 	public void setAge(Age age) { this.age = age; }
-	
+	public void setSeat(Showtime showtime, String seatCode)
+	{
+		showtime.cinema.bookSeat(seatCode.charAt(0), seatCode.charAt(1));
+	}
 	public void addTicket(Ticket ticket) { tickets.add(ticket); }
 }

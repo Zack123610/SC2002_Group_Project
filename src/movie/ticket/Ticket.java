@@ -4,13 +4,13 @@ import booking.Booking;
 import cineplex.cinema.Seat;
 import customer.Customer;
 import globals.Writable;
-import movie.showtime.Showtime;
+import showtime.Showtime;
 
 
 @SuppressWarnings("serial")
 public class Ticket extends Writable {
 	private static double basePrice = 10.00;
-	private Seat seat;
+	public Seat seat;
 	private Showtime showtime;
 	private Customer customer;
 	private Booking booking;

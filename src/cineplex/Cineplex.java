@@ -10,7 +10,7 @@ import globals.Writable;
 @SuppressWarnings("serial")
 public class Cineplex extends Writable {
 	private String name;
-	private List<Cinema> cinemas;
+	public List<Cinema> cinemas;
 	
 	public Cineplex(String name) {
 		this.name = name;

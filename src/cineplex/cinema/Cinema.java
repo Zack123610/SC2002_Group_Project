@@ -13,18 +13,20 @@ public class Cinema extends Writable implements ITicketAttribute {
 	private double multiplier = 1.0;
 	private int availSeat;
 	private String cinemaCode;
+	private String Cineplexname;
 	private Map<Character, List<Seat>> seatMap;
 	
 	public Cinema() { }
-	public Cinema(String cinemaCode) {
+	public Cinema(String cinemaCode, String cineplexCode) {
 		availSeat = 24;
+		this.Cineplexname = cineplexCode;
 		this.cinemaCode = cinemaCode;
 		seatMap = new HashMap<>();
 		
 		for (char row : new char[] {'A', 'B', 'C'}) {
 			ArrayList<Seat> temp = new ArrayList<>();
 			for (int col=1; col<=8; col++)
-				temp.add(new Seat(String.format("%c%d", row, col)));
+				temp.add(new Seat(String.format("%c%d", row, col), cinemaCode));
 			seatMap.put(row, temp);
 		}
 	}
@@ -53,6 +55,7 @@ public class Cinema extends Writable implements ITicketAttribute {
 	public double getMultiplier() { return multiplier; }
 	public int getAvailSeat() { return availSeat; }
 	public String getCinemaCode() { return cinemaCode; }
+	public String getCineplexname(){return Cineplexname;}
 	
 	@Override
 	public void setMultiplier(double multiplier) { this.multiplier = multiplier; }
