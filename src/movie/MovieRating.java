@@ -8,7 +8,8 @@ public enum MovieRating implements Serializable {
 	PG13("PG13"),
 	NC16("NC16"),
 	M18("M18"),
-	R21("R21");
+	R21("R21"),
+	TBA("To Be Announced");
 
 	private String name;
 	

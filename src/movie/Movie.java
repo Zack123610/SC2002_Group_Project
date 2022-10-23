@@ -1,25 +1,41 @@
 package movie;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import globals.Writable;
+import input.FileController;
 import movie.review.Review;
+import movie.showtime.Day;
 
 
-@SuppressWarnings("serial")
 public class Movie extends Writable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3685122323077146327L;
 	private int ticketsSold = 0;
 	private String title;
 	private List<Genre> genres = new ArrayList<>();
 	private ShowStatus showStatus;
+	private LocalDate releaseDate;
 	private String synopsis;
 	private String director;
-	private List<String> casts = new ArrayList<>();;
+	private List<String> casts = new ArrayList<>();
 	private MovieRating movieRating;
 	private double totalRating = 0.0;
-	private List<Review> reviews = new ArrayList<>();;
+	private List<Review> reviews = new ArrayList<>();
 	
 	// Used to display the short description (Movie title | Status)
 	@Override
@@ -34,6 +50,7 @@ public class Movie extends Writable {
 		System.out.printf("Genres: %s\n", String.join(", ", genres.stream().map(Genre::getName)
 								.collect(Collectors.joining(", "))));
 		System.out.printf("Movie Rating: %s\n", movieRating.getName());
+		System.out.printf("Release Date: %s\n", releaseDate);
 		System.out.printf("Synopsis: %s\n", synopsis);
 		System.out.printf("Director: %s\n", director);
 		System.out.printf("Cast: %s\n\n", String.join(", ", casts));
@@ -44,9 +61,11 @@ public class Movie extends Writable {
 		else
 			System.out.printf("%.1f★\n", getOverallRating());
 		
-		if (reviews.size() > 0) 
+		if (reviews.size() > 0) {
+			System.out.println("---------------------------");
 			for (Review review : reviews)
 				System.out.println(review.toString());
+		}
 		System.out.println();
 	}
 	
@@ -55,6 +74,7 @@ public class Movie extends Writable {
 	public String getTitle() { return title; }
 	public List<Genre> getGenres() { return genres; }
 	public ShowStatus getShowStatus() { return showStatus; }
+	public LocalDate getReleaseDate() { return releaseDate; }
 	public String getSynopsis() { return synopsis; }
 	public String getDirector() { return director; }
 	public List<String> getCasts() { return casts; }
@@ -69,6 +89,7 @@ public class Movie extends Writable {
 	//setters
 	public void setTitle(String title) { this.title = title; }
 	public void setShowStatus(ShowStatus showStatus) { this.showStatus = showStatus; }
+	public void setReleaseDate(LocalDate releaseDate) {this.releaseDate = releaseDate; }
 	public void setSynopsis(String synopsis) { this.synopsis = synopsis; }
 	public void setDirector(String director) { this.director = director; }
 	public void setMovieRating(MovieRating movieRating) { this.movieRating = movieRating; }
@@ -81,4 +102,54 @@ public class Movie extends Writable {
 		reviews.add(review);
 		totalRating += review.getRating();
 	}
+	
+	
+//	public static void main(String[] args) {
+//		String filepath = System.getProperty("user.dir") + "\\data\\init\\movies\\";
+//		Movie movie;
+//		List<String> list;
+//		List<Movie> toSer = new ArrayList<>();
+//		
+//		try {
+//			File[] files = new File(filepath).listFiles();
+//			
+//			for (File file : files) {
+//				FileReader frStream = new FileReader(file);
+//				BufferedReader brStream = new BufferedReader(frStream);
+//
+//				movie = new Movie();
+//
+//				movie.setTitle(brStream.readLine());
+//
+//				list = Arrays.asList(brStream.readLine().split(", "));
+//				for (String string : list) 
+//					movie.addGenre(Genre.valueOf(string));
+//				
+//				movie.setShowStatus(ShowStatus.valueOf(brStream.readLine()));
+//				movie.setReleaseDate(LocalDate.parse(brStream.readLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//				movie.setSynopsis(brStream.readLine().replace("|", "\n          "));
+//				movie.setDirector(brStream.readLine());
+//				
+//				list = Arrays.asList(brStream.readLine().split(", "));
+//				for (String string : list) 
+//					movie.addCast(string);
+//				
+//				movie.setMovieRating(MovieRating.valueOf(brStream.readLine()));
+//				toSer.add(movie);
+//			}
+//		} catch (FileNotFoundException e) {
+//			System.out.println("File not found");
+//		} catch (IOException e) {
+//			System.out.println("Error initializing stream");
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			System.out.println("An error has occured");
+//		}
+//		
+//		for (var element: toSer)
+//			System.out.printf("Name: %-30s | ID: %s\n", element.title, element.getID().toString());
+//
+//		FileController.write(toSer, System.getProperty("user.dir") + "\\data\\movie\\");
+//	}
+	
 }

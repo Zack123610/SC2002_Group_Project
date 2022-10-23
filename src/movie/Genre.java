@@ -7,7 +7,12 @@ import movie.ticket.ITicketAttribute;
 public enum Genre implements ITicketAttribute, Serializable {
 	THREED("3D"),
 	ACTION("Action"),
-	BLOCKBLASTER("Blockbuster");
+	ADVENTURE("Adventure"),
+	ANIME("Anime"),
+	BLOCKBUSTER("Blockbuster"),
+	FANTASY("Fantasy"),
+	HORROR("Horror"),
+	SCI_FI("Sci-Fi");
 
 	
 	private String name;
@@ -19,16 +24,10 @@ public enum Genre implements ITicketAttribute, Serializable {
 	}
 
 	
-	public String getName() {
-		return name;
-	}
+	public String getName() { return name; }
 	@Override
-	public void setMultiplier(double multiplier) {
-		this.multipler = multiplier;
-	}
+	public double getMultiplier() { return multipler; }
+	
 	@Override
-	public double getMultiplier() {
-		return multipler;
-	}
-
+	public void setMultiplier(double multiplier) { this.multipler = multiplier; }
 }

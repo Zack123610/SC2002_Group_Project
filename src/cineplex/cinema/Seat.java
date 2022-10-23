@@ -2,8 +2,11 @@ package cineplex.cinema;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Seat implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1036306049152454258L;
 	private boolean occupied = false;
 	private String seatCode;
 	
@@ -11,14 +14,9 @@ public class Seat implements Serializable {
 		this.seatCode = seatCode;
 	}
 	
-	public String getSeatCode() {
-		return seatCode;
-	}
+	public String getSeatCode() { return seatCode; }
 	
-	public boolean isOccupied() {
-		return occupied;
-	}
-	public void setOccupied(boolean occupied) {
-		this.occupied = occupied;
-	}
+	public boolean isOccupied() { return occupied; }
+	
+	public void setOccupied(boolean occupied) { this.occupied = occupied; }
 }
