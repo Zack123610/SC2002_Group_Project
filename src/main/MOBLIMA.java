@@ -36,6 +36,16 @@ public class MOBLIMA {
 		reviewController = new ReviewController();
 		showtimeController = new ShowtimeController();
 		ticketController = new TicketController();
+	
+		
+		cineplexController.init();
+		cinemaController.init();
+		reviewController.init();
+		movieController.init();
+		ticketController.init();
+		showtimeController.init();
+		bookingController.init();
+		settingsController.init();
 	}
 	
 	// Exit all controllers
