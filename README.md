@@ -1,7 +1,6 @@
 # SC2002_Group_Project
 
 Taskings:
-- Create seed data for the Models            (24 Oct Monday)
 - Finishing the code for all the controllers (30 Oct Sunday)
 
 General Idea:
@@ -52,22 +51,8 @@ Each controller should support Create/Read/Update/Delete operations (depends on 
 
 ----------------------
 ----------------------
-Guide for Tasking 1: Create seed data for the Models
+How to get the relative filepath?
+- E.g. String filepath = "./data/init/";
 
-Whoever is doing the controller, will do the seed data for that model.
-E.g. The person in charge of the Movie Controller will provide the seed data for the Movie class
-
-1) Create a new text file in data\init, fill in with data accordingly (E.g. Movie1.txt, ..., Movie5.txt)
-2) In the Movie class, create a public static void main(String args[]).
-   This main method will only be for internal use to initialise the data folder when needed
-3) Write code in the main method to read the files and convert them into an ArrayList of the Movie class. 
-4) Use the code provided in FileController to write the ArrayList into the respective data folder (E.g. data\movies)
-
-How to get the base filepath?
-- System.getProperty("user.dir") gives you the base file path, then append accordingly
-- E.g. String filepath = System.getProperty("user.dir") + \\\data\\\init\\\ ;
-
-This will create the string for the filepath to the init folder. 
-(Use double backslash)
-
+This will create the relative filepath to the init folder
 ----------------------
