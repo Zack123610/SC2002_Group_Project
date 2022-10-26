@@ -7,8 +7,8 @@ import customer.*;
 import input.*;
 import movie.MovieController;
 import movie.review.ReviewController;
-import movie.showtime.ShowtimeController;
 import movie.ticket.TicketController;
+import showtime.ShowtimeController;
 
 public class MOBLIMA {
 // Note: Change them into interfaces after whole project done

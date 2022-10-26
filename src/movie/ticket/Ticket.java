@@ -5,7 +5,7 @@ import java.util.Arrays;
 import booking.Booking;
 import cineplex.cinema.Seat;
 import globals.Writable;
-import movie.showtime.Showtime;
+import showtime.Showtime;
 
 
 public class Ticket extends Writable {
@@ -14,7 +14,7 @@ public class Ticket extends Writable {
 	 */
 	private static final long serialVersionUID = -2094192433542790502L;
 	private static double basePrice = 10.00;
-	private Seat seat;
+	public Seat seat;
 	private Showtime showtime;
 	private Booking booking;
 	
