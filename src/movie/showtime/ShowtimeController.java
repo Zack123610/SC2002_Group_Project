@@ -20,9 +20,9 @@ public class ShowtimeController {
 	
 	public void init() {
 		for (Showtime showtime : showtimes) {
-			showtime.setCinema(MOBLIMA.cinemaController.getCinemabyID(showtime.getCinemaID()));
-			showtime.setMovie(MOBLIMA.movieController.getMoviebyID(showtime.getMovieID()));
-			showtime.setCineplex(MOBLIMA.cineplexController.getCineplexbyID(showtime.getCineplexID()));
+			showtime.setCinema(MOBLIMA.cinemaController.getCinemaByID(showtime.getCinema().getID()));
+			showtime.setMovie(MOBLIMA.movieController.getMovieByID(showtime.getMovie().getID()));
+			showtime.setCineplex(MOBLIMA.cineplexController.getCineplexByID(showtime.getCineplex().getID()));
 		}
 		System.out.println("Showtime Controller initialised successfully!");
 	}
@@ -32,7 +32,7 @@ public class ShowtimeController {
 		System.out.println("Showtime Controller exited successfully!");
 	}
 	
-	public Showtime getShowtimebyID(UUID id) {
+	public Showtime getShowtimeByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 }

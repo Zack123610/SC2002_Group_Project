@@ -11,6 +11,8 @@ import java.util.UUID;
 
 import globals.Writable;
 import input.FileController;
+import movie.Movie;
+import movie.MovieController;
 
 
 public class Review extends Writable {
@@ -18,13 +20,13 @@ public class Review extends Writable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5785020867407651793L;
-	private UUID movieID;
+	private Movie movie;
 	private int rating;
 	private String description;
 	
 	public Review() { }
-	public Review(UUID movieID, int rating, String description) {
-		this.movieID = movieID;
+	public Review(Movie movie, int rating, String description) {
+		this.movie = movie;
 		this.rating = rating;
 		this.description = description;
 	}
@@ -35,18 +37,19 @@ public class Review extends Writable {
 		return String.format("%d★\n%s", rating, description);
 	}
 	
-	public UUID getMovieID() { return movieID; }
+	public Movie getMovie() { return movie; }
 	public String getDescription() { return description; }
 	public int getRating() { return rating; }
 	
-	public void setMovieID(UUID movieID) { this.movieID = movieID; }
+	public void setMovie(Movie movie) { this.movie = movie; }
 	public void setDescription(String description) { this.description = description; }
 	public void setRating(int rating) { this.rating = rating; }
 	
 	
 //	public static void main(String[] args) {
-//		String filepath = System.getProperty("user.dir") + "\\data\\init\\reviews\\";
-//		UUID movieID;
+//		String filepath = "./data/init/reviews/";
+//		MovieController mc = new MovieController();
+//		Movie movie;
 //		String description;
 //		int rating;
 //		List<Review> toSer = new ArrayList<>();
@@ -58,11 +61,11 @@ public class Review extends Writable {
 //				FileReader frStream = new FileReader(file);
 //				BufferedReader brStream = new BufferedReader(frStream);
 //	
-//				movieID = UUID.fromString(brStream.readLine());
+//				movie = mc.getMovieByID(UUID.fromString(brStream.readLine()));
 //				rating = Integer.parseInt(brStream.readLine());
 //				description = brStream.readLine().replace("|", "\n") + "\n";
 //				
-//				toSer.add(new Review(movieID, rating, description));
+//				toSer.add(new Review(movie, rating, description));
 //			}
 //		} catch (FileNotFoundException e) {
 //			System.out.println("File not found");
@@ -78,7 +81,6 @@ public class Review extends Writable {
 //			System.out.println(element.toString());
 //		}
 //		
-//		FileController.write(toSer, System.getProperty("user.dir") + "\\data\\review\\");
+//		FileController.write(toSer, "./data/review/");
 //	}
-	
 }

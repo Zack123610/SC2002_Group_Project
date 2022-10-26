@@ -12,7 +12,7 @@ public class MovieController {
 	private Map<UUID, Movie> hm = new HashMap<>();
 	
 	public MovieController() {
-		movies = FileController.read(System.getProperty("user.dir") + "\\data\\movie\\");
+		movies = FileController.read("./data/movie/");
 		for (Movie movie : movies) 
 			hm.put(movie.getID(), movie);
 	}
@@ -22,11 +22,12 @@ public class MovieController {
 	}
 	
 	public void exit() {
-		FileController.write(movies, System.getProperty("user.dir") + "\\data\\movie\\");
+		FileController.write(movies, "./data/movie/");
 		System.out.println("Movie Controller exited successfully!");
 	}
 	
-	public Movie getMoviebyID(UUID id) {
+	public Movie getMovieByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
+	
 }

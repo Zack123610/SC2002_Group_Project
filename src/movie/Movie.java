@@ -105,7 +105,7 @@ public class Movie extends Writable {
 	
 	
 //	public static void main(String[] args) {
-//		String filepath = System.getProperty("user.dir") + "\\data\\init\\movies\\";
+//		String filepath = "./data/init/movies/";
 //		Movie movie;
 //		List<String> list;
 //		List<Movie> toSer = new ArrayList<>();
@@ -149,7 +149,6 @@ public class Movie extends Writable {
 //		for (var element: toSer)
 //			System.out.printf("Name: %-30s | ID: %s\n", element.title, element.getID().toString());
 //
-//		FileController.write(toSer, System.getProperty("user.dir") + "\\data\\movie\\");
+//		FileController.write(toSer, "./data/movie/");
 //	}
-	
 }

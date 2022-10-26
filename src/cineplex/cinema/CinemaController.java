@@ -8,12 +8,12 @@ import java.util.UUID;
 import input.FileController;
 
 public class CinemaController {
-	private List<AbstractCinema> cinemas;
-	private Map<UUID, AbstractCinema> hm = new HashMap<>();
+	private List<Cinema> cinemas;
+	private Map<UUID, Cinema> hm = new HashMap<>();
 	
 	public CinemaController() {
 		cinemas = FileController.read(System.getProperty("user.dir") + "\\data\\cinema\\");
-		for (AbstractCinema cinema : cinemas)
+		for (Cinema cinema : cinemas)
 			hm.put(cinema.getID(), cinema);
 	}
 	
@@ -26,7 +26,7 @@ public class CinemaController {
 		System.out.println("Cinema Controller exited successfully!");
 	}
 	
-	public AbstractCinema getCinemabyID(UUID id) {
+	public Cinema getCinemaByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 	

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlatinumCinema extends AbstractCinema {
+public class PlatinumCinema extends Cinema {
 	/**
 	 * 
 	 */
@@ -21,7 +21,7 @@ public class PlatinumCinema extends AbstractCinema {
 		for (char row : new char[] {'A', 'B'}) {
 			ArrayList<Seat> temp = new ArrayList<>();
 			for (int col=1; col<=5; col++)
-				temp.add(new Seat(String.format("%c%d", row, col),cinemaCode));
+				temp.add(new Seat(String.format("%c%d", row, col), cinemaCode));
 			seatMap.put(row, temp);
 		}
 		
@@ -49,11 +49,4 @@ public class PlatinumCinema extends AbstractCinema {
 				"            __________           \n" +
 				"            |ENTRANCE|           \n");
 	}
-	
-//	public static void main(String[] args) {
-//		Cinema cinema = new Cinema("DEF");
-//		cinema.displaySeatingLayout();
-//		Cinema test = new PlatinumCinema("ABC");
-//		test.displaySeatingLayout();
-//	}
 }

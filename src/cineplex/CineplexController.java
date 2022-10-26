@@ -1,5 +1,6 @@
 package cineplex;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.UUID;
 
 import input.FileController;
 import main.MOBLIMA;
+import movie.showtime.Showtime;
 
 public class CineplexController {
 	private List<Cineplex> cineplexes;
@@ -19,9 +21,12 @@ public class CineplexController {
 	}
 	
 	public void init() {
-		for (Cineplex cineplex : cineplexes) 
-			for (UUID id : cineplex.getCinemaIDList())
-				cineplex.addCinema(MOBLIMA.cinemaController.getCinemabyID(id));
+		for (Cineplex cineplex : cineplexes) {
+			ArrayList<Showtime> temp = new ArrayList<>();
+			for (Showtime showtime : cineplex.getShowTimes())
+				temp.add(MOBLIMA.showtimeController.getShowtimeByID(showtime.getID()));
+			cineplex.setShowTimes(temp);
+		}
 		System.out.println("Cineplex Controller initialised successfully!");
 	}
 	
@@ -30,7 +35,7 @@ public class CineplexController {
 		System.out.println("Cineplex Controller exited successfully!");
 	}
 	
-	public Cineplex getCineplexbyID(UUID id) {
+	public Cineplex getCineplexByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 	

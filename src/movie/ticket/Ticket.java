@@ -5,7 +5,7 @@ import java.util.Arrays;
 import booking.Booking;
 import cineplex.cinema.Seat;
 import globals.Writable;
-import showtime.Showtime;
+import movie.showtime.Showtime;
 
 
 public class Ticket extends Writable {
@@ -13,8 +13,11 @@ public class Ticket extends Writable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2094192433542790502L;
+	// basePrice: Base price that will be shared across all ticket classes
 	private static double basePrice = 10.00;
-	public Seat seat;
+	// finalPrice: The final price calculated for that ticket object
+	private double finalPrice = 0.0;
+	private Seat seat;
 	private Showtime showtime;
 	private Booking booking;
 	
@@ -23,23 +26,26 @@ public class Ticket extends Writable {
 	public Showtime getShowtime() { return showtime; }
     public Booking getBooking() { return booking; }
     
-    public void setBasePrice(double basePrice) { Ticket.basePrice = basePrice; }
+    public static void setBasePrice(double basePrice) { Ticket.basePrice = basePrice; }
 	public void setSeat(Seat seat) { this.seat = seat; }
 	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
 	public void setBooking(Booking booking) { this.booking = booking; }
 	
 	public double calculateFinalPrice() {
-		double res = basePrice;
+		if (finalPrice > 0.0)
+			return finalPrice;
+		
+		finalPrice = basePrice;
 		
 		for (IGetTicketAttribute genre : showtime.getMovie().getGenres())
-			res *= genre.getMultiplier();
+			finalPrice *= genre.getMultiplier();
 		
 		for (IGetTicketAttribute attribute : Arrays.asList(
 			booking.getAge(), showtime.getCinema(), showtime.getDay()
 		))
-			res *= attribute.getMultiplier();
+			finalPrice *= attribute.getMultiplier();
 
-		return res * 1.07;
+		return finalPrice;
 	}
 	
 	public void displayTicketInfo() {
