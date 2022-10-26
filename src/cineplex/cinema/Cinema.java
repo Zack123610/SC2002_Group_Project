@@ -12,7 +12,7 @@ import input.FileController;
 import movie.ticket.ITicketAttribute;
 
 
-public class Cinema extends Writable implements ITicketAttribute {
+public class Cinema extends Writable implements ITicketAttribute, Cloneable {
 	/**
 	 * 
 	 */
@@ -105,6 +105,11 @@ public class Cinema extends Writable implements ITicketAttribute {
 		System.out.println(
 				"            __________             \n" +
 				"            |ENTRANCE|             \n");
+	}
+	
+	// Compare whether two cinemas objects are referring to the same room 
+	public boolean equals(Cinema other) {
+		return this.getCinemaCode().equals(other.getCinemaCode());
 	}
 
 	@Override

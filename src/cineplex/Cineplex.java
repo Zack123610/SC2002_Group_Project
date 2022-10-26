@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 import cineplex.cinema.Cinema;
+import cineplex.cinema.PlatinumCinema;
 import globals.Writable;
 import input.FileController;
 import movie.Movie;
@@ -24,10 +25,7 @@ public class Cineplex extends Writable {
 	private String name;
 	private List<UUID> showTimeIDList; // For showTime IDs
 	private List<Showtime> showTimes; // ArrayList for showTime
-	
-	// To store the cinema codes of the cinemas under this cineplex
-	// Used during create showtime to check which available cinemas are available
-	private List<String> cinemaCodes; 
+	private List<Cinema> cinemaList;  // ArrayList for cinemas
 	
 	// Constructor
 	public Cineplex() {}
@@ -35,53 +33,65 @@ public class Cineplex extends Writable {
 		this.name = name;
 		showTimes = new ArrayList<>(); //edited
 		showTimeIDList = new ArrayList<>(); //added
-		cinemaCodes = new ArrayList<>();
+		cinemaList = new ArrayList<>();
 	}
 	
 	// Methods
 	public String getName() { return name; }
 	public List<UUID> getShowTimeIDList() { return showTimeIDList; }
 	public List<Showtime> getShowTimes() { return showTimes; }
-	public List<String> getCinemaCodes() { return cinemaCodes; }
+	public List<Cinema> getCinemaList() { return cinemaList; }
 	
 	public void setShowTimes(List<Showtime> showTimes) { this.showTimes = showTimes; }
-	public void setCinemaCodes(List<String> cinemaCodes) { this.cinemaCodes = cinemaCodes; }
+	public void setCinemaList(List<Cinema> cinemaList) { this.cinemaList = cinemaList; }
 	
 	public void addShowTime(Showtime showTime) {
 		showTimes.add(showTime);
 	}
-	public void addCinemaCode(String code) {
-		cinemaCodes.add(code);
+	public void addCinema(Cinema cinema) {
+		cinemaList.add(cinema);
 	}
 	
 //	public static void main(String[] args) {
 //		// Create new preload data for cineplex and showtimes
 //		
 //		MovieController mc = new MovieController();
-//		Movie BlackAdam = mc.getMoviebyID(UUID.fromString("423dcfc9-eec2-4994-b4ba-d67377cf3627"));
+//		Movie BlackAdam = mc.getMovieByID(UUID.fromString("423dcfc9-eec2-4994-b4ba-d67377cf3627"));
 //		
-//		ArrayList<String> cinemaCodes;
+//		List<Cinema> cinemas;
+//		
+//		Cinema DE1 = new Cinema("DE1");
+//		Cinema DE2 = new Cinema("DE2");
+//		Cinema DE3 = new PlatinumCinema("DE3");
+//		
+//		Cinema JM1 = new Cinema("JM1");
+//		Cinema JM2 = new PlatinumCinema("JM2");
+//		Cinema JM3 = new PlatinumCinema("JM3");
+//		
+//		Cinema WM1 = new Cinema("WM1");
+//		Cinema WM2 = new Cinema("WM2");
+//		Cinema WM3 = new Cinema("WM3");
 //		
 //		Cineplex DE = new Cineplex("Downtown East");
-//		cinemaCodes = new ArrayList<>();
-//		cinemaCodes.add("DE1");
-//		cinemaCodes.add("DE2");
-//		cinemaCodes.add("DE3");
-//		DE.setCinemaCodes(cinemaCodes);
+//		cinemas = new ArrayList<>();
+//		cinemas.add(DE1);
+//		cinemas.add(DE2);
+//		cinemas.add(DE3);
+//		DE.setCinemaList(cinemas);
 //		
 //		Cineplex JM = new Cineplex("JEM");
-//		cinemaCodes = new ArrayList<>();
-//		cinemaCodes.add("JM1");
-//		cinemaCodes.add("JM2");
-//		cinemaCodes.add("JM3");
-//		JM.setCinemaCodes(cinemaCodes);
+//		cinemas = new ArrayList<>();
+//		cinemas.add(JM1);
+//		cinemas.add(JM2);
+//		cinemas.add(JM3);
+//		JM.setCinemaList(cinemas);
 //		
 //		Cineplex WM = new Cineplex("West Mall");
-//		cinemaCodes = new ArrayList<>();
-//		cinemaCodes.add("WE1");
-//		cinemaCodes.add("WE2");
-//		cinemaCodes.add("WE3");
-//		WM.setCinemaCodes(cinemaCodes);
+//		cinemas = new ArrayList<>();
+//		cinemas.add(WM1);
+//		cinemas.add(WM2);
+//		cinemas.add(WM3);
+//		WM.setCinemaList(cinemas);
 //		
 //		// Day, Movie, Cinema, Cineplex;
 //		Showtime BA1 = new Showtime(
@@ -102,7 +112,7 @@ public class Cineplex extends Writable {
 //		Showtime BA4 = new Showtime(
 //				new Day(LocalDate.parse("2022-10-28"), LocalTime.parse("18:30")), 
 //				BlackAdam,
-//				new Cinema("JM3"), JM);
+//				new PlatinumCinema("JM3"), JM);
 //		
 //		Showtime BA5 = new Showtime(
 //				new Day(LocalDate.parse("2022-10-29"), LocalTime.parse("18:30")), 

@@ -1,44 +1,12 @@
 package cineplex.cinema;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import input.FileController;
-
 public class CinemaController {
-	private List<Cinema> cinemas;
-	private Map<UUID, Cinema> hm = new HashMap<>();
-	
-	public CinemaController() {
-		cinemas = FileController.read(System.getProperty("user.dir") + "\\data\\cinema\\");
-		for (Cinema cinema : cinemas)
-			hm.put(cinema.getID(), cinema);
-	}
-	
-	public void init() {
-		System.out.println("Cinema Controller initialised successfully!");
-	}
-	
-	public void exit() {
-		FileController.write(cinemas, System.getProperty("user.dir") + "\\data\\cinema\\");
-		System.out.println("Cinema Controller exited successfully!");
-	}
-	
-	public Cinema getCinemaByID(UUID id) {
-		return hm.containsKey(id) ? hm.get(id) : null;
-	}
+	// Cinema controller no longer needs to preload any data 
+	// (The cinema objects are either stored within showtime or cineplex)
+	// It now only needs to handle the seat booking when passed in Cinema object as parameter
+	public CinemaController() {	}
+
 	
 	
-	
-//	public static void main(String[] args) {
-//		CinemaController test = new CinemaController();
-//		
-//		test.cinemas.get(0).displaySeatingLayout();
-//		test.cinemas.get(0).bookSeat('A', 0);
-//		test.cinemas.get(0).displaySeatingLayout();
-//		FileController.write(test.cinemas, System.getProperty("user.dir") + "\\data\\cinema\\");
-//	}
 	
 }

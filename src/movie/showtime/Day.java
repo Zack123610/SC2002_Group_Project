@@ -32,6 +32,8 @@ public class Day implements IGetTicketAttribute, Serializable {
 		return date.toString() + " " + time.toString();
 	}
 	
+	// If it is a holiday, then return the multiplier for the holiday price
+	// If not holiday, then return weekend multiplier of 1.2, or else default is 1
 	@Override
 	public double getMultiplier() {
 		Holiday holiday;
@@ -41,9 +43,4 @@ public class Day implements IGetTicketAttribute, Serializable {
 			return 1.2;
 		return 1.0;
 	}
-	
-//	public static void main(String[] args) {
-//		Day day = new Day(LocalDate.parse("2022-10-22"), LocalTime.parse("18:15"));
-//		System.out.println(day.toString());
-//	}
 }

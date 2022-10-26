@@ -4,12 +4,11 @@ import input.IntegerHandler;
 
 public class SettingsController {
 	
+	// Initialisation Code
 	public SettingsController() { }
-	
 	public void init() {
 		System.out.println("Settings Controller initialised successfully!");
 	}
-	
 	public void exit() {
 		System.out.println("Settings Controller exited successfully!");
 	}

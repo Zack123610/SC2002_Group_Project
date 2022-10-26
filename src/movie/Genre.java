@@ -18,6 +18,8 @@ public enum Genre implements ITicketAttribute, Serializable {
 	private String name;
 	private double multipler;
 	
+	// By default, all the genres' multiplier initialised to 1.0.
+	// Able to change this via SettingsController
 	Genre(String name) {
 		this.name = name;
 		this.multipler = 1.0;

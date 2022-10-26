@@ -7,7 +7,7 @@ import movie.ticket.ITicketAttribute;
 public enum Age implements ITicketAttribute, Serializable {
 	SENIOR("Senior", 0.80),
 	ADULT("Adult", 1),
-	CHILDREN("Children", 0.80);
+	CHILDREN("Children", 0.50);
 	
 	
 	private String name;
@@ -25,7 +25,4 @@ public enum Age implements ITicketAttribute, Serializable {
 	@Override
 	public void setMultiplier(double multiplier) { this.multiplier = multiplier; }
 
-	
-	
-	
 }
