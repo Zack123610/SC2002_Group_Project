@@ -7,21 +7,33 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import customer.Age;
-import movie.ticket.Ticket;
-import showtime.Showtime;
 import cineplex.cinema.Seat;
+import customer.Age;
+import movie.showtime.Showtime;
+import movie.ticket.Ticket;
+
 public class Booking {
 	private String transactionID, name, mobileNo, email;
 	private Age age;
 	private Seat seat;
 	private List<Ticket> tickets;
 	
-	public Booking(int Cineplexno,String cinemaCode) {
+	public Booking() { }
+	public Booking(int cineplexNo, String cinemaCode) {
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmm");
-		this.transactionID = Cineplexno + cinemaCode + seat.getSeatCode()+ dateFormat.format(date);
+		transactionID = cineplexNo + cinemaCode + seat.getSeatCode() + dateFormat.format(date);
 		tickets = new ArrayList<>();
+	}
+	
+	public void displayBookingInfo() {
+		System.out.println("TransactionID: " + transactionID);
+		System.out.println("Name: " + name);
+		System.out.println("Mobile: " + mobileNo);
+		System.out.println("email: " + email);
+		System.out.println("--- Tickets Info ---");
+		for (Ticket ticket : tickets) 
+			ticket.displayTicketInfo();
 	}
 
 	public String getTID() { return transactionID; }
@@ -35,9 +47,9 @@ public class Booking {
 	public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
 	public void setEmail(String email) { this.email = email; }
 	public void setAge(Age age) { this.age = age; }
-	public void setSeat(Showtime showtime, String seatCode)
-	{
-		showtime.cinema.bookSeat(seatCode.charAt(0), seatCode.charAt(1));
+	public void setSeat(Showtime showtime, String seatCode) {
+		showtime.getCinema().bookSeat(seatCode.charAt(0), seatCode.charAt(1));
 	}
-	public void addTicket(Ticket ticket) { tickets.add(ticket); }
+	
+	public void addTicket(Ticket ticket) {  tickets.add(ticket); }
 }

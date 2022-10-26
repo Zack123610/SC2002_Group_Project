@@ -2,15 +2,11 @@ package admin;
 
 import input.IntegerHandler;
 import input.StringHandler;
-//import movie.MovieController;
-
-// Note: Might want to consider splitting up all the different menu options
-//       into separate classes
+import main.MOBLIMA;
 
 
 public class AdminController {
 	private String password = "admin";
-	
 	
 	private boolean login() {
 		System.out.print("Enter password: ");
@@ -31,9 +27,11 @@ public class AdminController {
 		System.out.println(
 				"======================= Admin Menu =======================\n" + 
 				"1) Configure movie settings\n" + 
-				"2) Create/Update/Remove cinema showtimes and the movies to be shown\n" +
-				"3) Change password\n" +
-				"4) Exit");
+				"2) Configure cinema showtimes\n" +
+				"3) Configure system settings\n" +
+				"4) List top 5 ranking movies\n" +
+				"5) Change password\n" +
+				"6) Exit");
 		System.out.print("Please select an option: ");
 	}
 	
@@ -45,20 +43,25 @@ public class AdminController {
 		do {
 			displayAdminMenu();
 			
-			switch (IntegerHandler.readInt(1, 4)) {
+			switch (IntegerHandler.readInt(1, 6)) {
 			case 1:
-				//MovieHandler.get().runAdmin();
-				//movieHandler.runAdmin();
 				break;
 
 			case 2:
 				break;
 				
 			case 3:
-				changePassword();
+				MOBLIMA.settingsController.run();
 				break;
 				
 			case 4:
+				break;
+				
+			case 5:
+				changePassword();
+				break;
+				
+			case 6:
 				System.out.println("Exiting Admin Application ...");
 				done = true;
 			}

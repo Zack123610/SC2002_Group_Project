@@ -7,8 +7,8 @@ import customer.*;
 import input.*;
 import movie.MovieController;
 import movie.review.ReviewController;
+import movie.showtime.ShowtimeController;
 import movie.ticket.TicketController;
-import showtime.ShowtimeController;
 
 public class MOBLIMA {
 // Note: Change them into interfaces after whole project done
@@ -36,6 +36,16 @@ public class MOBLIMA {
 		reviewController = new ReviewController();
 		showtimeController = new ShowtimeController();
 		ticketController = new TicketController();
+	
+		
+		cineplexController.init();
+		cinemaController.init();
+		reviewController.init();
+		movieController.init();
+		//ticketController.init();
+		showtimeController.init();
+		bookingController.init();
+		settingsController.init();
 	}
 	
 	// Exit all controllers
@@ -58,8 +68,6 @@ public class MOBLIMA {
 		boolean done = false;
 		do {
 			displayMainMenu();
-			
-			//System.out.println("Test, file path: " + System.getProperty("user.dir"));
 			
 			switch (IntegerHandler.readInt(1, 3)) {
 			case 1: 

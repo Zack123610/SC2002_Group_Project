@@ -1,14 +1,11 @@
 package movie.ticket;
-import booking.Booking;
 import cineplex.cinema.Seat;
-import customer.Customer;
-import globals.Writable;
-import showtime.Showtime;
+import movie.showtime.Showtime;
 
-public class TicketController extends Ticket{
+public class TicketController extends Ticket {	
     public void changeBasePrice(int P)
     {
-        this.setBasePrice(P);
+        Ticket.setBasePrice(P);
         double p = this.calculateFinalPrice();
         System.out.println("Final price = " + p +" for base price = " + P);
     }
@@ -21,12 +18,13 @@ public class TicketController extends Ticket{
         }
         else
         {
-            this.seat.occupied =false;
+            this.getSeat().setOccupied(false);
             this.setSeat(target);
-            target.occupied = true;
+            target.setOccupied(true);
             System.out.println("Seat change successful!");
         }
     }
+    
     public void changeShowtime(Showtime target)
     {
         

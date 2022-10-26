@@ -1,6 +1,5 @@
 package movie.ticket;
 
-public interface ITicketAttribute {
-	public double getMultiplier();
+public interface ITicketAttribute extends IGetTicketAttribute {
 	public void setMultiplier(double multiplier);
 }

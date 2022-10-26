@@ -1,47 +1,56 @@
 package movie.ticket;
 
+import java.util.Arrays;
+
 import booking.Booking;
 import cineplex.cinema.Seat;
-import customer.Customer;
 import globals.Writable;
-import showtime.Showtime;
+import movie.showtime.Showtime;
 
 
-@SuppressWarnings("serial")
 public class Ticket extends Writable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2094192433542790502L;
+	// basePrice: Base price that will be shared across all ticket classes
 	private static double basePrice = 10.00;
-	public Seat seat;
+	// finalPrice: The final price calculated for that ticket object
+	private double finalPrice = 0.0;
+	private Seat seat;
 	private Showtime showtime;
-	private Customer customer;
 	private Booking booking;
 	
 
 	public Seat getSeat() { return seat; }
 	public Showtime getShowtime() { return showtime; }
-    public Customer getCustomer() { return customer; }
     public Booking getBooking() { return booking; }
     
-    public void setBasePrice(double basePrice) { Ticket.basePrice = basePrice; }
+    public static void setBasePrice(double basePrice) { Ticket.basePrice = basePrice; }
 	public void setSeat(Seat seat) { this.seat = seat; }
 	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
-	public void setCustomer(Customer customer) { this.customer = customer; }
 	public void setBooking(Booking booking) { this.booking = booking; }
 	
 	public double calculateFinalPrice() {
-		double res = basePrice;
+		if (finalPrice > 0.0)
+			return finalPrice;
 		
-		for (ITicketAttribute genre : showtime.getMovie().getGenres())
-			res *= genre.getMultiplier();
+		finalPrice = basePrice;
 		
-		for (ITicketAttribute attribute : new ITicketAttribute[] {
+		for (IGetTicketAttribute genre : showtime.getMovie().getGenres())
+			finalPrice *= genre.getMultiplier();
+		
+		for (IGetTicketAttribute attribute : Arrays.asList(
 			booking.getAge(), showtime.getCinema(), showtime.getDay()
-		})
-			res *= attribute.getMultiplier();
+		))
+			finalPrice *= attribute.getMultiplier();
 
-		return res;
+		return finalPrice;
 	}
 	
-	public void printTicketInfo() {
-		
+	public void displayTicketInfo() {
+		System.out.println("Showtime: " + showtime.getDay().toString());
+		System.out.println("Seat: " + seat.getSeatCode());
+		System.out.printf("Price: $%.2f\n\n", calculateFinalPrice());
 	}
 }

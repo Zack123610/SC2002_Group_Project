@@ -38,6 +38,7 @@ public class FileController {
 			System.out.println("File not found");
 		} catch (IOException e) {
 			System.out.println("Error initializing stream");
+			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -64,6 +65,7 @@ public class FileController {
 			  System.out.println("File not found"); 
 		  } catch (IOException e) {
 			  System.out.println("Error initializing stream"); 
+			  e.printStackTrace();
 		  } catch (Exception e) {
 			  System.out.println("An error has occured.");
 		  }
