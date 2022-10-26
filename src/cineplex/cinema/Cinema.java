@@ -1,24 +1,22 @@
 package cineplex.cinema;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import globals.SeatBookingException;
 import globals.Writable;
-import input.FileController;
 import movie.ticket.ITicketAttribute;
 
 
-public class Cinema extends Writable implements ITicketAttribute, Cloneable {
+public class Cinema extends Writable implements ITicketAttribute {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -202636338839913176L;
 	
-	private double multiplier = 1.0;
+	private static double multiplier = 1.0;
 	private int availSeat;
 	private String cinemaCode;
 	private Map<Character, List<Seat>> seatMap;
@@ -119,34 +117,8 @@ public class Cinema extends Writable implements ITicketAttribute, Cloneable {
 	public Map<Character, List<Seat>> getSeatMap() { return this.seatMap; };
 	
 	@Override
-	public void setMultiplier(double multiplier) { this.multiplier = multiplier; }
+	public void setMultiplier(double multiplier) { Cinema.multiplier = multiplier; }
 	public void setAvailSeat(int availSeat) { this.availSeat = availSeat; }
 	public void setCinemaCode(String cinemaCode) { this.cinemaCode = cinemaCode; }
 	public void setSeatMap(Map<Character, List<Seat>> seatMap) { this.seatMap = seatMap; };
-	
-	
-	
-	
-
-	
-//	public static void main(String[] args) {
-//		AbstractCinema WM1 = new Cinema("WM1");
-//		AbstractCinema WM2 = new Cinema("WM2");
-//		AbstractCinema WM3 = new Cinema("WM3");
-//		                            
-//		AbstractCinema JM1 = new Cinema("JM1");
-//		AbstractCinema JM2 = new Cinema("JM2");
-//		AbstractCinema JM3 = new PlatinumCinema("JM3");
-//		                           
-//		AbstractCinema DE1 = new Cinema("DE1");
-//		AbstractCinema DE2 = new PlatinumCinema("DE2");
-//		AbstractCinema DE3 = new PlatinumCinema("DE3");
-//		
-//		List<AbstractCinema> toSer = Arrays.asList(WM1, WM2, WM3, JM1, JM2 ,JM3, DE1, DE2, DE3);
-//		
-//		for (AbstractCinema cinema: toSer)
-//			System.out.println("Name: " + cinema.getCinemaCode() + " | ID: " + cinema.getID());
-//		
-//		FileController.write(toSer, System.getProperty("user.dir") + "\\data\\cinema\\");
-//	}
 }
