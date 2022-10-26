@@ -1,7 +1,7 @@
 # SC2002_Group_Project
 
 Taskings:
-- Finishing the code for all the controllers (30 Oct Sunday)
+- Writing out the methods for the controllers (30 Oct Sunday)
 
 General Idea:
 - Model: Models the real world using classes and enums. Objects will be created from the models. 
@@ -17,14 +17,13 @@ On Git:
 - Impt: Do NOT select the option to delete the branch when merging
         The branches will be used for tracking purposes / backup 
 ----------------------
-----------------------
 - All the controllers will be initialised in the main file (MOBLIMA.java), there will be one instance of each controller at runtime
 - The application works by having the controllers communicate with each other.
 - Each controller will store an ArrayList of their respective model.
 
-Eg. In the CustomerController, to call a method in the BookingController:
-MOBLIMA.bookingController.method();
-----------------------
+<p> Eg. In the CustomerController, to call a method in the BookingController: </p>
+<p> MOBLIMA.bookingController.method(); </p>
+    
 ----------------------
 Explanations of the controllers:
 Each controller should support Create/Read/Update/Delete operations (depends on question, might not need to implement all), plus some additional requirements.
@@ -47,12 +46,11 @@ Each controller should support Create/Read/Update/Delete operations (depends on 
 
 - CinemaController: Manages the Cinema class, will also manage the respective seats in the Cinema. 
 
-- ReviewController: Manages the Review class, used when customers chooses to create a new review
+- ReviewController: Manages the Review class, used when customers create a new review
 
-----------------------
 ----------------------
 How to get the relative filepath?
 - E.g. String filepath = "./data/init/";
 
-This will create the relative filepath to the init folder
+<p> This will create the relative filepath to the init folder </p?
 ----------------------
