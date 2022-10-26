@@ -19,5 +19,4 @@ public class StringHandler{
 		}
 		return next;
 	}
-
 }

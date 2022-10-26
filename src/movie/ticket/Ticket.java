@@ -2,8 +2,8 @@ package movie.ticket;
 
 import java.util.Arrays;
 
-import booking.Booking;
 import cineplex.cinema.Seat;
+import customer.Age;
 import globals.Writable;
 import movie.showtime.Showtime;
 
@@ -15,22 +15,25 @@ public class Ticket extends Writable {
 	private static final long serialVersionUID = -2094192433542790502L;
 	// basePrice: Base price that will be shared across all ticket classes
 	private static double basePrice = 10.00;
-	// finalPrice: The final price calculated for that ticket object
+	// finalPrice: The final price calculated for that particular ticket object
 	private double finalPrice = 0.0;
+	private Age age;
 	private Seat seat;
 	private Showtime showtime;
-	private Booking booking;
 	
 
 	public Seat getSeat() { return seat; }
 	public Showtime getShowtime() { return showtime; }
-    public Booking getBooking() { return booking; }
+    public Age getAge() { return age; }
     
     public static void setBasePrice(double basePrice) { Ticket.basePrice = basePrice; }
 	public void setSeat(Seat seat) { this.seat = seat; }
 	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
-	public void setBooking(Booking booking) { this.booking = booking; }
+	public void setAge(Age age) { this.age = age; }
 	
+	// If that particular ticket object already calculated its ticket price, then return its price
+	// Or else, calculate the price of that ticket. We do this so that if we change the base ticket
+	// price afterwards, the tickets bought in the past should not change.
 	public double calculateFinalPrice() {
 		if (finalPrice > 0.0)
 			return finalPrice;
@@ -41,7 +44,7 @@ public class Ticket extends Writable {
 			finalPrice *= genre.getMultiplier();
 		
 		for (IGetTicketAttribute attribute : Arrays.asList(
-			booking.getAge(), showtime.getCinema(), showtime.getDay()
+			age, showtime.getCinema(), showtime.getDay()
 		))
 			finalPrice *= attribute.getMultiplier();
 

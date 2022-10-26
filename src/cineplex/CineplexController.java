@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import cineplex.cinema.Cinema;
 import input.FileController;
 import main.MOBLIMA;
 import movie.showtime.Showtime;
@@ -15,7 +16,7 @@ public class CineplexController {
 	private Map<UUID, Cineplex> hm = new HashMap<>();
 	
 	public CineplexController() {
-		cineplexes = FileController.read(System.getProperty("user.dir") + "\\data\\cineplex\\");
+		cineplexes = FileController.read("./data/cineplex/");
 		for (Cineplex cineplex : cineplexes) 
 			hm.put(cineplex.getID(), cineplex);
 	}
@@ -31,8 +32,14 @@ public class CineplexController {
 	}
 	
 	public void exit() {
-		FileController.write(cineplexes, System.getProperty("user.dir") + "\\data\\cineplex\\");
+		FileController.write(cineplexes, "./data/cineplex/");
 		System.out.println("Cineplex Controller exited successfully!");
+	}
+	
+	public void test() {
+		for (Cineplex cineplex : cineplexes) 
+			for (Cinema cinema : cineplex.getCinemaList()) 
+				cinema.displaySeatingLayout();
 	}
 	
 	public Cineplex getCineplexByID(UUID id) {

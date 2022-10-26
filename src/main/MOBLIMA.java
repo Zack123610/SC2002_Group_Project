@@ -39,7 +39,7 @@ public class MOBLIMA {
 	
 		
 		cineplexController.init();
-		cinemaController.init();
+		//cinemaController.init();
 		reviewController.init();
 		movieController.init();
 		//ticketController.init();
@@ -50,7 +50,8 @@ public class MOBLIMA {
 	
 	// Exit all controllers
 	private static void exitAll() {
-		
+		movieController.exit();
+		reviewController.exit();
 	}
 	
 	private static void displayMainMenu() {

@@ -1,6 +1,7 @@
 package globals;
 
 //Throw this error when error encountered during seat booking
+
 @SuppressWarnings("serial")
 public class SeatBookingException extends Exception {
 	public SeatBookingException() {

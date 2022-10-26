@@ -22,8 +22,6 @@ public class FileController {
 		try {
 			File[] files = new File(filepath).listFiles();
 			
-			//System.out.println("Test filepath:" + filepath);
-			
 			for (File file : files) {
 				FileInputStream fileIn = new FileInputStream(file);
 				ObjectInputStream in = new ObjectInputStream(fileIn);

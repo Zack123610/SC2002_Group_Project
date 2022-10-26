@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 enum ShowStatus implements Serializable {
 	COMINGSOON("Coming Soon"), 
-	PREVIEW("Preview"), 
 	NOWSHOWING("Now Showing"), 
 	ENDOFSHOWING("End of Showing");
 	
@@ -15,7 +14,5 @@ enum ShowStatus implements Serializable {
 	}
 	
 	@Override
-	public String toString() {
-		return name;
-	}
+	public String toString() { return name; }
 };

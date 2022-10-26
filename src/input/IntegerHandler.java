@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class IntegerHandler{
 	private static Scanner sc = new Scanner(System.in);
 	
-	// Takes in any positive integer ( >= 0)
+	// Takes in any nonnegative integer ( >= 0)
 	public static int readInt() {
 		int choice = -1;
 		boolean done = false;

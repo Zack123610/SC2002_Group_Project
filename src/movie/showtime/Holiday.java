@@ -17,7 +17,8 @@ public enum Holiday implements ITicketAttribute {
 	DEEPAVALI(24, 10),
 	CHRISTMAS(25, 12);
 
-	private static double multiplier;
+	// Initialise holiday multiplier
+	private static double multiplier = 1.3;
 	private int month, day;
 	
 	Holiday(int day, int month) {
