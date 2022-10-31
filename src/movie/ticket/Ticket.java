@@ -34,6 +34,12 @@ public class Ticket extends Writable {
 	// If that particular ticket object already calculated its ticket price, then return its price
 	// Or else, calculate the price of that ticket. We do this so that if we change the base ticket
 	// price afterwards, the tickets bought in the past should not change.
+	public Ticket(Age age, Seat seat, Showtime showtime){
+		this.age = age;
+		this.seat = seat;
+		this.showtime = showtime;
+		this.finalPrice = calculateFinalPrice();
+	}
 	public double calculateFinalPrice() {
 		if (finalPrice > 0.0)
 			return finalPrice;
