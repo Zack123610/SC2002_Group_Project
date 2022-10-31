@@ -1,5 +1,7 @@
 package input;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class StringHandler{
@@ -17,6 +19,17 @@ public class StringHandler{
 			} else
 				done = true;
 		}
+		return next;
+	}
+	
+	// Takes in a string input specified in args
+	public static String readString(String ... args) {
+		List<String> valid = Arrays.asList(args);
+		
+		String next;
+		while (!valid.contains(next = readString()))
+			System.out.println("Invalid option. Try again.");
+		
 		return next;
 	}
 }

@@ -68,4 +68,14 @@ public class FileController {
 			  System.out.println("An error has occured.");
 		  }
 	}
+	
+	
+	public static void delete(String filepath) {
+		File file = new File(filepath);
+		
+		if (file.delete()) 
+            System.out.println("File deleted successfully");
+        else 
+            System.out.println("Failed to delete the file");
+	}
 }
