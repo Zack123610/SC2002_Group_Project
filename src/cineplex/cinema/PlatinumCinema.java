@@ -10,11 +10,11 @@ public class PlatinumCinema extends Cinema {
 	 * 
 	 */
 	private static final long serialVersionUID = 3292482853076350312L;
+	private static double multiplier = 1.5;
 
 	public PlatinumCinema(String cinemaCode) {
 		super.setCinemaCode(cinemaCode);
 		super.setAvailSeat(10);
-		super.setMultiplier(1.5);
 		
 		Map<Character, List<Seat>> seatMap = new HashMap<>();
 		
@@ -49,4 +49,10 @@ public class PlatinumCinema extends Cinema {
 				"            __________           \n" +
 				"            |ENTRANCE|           \n");
 	}
+	
+	@Override
+	public double getMultiplier() { return multiplier; }
+	
+	@Override
+	public void setMultiplier(double multiplier) { PlatinumCinema.multiplier = multiplier; }
 }
