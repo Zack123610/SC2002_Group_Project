@@ -46,6 +46,20 @@ public class CineplexController {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 	
+	/*
+	// read and return a cineplex object
+	public Cineplex showCineplex(){
+		// suppose to show a list of cineplex
+		// then allow the user to choose the cineplex that he wants
+		// write a for loop to iterate through a cineplex list
+		int choice=0;
+		// implement a switch for user to choose
+		// depend on the choice, return the cineplex object
+		Cineplex temp = null; 
+		return temp;
+	}
+	*/
+
 //	public static void main(String[] args) {
 //		CineplexController cineplexController = new CineplexController();
 //		System.out.println("SUCCESS");
