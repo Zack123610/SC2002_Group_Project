@@ -54,4 +54,32 @@ public class SettingsController {
 			
 		} while (!done);
 	}
+
+	// Update ticket base price
+	public void updateTicketPrice() {
+		// call TicketController to change the base price of ticket
+	}
+
+	public void updateGenreMult() {
+		// Choose genre to update
+		// Request input for new multiplier
+		// Update multiplier
+	}
+
+	public void updateAgeMult() {
+		// Choose age group
+		// Request input for new multiplier
+		// Update multiplier
+	}
+
+	public void updateHolidayMult() {
+		// Request input for new multiplier
+		// Update multiplier
+	}
+
+	public void updatePlatCinemaMult() {
+		// Request input for new multiplier
+		// call CinemaController to update multipler || direct update multiplier
+	}
+
 }
