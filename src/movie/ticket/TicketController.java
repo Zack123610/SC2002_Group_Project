@@ -1,21 +1,26 @@
 package movie.ticket;
+import java.util.ArrayList;
+import java.util.List;
 import cineplex.cinema.Seat;
 import movie.showtime.Showtime;
 import customer.Age;
+
 public class TicketController extends Ticket {
-    private Ticket[] tickets;
+    private List<Ticket> tickets;
     private int currentSize;
     public TicketController() 
     {
-        this.tickets = new Ticket[100];
+        this.tickets  = new ArrayList<Ticket>();
         this.currentSize = -1;
     }
     public int searchTicket(Seat seat, Showtime showtime)
     {
-        for(int i = 0;i <= currentSize;i++)
+        int ptr = -1;
+        for(Ticket t : tickets)
         {
-            if(tickets[i].getShowtime() == showtime && tickets[i].getSeat() == seat)
-                return i;
+            ptr++;
+            if(t.getShowtime() == showtime && t.getSeat() == seat)
+                return ptr;
         }
         return -1;
     }
@@ -29,28 +34,24 @@ public class TicketController extends Ticket {
     public Ticket newTicket(Seat seat,Age age,Showtime showtime)
     {
         currentSize++;
-        tickets[currentSize].setAge(age);
-        tickets[currentSize].setShowtime(showtime);
-        tickets[currentSize].setSeat(seat);
-        return tickets[currentSize];
+        Ticket temp = new Ticket();
+        temp.setAge(age);
+        temp.setShowtime(showtime);
+        temp.setSeat(seat);
+        tickets.add(temp);
+        return tickets.get(currentSize);
     }
     public Ticket getTicket(Seat seat,Showtime showtime)
     {
         Ticket temp = new Ticket();
         int pos = searchTicket(seat, showtime);
-        if(pos != -1) return tickets[pos];
+        if(pos != -1) return tickets.get(pos);
         return temp;
     }
     public void deleteTicket(Seat seat,Showtime showtime)
     {
         int pos = searchTicket(seat, showtime);
-        for(int i = pos;i< currentSize;i++)
-        {
-            tickets[i].setAge(tickets[i+1].getAge());
-            tickets[i].setSeat(tickets[i+1].getSeat());
-            tickets[i].setShowtime(tickets[i+1].getShowtime());
-        }
-        tickets[currentSize] = new Ticket();
+        tickets.remove(pos);
         currentSize--;
     }
     public void changeBasePrice(int P)
@@ -82,8 +83,8 @@ public class TicketController extends Ticket {
             return;
         }
         int pos = searchTicket(Currentseat, CurrentShowtime);
-        tickets[pos].setSeat(newSeat);
-        tickets[pos].setShowtime(newShowtime);
+        tickets.get(pos).setSeat(newSeat);
+        tickets.get(pos).setShowtime(newShowtime);
         System.out.println("Seat change successful!");
     }
 }
