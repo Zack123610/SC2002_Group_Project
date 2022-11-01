@@ -23,6 +23,11 @@ public class Showtime extends Writable {
 		this.cineplex = cineplex;
 	}
 	
+	@Override
+	public String toString() {
+		return day.toString();
+	}
+	
 	// Getters
 	public Day getDay() { return day; }
 	public Movie getMovie() { return movie; }

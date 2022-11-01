@@ -10,6 +10,11 @@ import movie.review.ReviewController;
 import movie.showtime.ShowtimeController;
 import movie.ticket.TicketController;
 
+/**
+ * The main driver class of the entire application.
+ * @author Tan Say Hong
+ *
+ */
 public class MOBLIMA {
 // Note: Change them into interfaces after whole project done
 	
@@ -25,6 +30,9 @@ public class MOBLIMA {
 	public static TicketController ticketController;
 	
 	// Initialise all controllers
+	/**
+	 * Initialises all the required controllers.
+	 */
 	private static void initAll() {
 		customerController = new CustomerController();
 		adminController = new AdminController();
@@ -52,6 +60,7 @@ public class MOBLIMA {
 	private static void exitAll() {
 		movieController.exit();
 		reviewController.exit();
+		showtimeController.exit();
 	}
 	
 	private static void displayMainMenu() {

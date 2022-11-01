@@ -26,7 +26,9 @@ public enum Genre implements ITicketAttribute, Serializable {
 	}
 
 	
-	public String getName() { return name; }
+	//public String getName() { return name; }
+	@Override
+	public String toString() { return name; }
 	@Override
 	public double getMultiplier() { return multipler; }
 	

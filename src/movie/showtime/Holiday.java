@@ -1,10 +1,14 @@
 package movie.showtime;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import movie.ticket.ITicketAttribute;
 
+/**
+ * This Enum represents the different holidays in Singapore
+ * @author Tan Say Hong
+ *
+ */
 public enum Holiday implements ITicketAttribute {
 	NEW_YEAR(1, 1),
 	CHINESE_NEWYEAR(2, 2),

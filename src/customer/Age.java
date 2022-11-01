@@ -5,9 +5,9 @@ import java.io.Serializable;
 import movie.ticket.ITicketAttribute;
 
 public enum Age implements ITicketAttribute, Serializable {
-	SENIOR("Senior", 0.80),
+	SENIOR("Senior Citizen", 0.80),
 	ADULT("Adult", 1),
-	CHILDREN("Children", 0.50);
+	CHILD("Child", 0.50);
 	
 	
 	private String name;

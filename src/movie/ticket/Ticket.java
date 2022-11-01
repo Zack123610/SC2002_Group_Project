@@ -21,7 +21,14 @@ public class Ticket extends Writable {
 	private Seat seat;
 	private Showtime showtime;
 	
-
+	public Ticket(Age age, Seat seat, Showtime showtime){
+		this.age = age;
+		this.seat = seat;
+		this.showtime = showtime;
+		this.finalPrice = calculateFinalPrice();
+	}
+	
+	public static double getBasePrice() { return basePrice; }
 	public Seat getSeat() { return seat; }
 	public Showtime getShowtime() { return showtime; }
     public Age getAge() { return age; }
@@ -31,9 +38,12 @@ public class Ticket extends Writable {
 	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
 	public void setAge(Age age) { this.age = age; }
 	
-	// If that particular ticket object already calculated its ticket price, then return its price
-	// Or else, calculate the price of that ticket. We do this so that if we change the base ticket
-	// price afterwards, the tickets bought in the past should not change.
+	/**
+	 * Calculates the final price of a ticket object. If the final price is already calculated,
+	 * then simply return the price. Or else, calculate the price of that ticket. We do this so that if we change the base ticket
+	 * price afterwards, the tickets bought in the past should not change.
+	 * @return the price of the ticket
+	 */
 	public double calculateFinalPrice() {
 		if (finalPrice > 0.0)
 			return finalPrice;
@@ -51,6 +61,9 @@ public class Ticket extends Writable {
 		return finalPrice;
 	}
 	
+	/**
+	 * Prints the ticket information to the console.
+	 */
 	public void displayTicketInfo() {
 		System.out.println("Showtime: " + showtime.getDay().toString());
 		System.out.println("Seat: " + seat.getSeatCode());
