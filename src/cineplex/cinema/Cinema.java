@@ -9,7 +9,11 @@ import globals.SeatBookingException;
 import globals.Writable;
 import movie.ticket.ITicketAttribute;
 
-
+/**
+ * The Cinema class is a model class that stores cinema data.
+ * @author Tan Say Hong
+ *
+ */
 public class Cinema extends Writable implements ITicketAttribute {
 	/**
 	 * 
@@ -35,9 +39,13 @@ public class Cinema extends Writable implements ITicketAttribute {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isFull() { return availSeat == 0; }
 	
-	public Seat bookSeat(char row, int col) {
+	public Seat selectSeat(char row, int col) {
 		Seat seat = null;
 		
 		try {
@@ -54,31 +62,17 @@ public class Cinema extends Writable implements ITicketAttribute {
 			return null;
 		}
 		
-		availSeat--;
-		seat.setOccupied(true);
 		return seat;
 	}
 	
-	public Seat clearSeat(char row, int col) {
-		Seat seat = null;
-		
-		try {
-			seat = seatMap.get(row).get(col);
-			
-			if (!seat.isOccupied())
-				throw new SeatBookingException("Error. This seat is already empty!");
-			
-		} catch (NullPointerException | IndexOutOfBoundsException e) {
-			System.out.println("Error. Invalid seat selection.");
-			return null;
-		} catch (SeatBookingException e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
-		
+	public void bookSeat(Seat seat) {
+		availSeat--;
+		seat.setOccupied(true);
+	}
+	
+	public void clearSeat(Seat seat) {
 		availSeat++;
 		seat.setOccupied(false);
-		return seat;
 	}
 	
 	public void displaySeatingLayout() {

@@ -1,32 +1,27 @@
 package movie.ticket;
 import cineplex.cinema.Seat;
+import customer.Age;
+import input.IntegerHandler;
 import movie.showtime.Showtime;
 
-public class TicketController extends Ticket {	
-    public void changeBasePrice(int P)
-    {
-        Ticket.setBasePrice(P);
-        double p = this.calculateFinalPrice();
-        System.out.println("Final price = " + p +" for base price = " + P);
+public class TicketController {	
+	
+	public TicketController() { }
+	
+	public Age getAge(){
+        System.out.println("Select Age: \n1)Senior \n2)Adult \n3)Children");
+        System.out.print("Please select an option: ");
+        return switch(IntegerHandler.readInt(1, 3)) {
+            case 1 -> Age.SENIOR;
+            case 2 -> Age.ADULT;
+            case 3 -> Age.CHILD;
+            default -> Age.ADULT;
+        };
     }
-    public void changeSeat(Seat target)
-    {
-        if(target.isOccupied())
-        {
-            System.out.println("Error! target seat is already occupied !!");
-            return;
-        }
-        else
-        {
-            this.getSeat().setOccupied(false);
-            this.setSeat(target);
-            target.setOccupied(true);
-            System.out.println("Seat change successful!");
-        }
-    }
-    
-    public void changeShowtime(Showtime target)
-    {
-        
+	
+    public Ticket issueTicket(Age age, Seat seat, Showtime showtime){
+        Ticket ticket = new Ticket(age, seat, showtime);
+        ticket.displayTicketInfo();
+        return ticket;
     }
 }

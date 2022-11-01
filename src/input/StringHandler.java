@@ -14,9 +14,9 @@ public class StringHandler{
 		
 		while (!done) {
 			next = sc.nextLine().trim();
-			if (next.isEmpty()) {
+			if (next.isEmpty()) 
 				System.out.println("Input cannot be empty.");
-			} else
+			else
 				done = true;
 		}
 		return next;
@@ -31,5 +31,20 @@ public class StringHandler{
 			System.out.println("Invalid option. Try again.");
 		
 		return next;
+	}
+	
+	// Takes in a character
+	public static Character readCharacter() {
+		boolean done = false;
+		String next = "";
+		
+		while (!done) {
+			next = readString();
+			if (next.length() > 1)
+				System.out.println("Input should only contain a single character");
+			else
+				done = true;
+		}
+		return next.charAt(0);
 	}
 }

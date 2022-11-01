@@ -1,11 +1,14 @@
 package customer;
 
+import booking.Booking;
 import input.IntegerHandler;
 import input.StringHandler;
 import main.MOBLIMA;
 import movie.Movie;
 
 public class CustomerController {
+	private Customer customer = new Customer();
+	
 	private void displayCustomerMenu() {
 		System.out.println(
 				"======================= Customer Menu =======================\n" + 
@@ -30,13 +33,13 @@ public class CustomerController {
 				break;
 				
 			case 2:
-				System.out.print("Sort by ticket sales? (Y/N) ");
-				MOBLIMA.movieController.listTopFive(StringHandler.readString("Y", "N").equals("Y"));
+				MOBLIMA.movieController.listTopFive();
 				break;
 
 			case 3:
-				Movie movie = MOBLIMA.movieController.selectMovie(false);
-				movie.displayFullDetails();
+				Movie movie = MOBLIMA.movieController.selectMovie(6);
+				if (movie != null)
+					movie.displayFullDetails();
 				break;
 				
 			case 4:
@@ -44,9 +47,17 @@ public class CustomerController {
 				break;
 				
 			case 5:
+				MOBLIMA.bookingController.doBooking(customer);
 				break;
 				
 			case 6:
+				customer.displayParticulars();
+				System.out.println("--- View Booking History ---");
+				if (customer.getBookings().size() == 0) {
+					System.out.println("Booking history is empty");
+					break;
+				}
+				customer.getBookings().forEach(Booking::displayBookingInfo);
 				break;
 				
 			case 7:

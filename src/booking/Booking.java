@@ -7,16 +7,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import cineplex.cinema.Seat;
-import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
 public class Booking {
 	private String transactionID, name, mobileNo, email;
+	private double totalPrice = 0.0;
 	private List<Ticket> tickets;
 	
 	public Booking() { }
-	public Booking(String cinemaCode) {
+	public Booking(String cinemaCode, String name, String mobileNo, String email) {
+		this.name = name;
+		this.mobileNo = mobileNo;
+		this.email = email;
+		
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmm");
 		transactionID = cinemaCode + dateFormat.format(date);
@@ -25,26 +28,24 @@ public class Booking {
 	
 	public void displayBookingInfo() {
 		System.out.println("TransactionID: " + transactionID);
-		System.out.println("Name: " + name);
-		System.out.println("Mobile: " + mobileNo);
-		System.out.println("email: " + email);
 		System.out.println("--- Tickets Info ---");
-		for (Ticket ticket : tickets) 
-			ticket.displayTicketInfo();
+		tickets.forEach(t -> t.displayTicketInfo());
+		System.out.printf("Total price: $%.2f\n", getTotalPrice());
 	}
 
 	public String getTID() { return transactionID; }
 	public String getName() { return name; }
 	public String getMobileNo() { return mobileNo; }
 	public String getEmail() { return email; }
+	public double getTotalPrice() { return totalPrice * 1.07; }
 	public List<Ticket> getTickets() { return tickets; }
 
 	public void setName(String name) { this.name = name; }
 	public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
 	public void setEmail(String email) { this.email = email; }
-	public void setSeat(Showtime showtime, String seatCode) {
-		showtime.getCinema().bookSeat(seatCode.charAt(0), seatCode.charAt(1));
-	}
 	
-	public void addTicket(Ticket ticket) {  tickets.add(ticket); }
+	public void addTicket(Ticket ticket) {  
+		tickets.add(ticket); 
+		totalPrice += ticket.calculateFinalPrice();
+	}
 }

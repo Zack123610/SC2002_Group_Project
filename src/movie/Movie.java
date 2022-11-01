@@ -1,23 +1,12 @@
 package movie;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import globals.Writable;
-import input.FileController;
 import movie.review.Review;
-import movie.showtime.Day;
 
 
 public class Movie extends Writable {
@@ -47,9 +36,9 @@ public class Movie extends Writable {
 	public void displayFullDetails() {
 		System.out.printf("%s\n", toString());
 		
-		System.out.printf("Genres: %s\n", String.join(", ", genres.stream().map(Genre::getName)
+		System.out.printf("Genres: %s\n", String.join(", ", genres.stream().map(Genre::toString)
 								.collect(Collectors.joining(", "))));
-		System.out.printf("Movie Rating: %s\n", movieRating.getName());
+		System.out.printf("Movie Rating: %s\n", movieRating);
 		System.out.printf("Release Date: %s\n", releaseDate);
 		System.out.printf("Synopsis: %s\n", synopsis);
 		System.out.printf("Director: %s\n", director);
@@ -69,7 +58,7 @@ public class Movie extends Writable {
 		System.out.println();
 	}
 	
-	//Getters
+	//getters
 	public int getTicketsSold() { return ticketsSold; }
 	public String getTitle() { return title; }
 	public List<Genre> getGenres() { return genres; }
@@ -102,4 +91,7 @@ public class Movie extends Writable {
 		reviews.add(review);
 		totalRating += review.getRating();
 	}
+	
+	public void clearGenres() { genres = new ArrayList<>(); }
+	public void clearCasts() { casts = new ArrayList<>(); }
 }

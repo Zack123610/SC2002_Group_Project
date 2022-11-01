@@ -1,21 +1,25 @@
 package customer;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import booking.Booking;
 
 
-@SuppressWarnings("serial")
-public class Customer implements Serializable {
+public class Customer {
 	private String name, mobileNo, email;
 	private List<Booking> bookings;
 	
 	public Customer() {
 		bookings = new ArrayList<>();
 	}
-
+	
+	public void displayParticulars() {
+		System.out.println("Name  : " + name);
+		System.out.println("Mobile: " + mobileNo);
+		System.out.println("Email : " + email);
+	}
+	
 	public String getName() { return name; }
 	public String getMobileNo() { return mobileNo; }
 	public String getEmail() { return email; }
