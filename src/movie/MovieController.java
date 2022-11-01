@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Scanner;
 
 import input.FileController;
 
@@ -27,11 +28,16 @@ public class MovieController {
 	public Movie getMovieByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
-	
-	
-	
-	
-	
-	
+	public Movie selectMovie()
+	{
+		int index = 0;
+		Scanner sc = new Scanner(System.in);
+		for(Movie movie : movies)
+			movie.displayFullDetails();
+		System.out.println("Enter which movie to select: ,Starting from index 1");
+		index = sc.nextInt();
+		index -=1;
+		return movies.get(index);
+	}
 	
 }
