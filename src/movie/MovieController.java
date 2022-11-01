@@ -405,7 +405,7 @@ public class MovieController {
 							"3) Display showtimes\n" + 
 							"4) Back");
 	}
-	public void movieOptions(Movie movie){
+	public boolean movieOptions(Movie movie){
 		while(true){
 			displayMovieOptions(movie);
 			switch(IntegerHandler.readInt()){
@@ -414,16 +414,18 @@ public class MovieController {
 					break;
 				case 2:
 				//book
-					break;
+					return true;
 				case 3:
 					List<movie.showtime.Showtime>list = MOBLIMA.showtimeController.filterShowtimeByMovie(movie);
 					MOBLIMA.showtimeController.displayShowtimes(list);
 					break;
 				case 4:
-					
-					return;
+					return false;
 			}
+			
 		}
+		
+		
 	}
 
 	

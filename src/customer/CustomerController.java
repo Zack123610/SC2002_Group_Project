@@ -27,10 +27,18 @@ public class CustomerController {
 	
 	public void run() {
 		boolean done = false;
+		boolean bookingFlag = false;
+		Movie selected=null;
 		do {
-			displayCustomerMenu();
-			
-			switch (IntegerHandler.readInt(1, 7)) {
+			int choice ;
+			if(bookingFlag == true){
+				choice = 5;
+			}
+			else{
+				displayCustomerMenu();
+				choice =IntegerHandler.readInt(1, 8);
+			}
+			switch (choice) {
 			case 1:
 				MOBLIMA.movieController.displayAllAvailableMovies();
 				break;
@@ -50,7 +58,13 @@ public class CustomerController {
 				break;
 				
 			case 5:
-				MOBLIMA.bookingController.doBooking(customer);
+				if(bookingFlag == true){
+					MOBLIMA.bookingController.doBooking(customer, selected);
+				}
+				else{
+					MOBLIMA.bookingController.doBooking(customer);
+				}
+				bookingFlag = false;
 				break;
 				
 			case 6:
@@ -65,9 +79,9 @@ public class CustomerController {
 				
 			case 7:
 			//search movie->return movie->
-				Movie selected = MOBLIMA.movieController.searchMovie();
+				selected = MOBLIMA.movieController.searchMovie();
 				if(selected!=null){
-					MOBLIMA.movieController.movieOptions(selected);
+					bookingFlag = MOBLIMA.movieController.movieOptions(selected);
 				}
 				break;
 				
