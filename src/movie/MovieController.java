@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.regex.*;
 
 import globals.UserCancelException;
 import input.FileController;
 import input.IntegerHandler;
 import input.StringHandler;
+import main.MOBLIMA;
 
 public class MovieController {
 	private List<Movie> movies;
@@ -72,6 +74,7 @@ public class MovieController {
 	 * @param movies the list of movies to select from
 	 * @return a {@code Movie} object if selection was successful, null otherwise.
 	 */
+
 	private Movie selectMovie(List<Movie> movies) {
 		displayMovies(movies);
 		if (movies.size() == 0) {
@@ -369,4 +372,59 @@ public class MovieController {
 		}
 		System.out.println();
 	}
+	public Movie searchMovie(){
+		List<Movie> matchList = new ArrayList<>();
+		System.out.println("Enter keywords:");
+		String input = StringHandler.readString();
+		Pattern pattern = Pattern.compile(input, Pattern.CASE_INSENSITIVE);
+		
+		for(Movie movie : movies){
+			Matcher matcher = pattern.matcher(movie.getTitle());
+			boolean matchFound = matcher.find();
+			if(matchFound){
+				matchList.add(movie);
+			}
+		}
+		if(matchList.size() == 0){
+			System.out.println("We could not find any matching movie");
+			return null;
+		}
+		else{
+			displayMovies(matchList);
+		}
+		System.out.println("Select movie: ");
+		Movie movie = matchList.get(IntegerHandler.readInt(1,matchList.size()) -1);
+		System.out.println("Selected: " + movie.getTitle());
+		return movie;
+		
+	}
+	public void displayMovieOptions(Movie movie){
+		System.out.println("--- Options ---");
+		System.out.println(	"1) Display movie details\n" +
+							"2) Book movie\n" + 
+							"3) Display showtimes\n" + 
+							"4) Back");
+	}
+	public void movieOptions(Movie movie){
+		while(true){
+			displayMovieOptions(movie);
+			switch(IntegerHandler.readInt()){
+				case 1:
+					movie.displayFullDetails();
+					break;
+				case 2:
+				//book
+					break;
+				case 3:
+					List<movie.showtime.Showtime>list = MOBLIMA.showtimeController.filterShowtimeByMovie(movie);
+					MOBLIMA.showtimeController.displayShowtimes(list);
+					break;
+				case 4:
+					
+					return;
+			}
+		}
+	}
+
+	
 }

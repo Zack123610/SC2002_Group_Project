@@ -149,6 +149,24 @@ public class BookingController {
 					return;
 				}
 				
+				System.out.println("Enter a Discount Code(Case Sensitive), N to skip:");
+				String inputCode = StringHandler.readString();
+				do{
+					
+					if(booking.isDiscount(inputCode)){
+						double discount = booking.getDiscountValue(inputCode);
+						booking.applyDiscount(discount);
+						System.out.printf("%.0f%% Discount applied successfully!\nYour new Price: $%.2f\n",(100*discount), booking.getTotalPrice());
+						break;
+					}
+					System.out.println("Invalid Code");
+					System.out.println("Enter a Discount Code(Case Sensitive), N to skip:");
+					inputCode = StringHandler.readString();
+
+				}
+				while(!inputCode.equals("N"));
+				
+				
 				for (int i=0; i<booking.getTickets().size(); i++) {
 					cinema.bookSeat(booking.getTickets().get(i).getSeat());
 					movie.addTicketSold();

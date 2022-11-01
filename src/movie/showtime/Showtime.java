@@ -25,7 +25,7 @@ public class Showtime extends Writable {
 	
 	@Override
 	public String toString() {
-		return day.toString();
+		return day.toString() + " " + cineplex.getName() ;
 	}
 	
 	// Getters

@@ -1,5 +1,7 @@
 package customer;
 
+import java.util.List;
+
 import booking.Booking;
 import input.IntegerHandler;
 import input.StringHandler;
@@ -18,7 +20,8 @@ public class CustomerController {
 				"4) Leave a movie review\n" +
 				"5) Make a booking\n" +
 				"6) View booking history\n" +
-				"7) Exit");
+				"7) Search Movie\n" +
+				"8) Quit");
 		System.out.print("Please select an option: ");
 	}
 	
@@ -61,6 +64,16 @@ public class CustomerController {
 				break;
 				
 			case 7:
+			//search movie->return movie->
+				Movie selected = MOBLIMA.movieController.searchMovie();
+				if(selected!=null){
+					MOBLIMA.movieController.movieOptions(selected);
+				}
+				break;
+				
+				
+				
+			case 8:
 				System.out.println("Exiting Admin Application ...");
 				done = true;
 			}

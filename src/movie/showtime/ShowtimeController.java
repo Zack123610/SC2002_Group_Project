@@ -46,7 +46,7 @@ public class ShowtimeController {
 		System.out.println("--- Display Showtimes ---");
 		for (int i=0; i<list.size(); i++)
 			System.out.printf("%d) %s\n", i+1, list.get(i).toString());
-	}
+	}//add cineplex change the toString in showtime
 	
 	public Showtime selectShowtime(List<Showtime> list) {
 		displayShowtimes(list);
@@ -123,6 +123,24 @@ public class ShowtimeController {
 				.filter(s -> s.getMovie() == movie && s.getCineplex() == cineplex)
 				.collect(Collectors.toList());
 	}
+	public List<Showtime> filterShowtimeByMovie(Movie movie) {
+		//		ArrayList<Showtime> arr = new ArrayList<>();
+		//		int i =1;
+		//		System.out.println("Available Showtimes");
+		//		for (Showtime showtime : showtimes) {
+		//			if (showtime.getMovie() == movie && showtime.getCineplex() == cineplex) {
+		//				System.out.println(i + ") " + showtime.getDay().toString());
+		//				arr.add(showtime);
+		//				i++;
+		//			}
+		//		}
+		//remove cineplex parameter
+				
+				return showtimes
+						.stream()
+						.filter(s -> s.getMovie() == movie )
+						.collect(Collectors.toList());
+			}
 	
 	public ArrayList<Cineplex> filterCineplexByMovie(Movie movie) {
 		
