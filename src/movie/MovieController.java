@@ -398,35 +398,7 @@ public class MovieController {
 		return movie;
 		
 	}
-	public void displayMovieOptions(Movie movie){
-		System.out.println("--- Options ---");
-		System.out.println(	"1) Display movie details\n" +
-							"2) Book movie\n" + 
-							"3) Display showtimes\n" + 
-							"4) Back");
-	}
-	public boolean movieOptions(Movie movie){
-		while(true){
-			displayMovieOptions(movie);
-			switch(IntegerHandler.readInt()){
-				case 1:
-					movie.displayFullDetails();
-					break;
-				case 2:
-				//book
-					return true;
-				case 3:
-					List<movie.showtime.Showtime>list = MOBLIMA.showtimeController.filterShowtimeByMovie(movie);
-					MOBLIMA.showtimeController.displayShowtimes(list);
-					break;
-				case 4:
-					return false;
-			}
-			
-		}
-		
-		
-	}
+	
 
 	
 }

@@ -57,9 +57,9 @@ public class Booking {
 	public void applyDiscount(double discount){
 		totalPrice *= (1-discount);
 	}
-	public void showPrice(double discount){
-		System.out.println(totalPrice * (1-discount));
-	}
+	// public void showPrice(double discount){
+	// 	System.out.println(totalPrice * (1-discount));
+	// }
 	public double getDiscountValue(String discount){
 		return discountCodes.get(discount);
 	}

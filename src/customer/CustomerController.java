@@ -29,16 +29,9 @@ public class CustomerController {
 		boolean done = false;
 		boolean bookingFlag = false;
 		Movie selected=null;
-		do {
-			int choice ;
-			if(bookingFlag == true){
-				choice = 5;
-			}
-			else{
-				displayCustomerMenu();
-				choice =IntegerHandler.readInt(1, 8);
-			}
-			switch (choice) {
+		do {						
+			displayCustomerMenu();				
+			switch (IntegerHandler.readInt(1, 8)) {
 			case 1:
 				MOBLIMA.movieController.displayAllAvailableMovies();
 				break;
@@ -58,13 +51,10 @@ public class CustomerController {
 				break;
 				
 			case 5:
-				if(bookingFlag == true){
-					MOBLIMA.bookingController.doBooking(customer, selected);
-				}
-				else{
-					MOBLIMA.bookingController.doBooking(customer);
-				}
-				bookingFlag = false;
+				
+				MOBLIMA.bookingController.doBooking(customer, null);
+				
+				
 				break;
 				
 			case 6:
@@ -81,17 +71,42 @@ public class CustomerController {
 			//search movie->return movie->
 				selected = MOBLIMA.movieController.searchMovie();
 				if(selected!=null){
-					bookingFlag = MOBLIMA.movieController.movieOptions(selected);
+					displayMovieOptions(selected);
+					handleMovieOptions(selected);
 				}
-				break;
-				
-				
-				
+				break;				
 			case 8:
 				System.out.println("Exiting Admin Application ...");
 				done = true;
 			}
 			
 		} while (!done);
+	}
+	public void displayMovieOptions(Movie movie){
+		System.out.println("--- Options ---");
+		System.out.println(	"1) Display movie details\n" +
+							"2) Book movie\n" + 
+							"3) Display showtimes\n" + 
+							"4) Back");
+	}
+	public void handleMovieOptions(Movie movie){
+		while(true){
+			displayMovieOptions(movie);
+			switch(IntegerHandler.readInt(1,4)){
+				case 1:
+					movie.displayFullDetails();
+					break;
+				case 2:
+				//book
+					MOBLIMA.bookingController.doBooking(customer, movie);
+					break;
+				case 3:
+					List<movie.showtime.Showtime>list = MOBLIMA.showtimeController.filterShowtimeByMovie(movie);
+					MOBLIMA.showtimeController.displayShowtimes(list);
+					break;
+				case 4:
+					return;
+			}			
+		}				
 	}
 }

@@ -12,7 +12,7 @@ import main.MOBLIMA;
 import movie.showtime.Showtime;
 
 public class CineplexController {
-	private List<Cineplex> cineplexes;
+	private ArrayList<Cineplex> cineplexes;
 	private Map<UUID, Cineplex> hm = new HashMap<>();
 	
 	// Initialisation Code
@@ -38,10 +38,7 @@ public class CineplexController {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 	
-	
 	// Controller methods
-	
-	
 	public void displayCineplex(ArrayList<Cineplex> list) {
 		System.out.println("--- Display Cineplexes ---");
 		for (int i=0; i<list.size(); i++)
@@ -53,5 +50,8 @@ public class CineplexController {
 		System.out.print("Enter Choice: (0 to cancel) ");
 		int choice = IntegerHandler.readInt(list.size());
 		return choice == 0 ? null : list.get(choice - 1);
+	}
+	public ArrayList<Cineplex> getCineplexes (){
+		return cineplexes;
 	}
 }
