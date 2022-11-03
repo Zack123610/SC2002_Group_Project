@@ -1,5 +1,7 @@
 package customer;
 
+import java.util.List;
+
 import booking.Booking;
 import input.IntegerHandler;
 import input.StringHandler;
@@ -18,16 +20,18 @@ public class CustomerController {
 				"4) Leave a movie review\n" +
 				"5) Make a booking\n" +
 				"6) View booking history\n" +
-				"7) Exit");
+				"7) Search Movie\n" +
+				"8) Quit");
 		System.out.print("Please select an option: ");
 	}
 	
 	public void run() {
 		boolean done = false;
-		do {
-			displayCustomerMenu();
-			
-			switch (IntegerHandler.readInt(1, 7)) {
+		boolean bookingFlag = false;
+		Movie selected=null;
+		do {						
+			displayCustomerMenu();				
+			switch (IntegerHandler.readInt(1, 8)) {
 			case 1:
 				MOBLIMA.movieController.displayAllAvailableMovies();
 				break;
@@ -47,7 +51,10 @@ public class CustomerController {
 				break;
 				
 			case 5:
-				MOBLIMA.bookingController.doBooking(customer);
+				
+				MOBLIMA.bookingController.doBooking(customer, null);
+				
+				
 				break;
 				
 			case 6:
@@ -61,10 +68,45 @@ public class CustomerController {
 				break;
 				
 			case 7:
+			//search movie->return movie->
+				selected = MOBLIMA.movieController.searchMovie();
+				if(selected!=null){
+					displayMovieOptions(selected);
+					handleMovieOptions(selected);
+				}
+				break;				
+			case 8:
 				System.out.println("Exiting Admin Application ...");
 				done = true;
 			}
 			
 		} while (!done);
+	}
+	public void displayMovieOptions(Movie movie){
+		System.out.println("--- Options ---");
+		System.out.println(	"1) Display movie details\n" +
+							"2) Book movie\n" + 
+							"3) Display showtimes\n" + 
+							"4) Back");
+	}
+	public void handleMovieOptions(Movie movie){
+		while(true){
+			displayMovieOptions(movie);
+			switch(IntegerHandler.readInt(1,4)){
+				case 1:
+					movie.displayFullDetails();
+					break;
+				case 2:
+				//book
+					MOBLIMA.bookingController.doBooking(customer, movie);
+					break;
+				case 3:
+					List<movie.showtime.Showtime>list = MOBLIMA.showtimeController.filterShowtimeByMovie(movie);
+					MOBLIMA.showtimeController.displayShowtimes(list);
+					break;
+				case 4:
+					return;
+			}			
+		}				
 	}
 }

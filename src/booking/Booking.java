@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import movie.ticket.Ticket;
@@ -13,6 +14,11 @@ public class Booking {
 	private String transactionID, name, mobileNo, email;
 	private double totalPrice = 0.0;
 	private List<Ticket> tickets;
+	private static HashMap<String, Double> discountCodes = new HashMap<>();{{
+		discountCodes.put("D50", 0.5);
+		discountCodes.put("D30", 0.3);}}
+	
+	
 	
 	public Booking() { }
 	public Booking(String cinemaCode, String name, String mobileNo, String email) {
@@ -48,4 +54,18 @@ public class Booking {
 		tickets.add(ticket); 
 		totalPrice += ticket.calculateFinalPrice();
 	}
+	public void applyDiscount(double discount){
+		totalPrice *= (1-discount);
+	}
+	// public void showPrice(double discount){
+	// 	System.out.println(totalPrice * (1-discount));
+	// }
+	public double getDiscountValue(String discount){
+		return discountCodes.get(discount);
+	}
+	public boolean isDiscount(String discount){
+		return discountCodes.containsKey(discount);
+	}
+
+
 }

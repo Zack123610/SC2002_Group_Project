@@ -81,6 +81,7 @@ public class MOBLIMA {
 			
 			switch (IntegerHandler.readInt(1, 3)) {
 			case 1: 
+				//admin controller login
 				adminController.run();
 				break;
 				

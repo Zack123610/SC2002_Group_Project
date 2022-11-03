@@ -68,5 +68,7 @@ public class Ticket extends Writable {
 		System.out.println("Showtime: " + showtime.getDay().toString());
 		System.out.println("Seat: " + seat.getSeatCode());
 		System.out.printf("Price: $%.2f\n\n", calculateFinalPrice());
+		
 	}
+
 }
