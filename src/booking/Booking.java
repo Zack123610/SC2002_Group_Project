@@ -14,7 +14,7 @@ public class Booking {
 	private String transactionID, name, mobileNo, email;
 	private double totalPrice = 0.0;
 	private List<Ticket> tickets;
-	private HashMap<String, Double> discountCodes = new HashMap<>();{{
+	private static HashMap<String, Double> discountCodes = new HashMap<>();{{
 		discountCodes.put("D50", 0.5);
 		discountCodes.put("D30", 0.3);}}
 	
