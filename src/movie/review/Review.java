@@ -1,7 +1,7 @@
 package movie.review;
 
 import globals.Writable;
-import movie.Movie;
+
 
 
 public class Review extends Writable {
@@ -9,7 +9,6 @@ public class Review extends Writable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5785020867407651793L;
-	//private Movie movie;
 	private int rating;
 	private String description;
 	
@@ -18,12 +17,6 @@ public class Review extends Writable {
 		this.rating = rating;
 		this.description = description;
 	}
-//	public Review(Movie movie, int rating, String description) {
-//		this.movie = movie;
-//		this.rating = rating;
-//		this.description = description;
-//	}
-	
 	
 	@Override
 	public String toString() {
