@@ -9,15 +9,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.regex.*;
 
-import globals.UserCancelException;
 import input.FileController;
 import input.IntegerHandler;
 import input.StringHandler;
-import main.MOBLIMA;
+import main.IMovieController;
 
+/**
+ * The MovieController class implements the IMovieController interface.
+ * @author Tan Say Hong
+ *
+ */
 public class MovieController implements IMovieController {
 	private List<Movie> movies;
 	private byte top5Filter = 3;
@@ -35,11 +40,10 @@ public class MovieController implements IMovieController {
 	public void exit() {
 		FileController.write(movies, "./data/movie/");
 		System.out.println("Movie Controller exited successfully!");
-	}	
+	}
 	public Movie getMovieByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
-	
 	
 	/**
 	 * Method used internally to display the list of movies.
@@ -50,21 +54,14 @@ public class MovieController implements IMovieController {
 		for (int i=0; i<movies.size(); i++) 
 			System.out.printf("%d) %s\n", i+1, movies.get(i).toString());
 	}
-	/**
-	 * Method to display all the movies available in the system. Callable via admin.
-	 */
 	public void displayAllMovies() {
 		displayMovies(movies);
 	}
-	/**
-	 * Method to display all the available movies. 
-	 * Available movies are those without "End of Showing" show status.
-	 * This method is called when a customer chooses to display all available movies.
-	 */
+	
 	public void displayAllAvailableMovies() {
 		List<Movie> temp = movies
 				.stream()
-				.filter(m -> m.getShowStatus() != ShowStatus.ENDOFSHOWING)
+				.filter(m -> !m.isEndofShowing())
 				.collect(Collectors.toList());
 		displayMovies(temp);
 	}
@@ -74,7 +71,6 @@ public class MovieController implements IMovieController {
 	 * @param movies the list of movies to select from
 	 * @return a {@code Movie} object if selection was successful, null otherwise.
 	 */
-
 	private Movie selectMovie(List<Movie> movies) {
 		displayMovies(movies);
 		if (movies.size() == 0) {
@@ -87,30 +83,34 @@ public class MovieController implements IMovieController {
 		return idx == 0 ? null : movies.get(idx-1);
 	}
 
-	/**
-	 * Method called by other controllers when they require a {@code Movie}. 
-	 * The flag specifies the filter based on the show status. 
-	 * <pre>
-	 * 1XX -> Sets the flag for movies with coming soon
-	 * X1X -> Sets the flag for movies with preview or now showing
-	 * XX1 -> Sets the flag for movies with end of showing
-	 * </pre>
-	 * @param flag a 3-bit flag used to determine the type of filter to apply
-	 * @return a {@code Movie} object if selection was successful, null otherwise.
-	 */
 	public Movie selectMovie(int flag) {
 		List<Movie> filteredMovies = movies
 				.stream()
 				.filter(m -> (flag & 4) != 0 || m.getShowStatus() != ShowStatus.COMINGSOON)
 				.filter(m -> (flag & 2) != 0 || m.getShowStatus() != ShowStatus.PREVIEW || m.getShowStatus() != ShowStatus.NOWSHOWING)
-				.filter(m -> (flag & 1) != 0 || m.getShowStatus() != ShowStatus.ENDOFSHOWING)
+				.filter(m -> (flag & 1) != 0 || !m.isEndofShowing())
 				.collect(Collectors.toList());
 		return selectMovie(filteredMovies);
 	}
 	
-	/**
-	 * Method to update a movie's attributes. Callable via admin.
-	 */
+	public Movie searchMovie() {
+		List<Movie> matchList = new ArrayList<>();
+		System.out.println("Enter keywords:");
+		String input = StringHandler.readString();
+		Pattern pattern = Pattern.compile(input, Pattern.CASE_INSENSITIVE);
+		
+		for(Movie movie : movies){
+			Matcher matcher = pattern.matcher(movie.getTitle());
+			if(matcher.find())
+				matchList.add(movie);
+		}
+		if(matchList.size() == 0){
+			System.out.println("We could not find any matching movie");
+			return null;
+		}
+		return selectMovie(matchList);
+	}
+	
 	public void updateMovie() {
 		Movie curr = selectMovie(7);
 		
@@ -180,7 +180,6 @@ public class MovieController implements IMovieController {
 			}
 		}
 	}
-
 	/**
 	 * This method adds a specified number of genres to the movie. Called when updating or creating a movie.
 	 * @param movie the {@code Movie} to add the genres into.
@@ -262,10 +261,6 @@ public class MovieController implements IMovieController {
 		} while (!done);
 	}
 	
-	/**
-	 * Method to create a new movie. Callable via admin.
-	 * A confirmation check is included before creating a new {@code Movie}
-	 */
 	public void createMovie() { 
 		Movie movie = new Movie();
 		System.out.println("Creating new movie...");
@@ -303,7 +298,7 @@ public class MovieController implements IMovieController {
 		
 		System.out.print("You are about to create a new movie listing. Please confirm (Y/N): ");
 		if (StringHandler.readString("Y", "N").equals("N")) {
-			System.out.println("New movie not created.");
+			System.out.println("Movie not created.");
 			return;
 		}
 		
@@ -311,11 +306,6 @@ public class MovieController implements IMovieController {
 		movies.add(movie);
 	}
 
-	/**
-	 * Method to delete a new movie. Callable via admin.
-	 * The deletion is a soft delete by setting its show status to End of Showing.
-	 * A confirmation check is included before deleting the {@code Movie} object.
-	 */
 	public void deleteMovie() {
 		Movie curr = selectMovie(7);
 		
@@ -332,25 +322,9 @@ public class MovieController implements IMovieController {
 		curr.setShowStatus(ShowStatus.ENDOFSHOWING);
 	}
 	
-	/**
-	 * Gets the filter flag used to display the top 5 movies. Callable via admin -> settings.
-	 * @return the filter flag 
-	 */
 	public byte getTopFiveFilter() { return top5Filter; }
-	/**
-	 * Sets the filter flag used to display the top 5 movies. Callable via admin -> settings.
-	 * @param num the filter flag
-	 */
 	public void setTopFiveFilter(byte num) { top5Filter = num; }
-	/**
-	 * Method to display the top 5 movies. A 2-bit flag is used which determines
-	 * whether to sort by ticket sales, by overall ratings, or both.
-	 * This method is called when the customer chooses to display the top 5 rankings.
-	 * <pre>
-	 * 1X -> Displays top 5 movies by tickets sold
-	 * X1 -> Displays top 5 movies by overall rating
-	 * </pre>
-	 */
+
 	public void listTopFive() {		
 		Movie[] temp = new Movie[movies.size()];
 		movies.toArray(temp);
@@ -372,33 +346,4 @@ public class MovieController implements IMovieController {
 		}
 		System.out.println();
 	}
-	public Movie searchMovie(){
-		List<Movie> matchList = new ArrayList<>();
-		System.out.println("Enter keywords:");
-		String input = StringHandler.readString();
-		Pattern pattern = Pattern.compile(input, Pattern.CASE_INSENSITIVE);
-		
-		for(Movie movie : movies){
-			Matcher matcher = pattern.matcher(movie.getTitle());
-			boolean matchFound = matcher.find();
-			if(matchFound){
-				matchList.add(movie);
-			}
-		}
-		if(matchList.size() == 0){
-			System.out.println("We could not find any matching movie");
-			return null;
-		}
-		else{
-			displayMovies(matchList);
-		}
-		System.out.println("Select movie: ");
-		Movie movie = matchList.get(IntegerHandler.readInt(1,matchList.size()) -1);
-		System.out.println("Selected: " + movie.getTitle());
-		return movie;
-		
-	}
-	
-
-	
 }

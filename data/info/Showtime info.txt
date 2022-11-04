@@ -1,8 +1,0 @@
-Used as reference only
-
-Showtime: BlackAdam1 2022-10-29 18:30 | ID: 163bbc9a-90bc-4583-b5ac-fb1fd383be54
-Showtime: BlackAdam2 2022-10-29 20:30 | ID: f67c3639-6534-43d5-9b8f-d5e27d5b315e
-Showtime: BlackAdam3 2022-10-28 18:30 | ID: c92d28ed-b2de-41ba-b64c-19db9689ec43
-Showtime: BlackAdam4 2022-10-28 18:30 | ID: ce3263f0-3fd4-4852-a5bc-93eefa99943c
-Showtime: BlackAdam5 2022-10-29 18:30 | ID: 610ed833-5043-4fbe-b05f-9bfeef45f606
-Showtime: BlackAdam6 2022-10-24 18:30 | ID: 923e6731-074d-48c4-99a2-3b7933b964fc

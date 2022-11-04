@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import cineplex.cinema.AbstractCinema;
+import cineplex.cinema.Cinema;
+import cineplex.cinema.Seat;
 import input.FileController;
 import input.IntegerHandler;
 import main.MOBLIMA;
 import movie.showtime.Showtime;
 
 public class CineplexController {
-	private ArrayList<Cineplex> cineplexes;
+	private List<Cineplex> cineplexes;
 	private Map<UUID, Cineplex> hm = new HashMap<>();
 	
 	// Initialisation Code
@@ -38,6 +41,7 @@ public class CineplexController {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 	
+	
 	// Controller methods
 	public void displayCineplex(ArrayList<Cineplex> list) {
 		System.out.println("--- Display Cineplexes ---");
@@ -47,11 +51,8 @@ public class CineplexController {
 	
 	public Cineplex selectCineplex(ArrayList<Cineplex> list) {
 		displayCineplex(list);
-		System.out.print("Enter Choice: (0 to cancel) ");
+		System.out.print("Enter Choice (0 to cancel): ");
 		int choice = IntegerHandler.readInt(list.size());
 		return choice == 0 ? null : list.get(choice - 1);
-	}
-	public ArrayList<Cineplex> getCineplexes (){
-		return cineplexes;
 	}
 }

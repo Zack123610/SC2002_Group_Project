@@ -16,9 +16,9 @@ import movie.ticket.TicketController;
  *
  */
 public class MOBLIMA {
-// Note: Change them into interfaces after whole project done
+	// Note: ToDo: Change them into interfaces after whole project done
 	
-	public static CustomerController customerController = new CustomerController();
+	public static ICustomerController customerController = new CustomerController();
 	public static AdminController adminController  = new AdminController();
 	public static SettingsController settingsController = new SettingsController();
 	public static BookingController bookingController = new BookingController();
@@ -29,9 +29,8 @@ public class MOBLIMA {
 	public static ShowtimeController showtimeController = new ShowtimeController();
 	public static TicketController ticketController = new TicketController();
 	
-	// Initialise all controllers
 	/**
-	 * Initialises all the required controllers.
+	 * Initialises the required controllers.
 	 */
 	private static void initAll() {
 		
@@ -47,16 +46,12 @@ public class MOBLIMA {
 	
 		
 		cineplexController.init();
-		//cinemaController.init();
 		reviewController.init();
 		movieController.init();
-		//ticketController.init();
 		showtimeController.init();
-		bookingController.init();
-		settingsController.init();
 	}
 	
-	// Exit all controllers
+	// Exits the required controllers
 	private static void exitAll() {
 		movieController.exit();
 		reviewController.exit();
@@ -82,7 +77,6 @@ public class MOBLIMA {
 			
 			switch (IntegerHandler.readInt(1, 3)) {
 			case 1: 
-				//admin controller login
 				adminController.run();
 				break;
 				

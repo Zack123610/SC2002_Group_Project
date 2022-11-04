@@ -75,6 +75,8 @@ public class Movie extends Writable {
 			: totalRating / reviews.size();
 	}
 	
+	public boolean isEndofShowing() { return showStatus == ShowStatus.ENDOFSHOWING; }
+	
 	//setters
 	public void setTitle(String title) { this.title = title; }
 	public void setShowStatus(ShowStatus showStatus) { this.showStatus = showStatus; }

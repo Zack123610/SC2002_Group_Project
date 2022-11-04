@@ -2,6 +2,7 @@ package admin;
 
 import input.IntegerHandler;
 import input.StringHandler;
+import main.IAdminController;
 import main.MOBLIMA;
 
 /**
@@ -81,6 +82,7 @@ public class AdminController implements IAdminController{
 	private void changePassword() {
 		System.out.print("Enter new password: ");
 		password = StringHandler.readString();
+		System.out.println("Password changed.");
 	}
 	
 	

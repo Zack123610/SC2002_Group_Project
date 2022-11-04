@@ -8,13 +8,23 @@ import booking.Booking;
 import globals.Writable;
 
 
-public class Customer extends Writable{
-	private static final long serialVersionUID = 1L;
+public class Customer extends Writable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8733239562031385172L;
 	private String name, mobileNo, email;
 	private List<Booking> bookings;
 	
-	public Customer() {
+	
+	public Customer() { 
 		bookings = new ArrayList<>();
+	}
+	public Customer(String name, String mobile, String email) {
+		this();
+		this.name = name;
+		this.mobileNo = mobile;
+		this.email = email;
 	}
 	
 	public void displayParticulars() {
@@ -33,4 +43,5 @@ public class Customer extends Writable{
 	public void setEmail(String email) { this.email = email; }
 	
 	public void addBooking(Booking booking) { bookings.add(booking); }
+	public void setBookings(List<Booking>bookings){this.bookings = bookings;}
 }
