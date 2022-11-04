@@ -7,7 +7,7 @@ import input.StringHandler;
 import main.MOBLIMA;
 import movie.Movie;
 
-public class ReviewController {
+public class ReviewController implements IReviewController{
 	
 	// Initialisation Code
 	public ReviewController() { }

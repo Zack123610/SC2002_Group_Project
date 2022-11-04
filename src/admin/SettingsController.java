@@ -7,7 +7,7 @@ import movie.Genre;
 import movie.showtime.Holiday;
 import movie.ticket.Ticket;
 
-public class SettingsController {
+public class SettingsController implements ISettingsController {
 	
 	// Initialisation Code
 	public SettingsController() { }

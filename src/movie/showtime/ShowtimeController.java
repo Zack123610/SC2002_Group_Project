@@ -15,7 +15,7 @@ import input.StringHandler;
 import main.MOBLIMA;
 import movie.Movie;
 
-public class ShowtimeController {
+public class ShowtimeController implements IShowtimeController {
 	private List<Showtime> showtimes;
 	private Map<UUID, Showtime> hm = new HashMap<>();
 	
@@ -179,17 +179,5 @@ public class ShowtimeController {
 		}
 		return size;
 	}
-	// public Showtime createShowtime(){
-	// 	MOBLIMA.movieController.displayAllAvailableMovies();
-	// 	Movie movie = MOBLIMA.movieController.selectMovie(6);
-	// 	System.out.println("Select Cineplex");
-	// 	Cineplex cineplex = MOBLIMA.cineplexController.selectCineplex(MOBLIMA.cineplexController.getCineplexes());
-	// 	System.out.println("Enter showtime(yyyy-mm-dd");
-	
-	// 	String date = StringHandler.readString();
-	// 	//handle?
-	// 	System.out.println("Enter time(24H)");
-	// 	String time = StringHandler.readString();
-	// 	Day day = new Day(date,time);
-	// }
+
 }

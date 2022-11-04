@@ -4,7 +4,7 @@ import customer.Age;
 import input.IntegerHandler;
 import movie.showtime.Showtime;
 
-public class TicketController {	
+public class TicketController implements ITicketController {	
 	
 	public TicketController() { }
 	

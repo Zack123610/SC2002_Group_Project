@@ -1,12 +1,15 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import booking.Booking;
+import globals.Writable;
 
 
-public class Customer {
+public class Customer extends Writable{
+	private static final long serialVersionUID = 1L;
 	private String name, mobileNo, email;
 	private List<Booking> bookings;
 	

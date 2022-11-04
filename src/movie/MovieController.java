@@ -18,7 +18,7 @@ import input.IntegerHandler;
 import input.StringHandler;
 import main.MOBLIMA;
 
-public class MovieController {
+public class MovieController implements IMovieController {
 	private List<Movie> movies;
 	private byte top5Filter = 3;
 	private Map<UUID, Movie> hm = new HashMap<>();
