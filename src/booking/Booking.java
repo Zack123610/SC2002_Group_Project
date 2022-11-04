@@ -1,5 +1,6 @@
 package booking;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,24 +8,28 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
-public class Booking {
-	private String transactionID, name, mobileNo, email;
+public class Booking implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1252654829873622291L;
+	private String transactionID;
+	private Showtime showtime;
 	private double totalPrice = 0.0;
 	private List<Ticket> tickets;
-	private static HashMap<String, Double> discountCodes = new HashMap<>();{{
+	private double discount = 0.0;
+	private static Map<String, Double> discountCodes = new HashMap<>();{{
 		discountCodes.put("D50", 0.5);
 		discountCodes.put("D30", 0.3);}}
 	
-	
-	
 	public Booking() { }
-	public Booking(String cinemaCode, String name, String mobileNo, String email) {
-		this.name = name;
-		this.mobileNo = mobileNo;
-		this.email = email;
+	public Booking(String cinemaCode, Showtime showtime) {
+		this.showtime = showtime;
 		
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmm");
@@ -33,39 +38,38 @@ public class Booking {
 	}
 	
 	public void displayBookingInfo() {
+		System.out.println("----------------------------");
 		System.out.println("TransactionID: " + transactionID);
+		System.out.println(showtime.toString());
+		System.out.println(showtime.getMovie().toString());
 		System.out.println("--- Tickets Info ---");
 		tickets.forEach(t -> t.displayTicketInfo());
-		System.out.printf("Total price: $%.2f\n", getTotalPrice());
+		if (discount > 0.0)
+			System.out.printf("%.0f%% Discount applied!\n", 100*discount);
+		System.out.printf("Total price (incl. GST): $%.2f\n", getTotalPrice());
+		System.out.println("----------------------------");
 	}
 
 	public String getTID() { return transactionID; }
-	public String getName() { return name; }
-	public String getMobileNo() { return mobileNo; }
-	public String getEmail() { return email; }
+	public Showtime getShowtime() { return showtime; }
 	public double getTotalPrice() { return totalPrice * 1.07; }
 	public List<Ticket> getTickets() { return tickets; }
-
-	public void setName(String name) { this.name = name; }
-	public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
-	public void setEmail(String email) { this.email = email; }
+	
+	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
 	
 	public void addTicket(Ticket ticket) {  
 		tickets.add(ticket); 
 		totalPrice += ticket.calculateFinalPrice();
 	}
-	public void applyDiscount(double discount){
+	
+	public void applyDiscount(double discount) {
+		this.discount = discount;
 		totalPrice *= (1-discount);
 	}
-	// public void showPrice(double discount){
-	// 	System.out.println(totalPrice * (1-discount));
-	// }
-	public double getDiscountValue(String discount){
+	public double getDiscountValue(String discount) {
 		return discountCodes.get(discount);
 	}
-	public boolean isDiscount(String discount){
+	public boolean isDiscount(String discount) {
 		return discountCodes.containsKey(discount);
 	}
-
-
 }
