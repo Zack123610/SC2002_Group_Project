@@ -20,7 +20,7 @@ public interface IShowtimeController {
 
     public void updateShowtime();
 
-    //public Showtime createShowtime();
+    public Showtime createShowtime();
 
     public List<Showtime> filterShowtimeByMovieAndCineplex(Movie movie, Cineplex cineplex);
 

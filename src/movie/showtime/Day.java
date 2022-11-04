@@ -15,17 +15,13 @@ public class Day implements IGetTicketAttribute, Serializable {
 	private static final long serialVersionUID = -2137042328502058023L;
 	private LocalDate date;
 	private LocalTime time;
-	private String Sdate;
-	private String Stime;
+
 	
 	public Day(LocalDate date, LocalTime time) {
 		this.date = date;
 		this.time = time;
 	}
-	public Day(String date, String time){
-		this.Sdate = date;
-		this.Stime = time;
-	}
+	
 
 	public LocalDate getDate() { return date; }
 	public LocalTime getTime() { return time; }
