@@ -40,6 +40,7 @@ public class FileController {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("An error has occured");
 		}
 		

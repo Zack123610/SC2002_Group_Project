@@ -51,7 +51,7 @@ public class SettingsController {
 				for (int i=0; i<genres.length; i++)
 					System.out.printf("%d) %-15s | Multiplier: %.2f\n", i+1, genres[i], genres[i].getMultiplier());
 				
-				System.out.print("Please select a genre: (0 to cancel) ");
+				System.out.print("Please select a genre (0 to cancel): ");
 				int idx = IntegerHandler.readInt(genres.length);
 				
 				if (idx == 0)

@@ -19,7 +19,6 @@ public class AdminController {
 				"6) Exit");
 		System.out.print("Please select an option: ");
 	}
-
 	
 	public void run() {
 //		Comment out for convenience, uncomment when done
@@ -72,8 +71,8 @@ public class AdminController {
 	private void changePassword() {
 		System.out.print("Enter new password: ");
 		password = StringHandler.readString();
+		System.out.println("Password changed.");
 	}
-	
 	
 	
 	private void configureMovies() {
