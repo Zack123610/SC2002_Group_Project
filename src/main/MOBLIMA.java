@@ -19,15 +19,15 @@ public class MOBLIMA {
 	// Note: ToDo: Change them into interfaces after whole project done
 	
 	public static ICustomerController customerController = new CustomerController();
-	public static AdminController adminController  = new AdminController();
-	public static SettingsController settingsController = new SettingsController();
-	public static BookingController bookingController = new BookingController();
-	public static CineplexController cineplexController = new CineplexController();
-	public static CinemaController cinemaController = new CinemaController();
-	public static MovieController movieController = new MovieController();
-	public static ReviewController reviewController = new ReviewController();
-	public static ShowtimeController showtimeController = new ShowtimeController();
-	public static TicketController ticketController = new TicketController();
+	public static IAdminController adminController  = new AdminController();
+	public static ISettingsController settingsController = new SettingsController();
+	public static IBookingController bookingController = new BookingController();
+	public static ICineplexController cineplexController = new CineplexController();
+	public static ICinemaController cinemaController = new CinemaController();
+	public static IMovieController movieController = new MovieController();
+	public static IReviewController reviewController = new ReviewController();
+	public static IShowtimeController showtimeController = new ShowtimeController();
+	public static ITicketController ticketController = new TicketController();
 	
 	/**
 	 * Initialises the required controllers.

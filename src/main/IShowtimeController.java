@@ -1,4 +1,4 @@
-package movie.showtime;
+package main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import cineplex.Cineplex;
 import movie.Movie;
+import movie.showtime.Showtime;
 
 public interface IShowtimeController {
     public void init();
@@ -20,7 +21,9 @@ public interface IShowtimeController {
 
     public void updateShowtime();
 
-    public Showtime createShowtime();
+    public void createShowtime();
+
+    public void deleteShowtime();
 
     public List<Showtime> filterShowtimeByMovieAndCineplex(Movie movie, Cineplex cineplex);
 
@@ -28,6 +31,5 @@ public interface IShowtimeController {
 
     public ArrayList<Cineplex> filterCineplexByMovie(Movie movie);
 
-    public int getUniqueDates(ArrayList<Showtime> list);
 
 }

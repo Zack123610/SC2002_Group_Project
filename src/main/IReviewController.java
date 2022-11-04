@@ -1,4 +1,4 @@
-package movie.review;
+package main;
 
 public interface IReviewController {
     public void init();

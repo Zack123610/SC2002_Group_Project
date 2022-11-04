@@ -3,6 +3,7 @@ package admin;
 import cineplex.cinema.PlatinumCinema;
 import customer.Age;
 import input.IntegerHandler;
+import main.ISettingsController;
 import movie.Genre;
 import movie.showtime.Holiday;
 import movie.ticket.Ticket;

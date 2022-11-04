@@ -11,12 +11,13 @@ import cineplex.cinema.Seat;
 import customer.Age;
 import customer.Customer;
 import input.StringHandler;
+import main.IBookingController;
 import main.MOBLIMA;
 import movie.Movie;
 import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
-public class BookingController {
+public class BookingController implements IBookingController{
 	public BookingController() { }
 	
 	enum BookingState { SELECT_MOVIE, FILTER_CINEPLEX, SELECT_CINEPLEX, SELECT_SHOWTIME, SEAT_BOOKING, CONFIRMATION, FINISH }

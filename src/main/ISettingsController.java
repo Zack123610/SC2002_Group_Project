@@ -1,4 +1,4 @@
-package admin;
+package main;
 
 public interface ISettingsController {
     public void init();

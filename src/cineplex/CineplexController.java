@@ -11,10 +11,11 @@ import cineplex.cinema.Cinema;
 import cineplex.cinema.Seat;
 import input.FileController;
 import input.IntegerHandler;
+import main.ICineplexController;
 import main.MOBLIMA;
 import movie.showtime.Showtime;
 
-public class CineplexController {
+public class CineplexController implements ICineplexController {
 	private List<Cineplex> cineplexes;
 	private Map<UUID, Cineplex> hm = new HashMap<>();
 	
