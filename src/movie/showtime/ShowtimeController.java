@@ -12,10 +12,11 @@ import cineplex.Cineplex;
 import input.FileController;
 import input.IntegerHandler;
 import input.StringHandler;
+import main.IShowtimeController;
 import main.MOBLIMA;
 import movie.Movie;
 
-public class ShowtimeController {
+public class ShowtimeController implements IShowtimeController {
 	private List<Showtime> showtimes;
 	private Map<UUID, Showtime> hm = new HashMap<>();
 	
@@ -117,16 +118,7 @@ public class ShowtimeController {
 		return new ArrayList<>(availableCineplexes);
 	}
 
-//	public int getUniqueDates(ArrayList<Showtime> list) {
-//		int size = 0;
-//		Day day = list.get(0).getDay();
-//		for (Showtime showtime : list) {
-//			if (showtime.getDay() != day) {
-//				day = showtime.getDay();
-//				size += 1;
-//			}
-//		}
-//		return size;
-//	}
+
 	
 }
+

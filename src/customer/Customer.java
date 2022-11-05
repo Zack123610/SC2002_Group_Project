@@ -1,5 +1,6 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,4 +43,5 @@ public class Customer extends Writable {
 	public void setEmail(String email) { this.email = email; }
 	
 	public void addBooking(Booking booking) { bookings.add(booking); }
+	public void setBookings(List<Booking>bookings){this.bookings = bookings;}
 }

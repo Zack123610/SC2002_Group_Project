@@ -2,12 +2,19 @@ package admin;
 
 import input.IntegerHandler;
 import input.StringHandler;
+import main.IAdminController;
 import main.MOBLIMA;
 
-
-public class AdminController {
+/**
+ * This class contains the methods used by the admin
+ */
+public class AdminController implements IAdminController{
+	/** Default system password */
 	private String password = "admin";
 	
+	/**
+	 * This method displays the UI for the admin
+	 */
 	private void displayAdminMenu() {
 		System.out.println(
 				"======================= Admin Menu =======================\n" + 
@@ -19,7 +26,8 @@ public class AdminController {
 				"6) Exit");
 		System.out.print("Please select an option: ");
 	}
-	
+
+	/** Gets the users selection and runs the necessary function */
 	public void run() {
 //		Comment out for convenience, uncomment when done
 //		if (!login())
@@ -58,7 +66,10 @@ public class AdminController {
 		} while (!done);
 	}
 	
-	// Simple login method
+	/**
+	 * This method prompts user to enter a password
+	 * @return true if the password matches
+	 */
 	private boolean login() {
 		System.out.print("Enter password: ");
 		boolean isValid = StringHandler.readString().equals(password);
@@ -67,7 +78,7 @@ public class AdminController {
 			System.out.println("Wrong password. Exiting.");
 		return isValid;
 	}
-	// Change password
+	/** This method changes the password */
 	private void changePassword() {
 		System.out.print("Enter new password: ");
 		password = StringHandler.readString();
@@ -75,6 +86,10 @@ public class AdminController {
 	}
 	
 	
+	/** 
+	 * This method is called when admin configures movie settings
+	 * The admin can choose to create, update, remove a movie listing or delete a review
+	 */
 	private void configureMovies() {
 		boolean done = false;
 		do {
@@ -110,7 +125,10 @@ public class AdminController {
 			}
 		} while (!done);
 	}
-	
+	/** 
+	 * This method is called when admin configures showtimes
+	 * The admin can choose to create, update or remove a showtime
+	 */
 	private void configureShowtimes() {
 		boolean done = false;
 		do {
@@ -140,7 +158,10 @@ public class AdminController {
 			}
 		} while (!done);
 	}
-	
+	/** 
+	 * This method is called when admin configures the top 5 movies
+	 * The admin can choose to either display the movies in the order or ticket sales or ratings
+	 */
 	private void configureTop5() {
 		byte num = MOBLIMA.movieController.getTopFiveFilter();
 		int flag;

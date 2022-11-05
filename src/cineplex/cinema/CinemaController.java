@@ -2,8 +2,9 @@ package cineplex.cinema;
 
 import input.IntegerHandler;
 import input.StringHandler;
+import main.ICinemaController;
 
-public class CinemaController {
+public class CinemaController implements ICinemaController {
 	// Cinema controller no longer needs to preload any data 
 	// (The cinema objects are either stored within showtime or cineplex)
 	// It now only needs to handle the seat booking when passed in Cinema object as parameter

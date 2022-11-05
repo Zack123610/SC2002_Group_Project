@@ -1,46 +1,60 @@
 package customer;
 
-import java.util.HashMap;
+import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+
+
+import customer.Customer;
 import booking.Booking;
+import input.FileController;
 import input.IntegerHandler;
 import input.StringHandler;
+import main.ICustomerController;
 import main.MOBLIMA;
 import movie.Movie;
 import movie.showtime.Showtime;
 
-public class CustomerController {
-	private Map<Integer, Customer> accounts = new HashMap<>() {{
-		put(96615502, new Customer("SH", "96615502", "A@A"));
-	}};
-	private Customer customer; 
+public class CustomerController implements ICustomerController{
 	
+	private Map<Integer, Customer> accounts = new HashMap<>();
+	private ArrayList<Customer> customers =new ArrayList<>();
+
 	public CustomerController() {
-		// ToDo: Implement code to read from ./data/customer/
+		
+		customers = FileController.read("./data/customer/");
+		for(Customer customer: customers){
+			accounts.put(Integer.parseInt(customer.getMobileNo()), customer);
+		}
+		
 	}
-	
-	public void exit() {
-		// ToDo: Implement code to write to ./data/customer/
+
+
+	public void exit(){
+		FileController.write(customers, "./data/customer/");
+		System.out.println("Customer Controller exited successfully!");
 	}
-	
+
+
 	private void displayCustomerMenu() {
 		System.out.println(
-				"======================= Customer Menu =======================\n" + 
-				"1) List all available movies\n" + 
-				"2) List top 5 ranking movies\n" +
-				"3) View single movie details\n" +
-				"4) Leave a movie review\n" +
-				"5) Make a booking\n" +
-				"6) View booking history\n" +
-				"7) Search Movie\n" +
-				"8) Quit");
+				"======================= Customer Menu =======================\n" +
+						"1) List all available movies\n" +
+						"2) List top 5 ranking movies\n" +
+						"3) View single movie details\n" +
+						"4) Leave a movie review\n" +
+						"5) Make a booking\n" +
+						"6) View booking history\n" +
+						"7) Search Movie\n" +
+						"8) Quit");
 		System.out.print("Please select an option: ");
 	}
-	
+	Customer customer = null;
 	public void run() {
+		
 		boolean done = false;
 		Movie selected = null;
 		do {
@@ -93,7 +107,7 @@ public class CustomerController {
 				customer = null;
 				done = true;
 			}
-			
+
 		} while (!done);
 	}
 	
@@ -134,8 +148,8 @@ public class CustomerController {
 					
 				case 4:
 					return;
-			}			
-		}				
+			}
+		}
 	}
 	
 	private void createNewAccount() {
@@ -149,6 +163,7 @@ public class CustomerController {
 				customer.displayParticulars();
 				System.out.print("Please confirm your particulars are correct (Y/N): ");
 				if (StringHandler.readString("Y", "N").equals("Y")) {
+					customers.add(customer);
 					accounts.put(Integer.parseInt(customer.getMobileNo()), customer);
 					return;
 				}
@@ -160,6 +175,7 @@ public class CustomerController {
 				return;
 			}
 		}
+
 	}
 	
 	private void getCustomerByMobile() {
@@ -199,4 +215,6 @@ public class CustomerController {
 		}
 		return text;
 	}
+
 }
+
