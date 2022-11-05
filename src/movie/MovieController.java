@@ -136,8 +136,7 @@ public class MovieController implements IMovieController {
 				break;
 			
 			case 1:
-				System.out.print("Enter new title: ");
-				curr.setTitle(StringHandler.readString());
+				addTitleToMovie(curr);
 				break;
 				
 			case 2:
@@ -171,6 +170,23 @@ public class MovieController implements IMovieController {
 			case 8:
 				addReleaseDateToMovie(curr);
 				break;
+			}
+		}
+	}
+	/**
+	 * This method sets the title of the movie. A duplication check is enforced such that no two movies
+	 * have the same title. Called when updating or creating a movie.
+	 * @param movie the {@code Movie} to set the new title.
+	 */
+	private void addTitleToMovie(Movie movie) {
+		while (true) {			
+			System.out.print("Enter new title: ");
+			String title = StringHandler.readString();
+			if (movies.stream().anyMatch(m -> m.getTitle().equals(title)))
+				System.out.println(title + " already exists. Please choose another title.");
+			else {
+				movie.setTitle(title);
+				return;
 			}
 		}
 	}
@@ -258,8 +274,7 @@ public class MovieController implements IMovieController {
 		System.out.println("Creating new movie...");
 		
 		// Set title
-		System.out.print("Enter title: ");
-		movie.setTitle(StringHandler.readString());
+		addTitleToMovie(movie);
 		
 		// Add genres
 		addGenresToMovie(movie);
