@@ -17,7 +17,7 @@ import movie.ticket.Ticket;
 public class BookingController implements IBookingController {
 	public BookingController() { }
 	
-	enum BookingState { SELECT_MOVIE, FILTER_CINEPLEX, SELECT_CINEPLEX, SELECT_SHOWTIME, SEAT_BOOKING, CONFIRMATION, FINISH }
+	enum BookingState { SELECT_MOVIE, FILTER_CINEPLEX, SELECT_CINEPLEX, SELECT_SHOWTIME, SEAT_SELECTION, CONFIRMATION, FINISH }
 	
 	
 	public void doBooking(Customer customer) {
@@ -81,9 +81,9 @@ public class BookingController implements IBookingController {
 				System.out.println("Cinema : " + cinema.getCinemaCode());
 				
 				booking = new Booking(cinema.getCinemaCode(), showtime);
-				state = BookingState.SEAT_BOOKING;
+				state = BookingState.SEAT_SELECTION;
 				
-			case SEAT_BOOKING:
+			case SEAT_SELECTION:
 				Seat seat = MOBLIMA.cinemaController.bookSeat(cinema);
 				
 				if (seat == null) 
@@ -92,25 +92,19 @@ public class BookingController implements IBookingController {
 				Age age = MOBLIMA.ticketController.getAge();
 				Ticket ticket = MOBLIMA.ticketController.issueTicket(age, seat, showtime);
 				
-				System.out.print("Confirm seat booking? (Y/N) ");
+				System.out.print("Confirm current seat selection? (Y/N) ");
 				
 				if (StringHandler.readString("Y", "N").equals("Y")) {
-					System.out.println("Seat booking confirmed.");
+					System.out.println("Seat selection confirmed.");
 					cinema.bookSeat(seat);
 					booking.addTicket(ticket);
-				} else {
-					cinema.clearSeat(seat);
-					System.out.println("You have cancelled the seat booking");
-					// System.out.print("Do you wish to continue booking seats? (Y/N) ");
-					// state = StringHandler.readString("Y", "N").equals("Y") 
-					// 		? BookingState.SEAT_BOOKING 
-					// 		: BookingState.FINISH; 
-					// break;
+				} else {				
+					System.out.println("You have cancelled the seat selection");
 				}
 				
 				System.out.print("Select another seat? (Y/N) ");
 				state = StringHandler.readString("Y", "N").equals("Y") 
-						? BookingState.SEAT_BOOKING 
+						? BookingState.SEAT_SELECTION 
 						: (booking.getTotalPrice() == 0)? BookingState.FINISH : BookingState.CONFIRMATION;
 				break;
 				
