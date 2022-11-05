@@ -1,3 +1,0 @@
-Name: West Mall       | ID: 1c1f4723-7d6b-44dc-bbf5-7e52376938eb
-Name: JEM             | ID: 16c1188b-7837-4f29-9a49-56fb366e5205
-Name: Downtown East   | ID: 9c0f82a0-1e5e-41fe-a61a-ff16c0d0f02c
