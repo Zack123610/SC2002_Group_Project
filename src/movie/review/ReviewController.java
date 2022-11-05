@@ -4,10 +4,11 @@ import java.util.List;
 
 import input.IntegerHandler;
 import input.StringHandler;
+import main.IReviewController;
 import main.MOBLIMA;
 import movie.Movie;
 
-public class ReviewController {
+public class ReviewController implements IReviewController{
 	
 	// Initialisation Code
 	public ReviewController() { }

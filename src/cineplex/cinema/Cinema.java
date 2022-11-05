@@ -14,21 +14,21 @@ import movie.ticket.ITicketAttribute;
  * @author Tan Say Hong
  *
  */
-public class Cinema extends Writable implements ITicketAttribute {
+public class Cinema extends AbstractCinema {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -202636338839913176L;
 	
-	private static double multiplier = 1.0;
-	private int availSeat;
-	private String cinemaCode;
-	private Map<Character, List<Seat>> seatMap;
+//	private static double multiplier = 1.0;
+//	private int availSeat;
+//	private String cinemaCode;
+//	private Map<Character, List<Seat>> seatMap;
 	
-	public Cinema() {}
+	public Cinema() { }
 	public Cinema(String cinemaCode) {
-		availSeat = 24;
-		this.cinemaCode = cinemaCode;
+		super.setCinemaCode(cinemaCode);
+		availSeat = totalSeats = 24;
 		seatMap = new HashMap<>();
 		
 		for (char row : new char[] {'A', 'B', 'C'}) {
@@ -37,44 +37,46 @@ public class Cinema extends Writable implements ITicketAttribute {
 				temp.add(new Seat(String.format("%c%d", row, col), cinemaCode));
 			seatMap.put(row, temp);
 		}
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean isFull() { return availSeat == 0; }
-	
-	public Seat selectSeat(char row, int col) {
-		Seat seat = null;
 		
-		try {
-			seat = seatMap.get(row).get(col);
-			
-			if (seat.isOccupied())
-				throw new SeatBookingException("Error. This seat is already occupied!");
-			
-		} catch (NullPointerException | IndexOutOfBoundsException e) {
-			System.out.println("Error. Invalid seat selection.");
-			return null;
-		} catch (SeatBookingException e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
-		
-		return seat;
+		super.setSeatMap(seatMap);
 	}
 	
-	public void bookSeat(Seat seat) {
-		availSeat--;
-		seat.setOccupied(true);
-	}
+	@Override
+	public AbstractCinema cloneCinema() { return new Cinema(getCinemaCode()); }
+
+//	public boolean isFull() { return availSeat == 0; }
+//	
+//	public Seat selectSeat(char row, int col) {
+//		Seat seat = null;
+//		
+//		try {
+//			seat = seatMap.get(row).get(col);
+//			
+//			if (seat.isOccupied())
+//				throw new SeatBookingException("Error. This seat is already occupied!");
+//			
+//		} catch (NullPointerException | IndexOutOfBoundsException e) {
+//			System.out.println("Error. Invalid seat selection.");
+//			return null;
+//		} catch (SeatBookingException e) {
+//			System.out.println(e.getMessage());
+//			return null;
+//		}
+//		
+//		return seat;
+//	}
+//	
+//	public void bookSeat(Seat seat) {
+//		availSeat--;
+//		seat.setOccupied(true);
+//	}
+//	
+//	public void clearSeat(Seat seat) {
+//		availSeat++;
+//		seat.setOccupied(false);
+//	}
 	
-	public void clearSeat(Seat seat) {
-		availSeat++;
-		seat.setOccupied(false);
-	}
-	
+	@Override
 	public void displaySeatingLayout() {
 		System.out.println(
 				"|             SCREEN             |\n" +
@@ -98,21 +100,25 @@ public class Cinema extends Writable implements ITicketAttribute {
 				"            __________             \n" +
 				"            |ENTRANCE|             \n");
 	}
+	@Override
+	public double getMultiplier() { return 1.0; }
 	
-	// Compare whether two cinemas objects are referring to the same room 
-	public boolean equals(Cinema other) {
-		return this.getCinemaCode().equals(other.getCinemaCode());
-	}
+	
+	
+	
+//	public boolean equals(Cinema other) {
+//		return this.getCinemaCode().equals(other.getCinemaCode());
+//	}
 
-	@Override
-	public double getMultiplier() { return multiplier; }
-	public int getAvailSeat() { return availSeat; }
-	public String getCinemaCode() { return cinemaCode; }
-	public Map<Character, List<Seat>> getSeatMap() { return this.seatMap; };
+//	@Override
+//	public double getMultiplier() { return multiplier; }
+//	public int getAvailSeat() { return availSeat; }
+//	public String getCinemaCode() { return cinemaCode; }
+//	public Map<Character, List<Seat>> getSeatMap() { return this.seatMap; };
 	
-	@Override
-	public void setMultiplier(double multiplier) { Cinema.multiplier = multiplier; }
-	public void setAvailSeat(int availSeat) { this.availSeat = availSeat; }
-	public void setCinemaCode(String cinemaCode) { this.cinemaCode = cinemaCode; }
-	public void setSeatMap(Map<Character, List<Seat>> seatMap) { this.seatMap = seatMap; };
+//	@Override
+//	public void setMultiplier(double multiplier) { Cinema.multiplier = multiplier; }
+//	public void setAvailSeat(int availSeat) { this.availSeat = availSeat; }
+//	public void setCinemaCode(String cinemaCode) { this.cinemaCode = cinemaCode; }
+//	public void setSeatMap(Map<Character, List<Seat>> seatMap) { this.seatMap = seatMap; };
 }

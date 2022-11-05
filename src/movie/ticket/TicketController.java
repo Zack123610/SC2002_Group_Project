@@ -2,9 +2,10 @@ package movie.ticket;
 import cineplex.cinema.Seat;
 import customer.Age;
 import input.IntegerHandler;
+import main.ITicketController;
 import movie.showtime.Showtime;
 
-public class TicketController {	
+public class TicketController implements ITicketController {	
 	
 	public TicketController() { }
 	

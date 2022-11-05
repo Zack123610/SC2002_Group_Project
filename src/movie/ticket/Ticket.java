@@ -65,10 +65,6 @@ public class Ticket extends Writable {
 	 * Prints the ticket information to the console.
 	 */
 	public void displayTicketInfo() {
-		System.out.println("Showtime: " + showtime.getDay().toString());
-		System.out.println("Seat: " + seat.getSeatCode());
-		System.out.printf("Price: $%.2f\n\n", calculateFinalPrice());
-		
+		System.out.printf("Seat: %s --- $%.2f\n", seat.getSeatCode(), calculateFinalPrice());
 	}
-
 }

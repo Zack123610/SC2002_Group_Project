@@ -1,0 +1,3 @@
+Name: JEM 		| UUID: 16c1188b-7837-4f29-9a49-56fb366e5205
+Name: West Mall 	| UUID: 1c1f4723-7d6b-44dc-bbf5-7e52376938eb
+Name: Downtown East 	| UUID: 9c0f82a0-1e5e-41fe-a61a-ff16c0d0f02c

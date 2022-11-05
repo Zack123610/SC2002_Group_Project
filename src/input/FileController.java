@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import globals.Writable;
@@ -21,6 +22,7 @@ public class FileController {
 		
 		try {
 			File[] files = new File(filepath).listFiles();
+			
 			
 			for (File file : files) {
 				FileInputStream fileIn = new FileInputStream(file);
@@ -40,7 +42,9 @@ public class FileController {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("An error has occured");
+			e.printStackTrace();
 		}
 		
 		return res;
@@ -65,6 +69,7 @@ public class FileController {
 			  System.out.println("Error initializing stream"); 
 			  e.printStackTrace();
 		  } catch (Exception e) {
+			e.printStackTrace();
 			  System.out.println("An error has occured.");
 		  }
 	}
