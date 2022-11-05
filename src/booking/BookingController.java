@@ -99,18 +99,19 @@ public class BookingController implements IBookingController {
 					cinema.bookSeat(seat);
 					booking.addTicket(ticket);
 				} else {
+					cinema.clearSeat(seat);
 					System.out.println("You have cancelled the seat booking");
-					System.out.print("Do you wish to continue booking seats? (Y/N) ");
-					state = StringHandler.readString("Y", "N").equals("Y") 
-							? BookingState.SEAT_BOOKING 
-							: BookingState.FINISH; 
-					break;
+					// System.out.print("Do you wish to continue booking seats? (Y/N) ");
+					// state = StringHandler.readString("Y", "N").equals("Y") 
+					// 		? BookingState.SEAT_BOOKING 
+					// 		: BookingState.FINISH; 
+					// break;
 				}
 				
 				System.out.print("Select another seat? (Y/N) ");
 				state = StringHandler.readString("Y", "N").equals("Y") 
 						? BookingState.SEAT_BOOKING 
-						: BookingState.CONFIRMATION;
+						: (booking.getTotalPrice() == 0)? BookingState.FINISH : BookingState.CONFIRMATION;
 				break;
 				
 			case CONFIRMATION:
