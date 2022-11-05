@@ -67,7 +67,6 @@ public class ShowtimeController implements IShowtimeController {
 		return idx == 0 ? null : list.get(idx-1);
 	}
 
-<<<<<<< HEAD
 	public void updateShowtime() {		
 		List<Showtime> availToBeUpdated = showtimes
 				.stream()
@@ -86,15 +85,6 @@ public class ShowtimeController implements IShowtimeController {
 			showtimes.add(newShowtime);
 			delete(oldShowtime);
 		}
-=======
-	public void updateShowtime() {
-		Showtime curr = selectShowtime(showtimes);
-		if (curr == null)
-			return;
-		
-		// ToDo: Add update code. Only showtimes with empty cinemas can be updated
-		System.out.println("To update showtime here");
->>>>>>> master
 	}
 	
 	public void createShowtime() {
@@ -253,7 +243,6 @@ public class ShowtimeController implements IShowtimeController {
 		return showtimes
 				.stream()
 				.filter(s -> s.getMovie() == movie && s.getCineplex() == cineplex && !s.getCinema().isFull())
-<<<<<<< HEAD
 				.collect(Collectors.toList());
 	}
 	
@@ -265,19 +254,6 @@ public class ShowtimeController implements IShowtimeController {
 	}
 	
 	public List<Cineplex> filterCineplexByMovie(Movie movie) {
-=======
-				.collect(Collectors.toList());
-	}
-	
-	public List<Showtime> filterShowtimeByMovie(Movie movie) {		
-		return showtimes
-				.stream()
-				.filter(s -> s.getMovie() == movie)
-				.collect(Collectors.toList());
-	}
-	
-	public ArrayList<Cineplex> filterCineplexByMovie(Movie movie) {
->>>>>>> master
 		HashSet<Cineplex> availableCineplexes = new HashSet<>();
 		showtimes.stream()
 			.filter(s -> s.getMovie() == movie)
@@ -286,10 +262,4 @@ public class ShowtimeController implements IShowtimeController {
 		return new ArrayList<>(availableCineplexes);
 	}
 
-<<<<<<< HEAD
-=======
-
-	
->>>>>>> master
 }
-

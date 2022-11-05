@@ -6,15 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import cineplex.cinema.AbstractCinema;
-import cineplex.cinema.Cinema;
-import cineplex.cinema.Seat;
 import input.FileController;
-<<<<<<< HEAD
 import input.NumberHandler;
-=======
-import input.IntegerHandler;
->>>>>>> master
 import main.ICineplexController;
 import main.MOBLIMA;
 import movie.showtime.Showtime;
@@ -59,11 +52,7 @@ public class CineplexController implements ICineplexController {
 	public Cineplex selectCineplex(List<Cineplex> list) {
 		displayCineplex(list);
 		System.out.print("Enter Choice (0 to cancel): ");
-<<<<<<< HEAD
 		int choice = NumberHandler.readInt(list.size());
-=======
-		int choice = IntegerHandler.readInt(list.size());
->>>>>>> master
 		return choice == 0 ? null : list.get(choice - 1);
 	}
 }

@@ -7,16 +7,7 @@ import input.StringHandler;
 import main.ICinemaController;
 
 public class CinemaController implements ICinemaController {
-<<<<<<< HEAD
 	
-=======
-	// Cinema controller no longer needs to preload any data 
-	// (The cinema objects are either stored within showtime or cineplex)
-	// It now only needs to handle the seat booking when passed in Cinema object as parameter
-	public CinemaController() {	}
-
-	// Controller methods
->>>>>>> master
 	public Seat bookSeat(AbstractCinema cinema){
 		cinema.displaySeatingLayout();
 		System.out.println("Select Seat (row col)");

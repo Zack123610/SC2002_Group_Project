@@ -1,11 +1,6 @@
 package movie.review;
 
-<<<<<<< HEAD
 import input.Writable;
-=======
-import globals.Writable;
-
->>>>>>> master
 
 
 public class Review extends Writable {

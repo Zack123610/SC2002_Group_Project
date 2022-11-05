@@ -7,20 +7,11 @@ import movie.Movie;
 /**
  * IMovieController provides the interface required for managing the Movie class.
  * It provides create, select, update and delete methods which other controllers can call.
-<<<<<<< HEAD
  * It also provides the method to list top 5 movie rankings.
-=======
- * It also provides the method to list top 5 movie rankings, and the methods required by
- * the admin to configure which top 5 rankings are displayable for the customer.
->>>>>>> master
  * @author Tan Say Hong
  *
  */
 public interface IMovieController {
-<<<<<<< HEAD
-=======
-	public void init();
->>>>>>> master
 	public void exit();
 	public Movie getMovieByID(UUID id);
 	/**
@@ -73,33 +64,11 @@ public interface IMovieController {
 	 * A confirmation check is included before deleting the {@code Movie} object.
 	 */
 	public void deleteMovie();
-<<<<<<< HEAD
 
 	/**
 	 * Method to display the top 5 movies. 
 	 * The method lists the top 5 ranking by ticket sales, by overall reviewers’ ratings, or both.
 	 * The display setting is able to be configured via the admin settings.
-=======
-	
-	/**
-	 * Gets the filter flag used to display the top 5 movies. Callable via admin -> settings.
-	 * @return the filter flag 
-	 */
-	public byte getTopFiveFilter();
-	/**
-	 * Sets the filter flag used to display the top 5 movies. Callable via admin -> settings.
-	 * @param num the filter flag
-	 */
-	public void setTopFiveFilter(byte num);
-	/**
-	 * Method to display the top 5 movies. A 2-bit flag is used which determines
-	 * whether to sort by ticket sales, by overall ratings, or both.
-	 * This method is called when the customer chooses to display the top 5 rankings.
-	 * <pre>
-	 * 1X -> Displays top 5 movies by tickets sold
-	 * X1 -> Displays top 5 movies by overall rating
-	 * </pre>
->>>>>>> master
 	 */
 	public void listTopFive();
 }

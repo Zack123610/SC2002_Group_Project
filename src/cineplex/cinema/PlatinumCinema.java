@@ -8,22 +8,12 @@ import java.util.Map;
 import movie.ticket.ITicketAttribute;
 
 public class PlatinumCinema extends AbstractCinema implements ITicketAttribute {
-<<<<<<< HEAD
 
-=======
-	/**
-	 * 
-	 */
->>>>>>> master
 	private static final long serialVersionUID = 3292482853076350312L;
 	private static double multiplier = 1.5;
 	
 	public PlatinumCinema(String cinemaCode) {
 		super.setCinemaCode(cinemaCode);
-<<<<<<< HEAD
-=======
-		//super.setAvailSeat(10);
->>>>>>> master
 		totalSeats = availSeat = 10;
 		
 		Map<Character, List<Seat>> seatMap = new HashMap<>();

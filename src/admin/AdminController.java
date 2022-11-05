@@ -15,11 +15,7 @@ public class AdminController implements IAdminController {
 	private byte top5Filter = 3;
 	
 	/**
-<<<<<<< HEAD
 	 * This method displays the admin menu.
-=======
-	 * This method displays the UI for the admin
->>>>>>> master
 	 */
 	private void displayAdminMenu() {
 		System.out.println(

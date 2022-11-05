@@ -16,7 +16,6 @@ import movie.ticket.TicketController;
  *
  */
 public class MOBLIMA {
-<<<<<<< HEAD
 	public static ICustomerController customerController = new CustomerController();
 	public static IAdminController adminController       = new AdminController();
 	public static ISettingsController settingsController = new SettingsController();
@@ -28,44 +27,11 @@ public class MOBLIMA {
 	public static IShowtimeController showtimeController = new ShowtimeController();
 	public static ITicketController ticketController     = new TicketController();
 	
-=======
-	// Note: ToDo: Change them into interfaces after whole project done
-	
-	public static ICustomerController customerController = new CustomerController();
-	public static IAdminController adminController  = new AdminController();
-	public static ISettingsController settingsController = new SettingsController();
-	public static IBookingController bookingController = new BookingController();
-	public static ICineplexController cineplexController = new CineplexController();
-	public static ICinemaController cinemaController = new CinemaController();
-	public static IMovieController movieController = new MovieController();
-	public static IReviewController reviewController = new ReviewController();
-	public static IShowtimeController showtimeController = new ShowtimeController();
-	public static ITicketController ticketController = new TicketController();
-	
->>>>>>> master
 	/**
 	 * Initialises the required controllers.
 	 */
 	private static void initAll() {
-<<<<<<< HEAD
 		cineplexController.init();
-=======
-		
-		// adminController = new AdminController();
-		// settingsController = new SettingsController();
-		// bookingController = new BookingController();
-		// cineplexController = new CineplexController();
-		// cinemaController = new CinemaController();
-		// movieController = new MovieController();
-		// reviewController = new ReviewController();
-		// showtimeController = new ShowtimeController();
-		// ticketController = new TicketController();
-	
-		
-		cineplexController.init();
-		reviewController.init();
-		movieController.init();
->>>>>>> master
 		showtimeController.init();
 	}
 	

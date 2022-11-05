@@ -79,11 +79,7 @@ public class Movie extends Writable {
 	
 	public boolean isEndofShowing() { return showStatus == ShowStatus.ENDOFSHOWING; }
 	
-<<<<<<< HEAD
 	//Setters
-=======
-	//setters
->>>>>>> master
 	public void setTitle(String title) { this.title = title; }
 	public void setShowStatus(ShowStatus showStatus) { this.showStatus = showStatus; }
 	public void setReleaseDate(LocalDate releaseDate) {this.releaseDate = releaseDate; }

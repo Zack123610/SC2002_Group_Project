@@ -8,11 +8,7 @@ import main.IReviewController;
 import main.MOBLIMA;
 import movie.Movie;
 
-<<<<<<< HEAD
 public class ReviewController implements IReviewController {
-=======
-public class ReviewController implements IReviewController{
->>>>>>> master
 	
 	public void writeReview() {
 		Movie movie = MOBLIMA.movieController.selectMovie(3);

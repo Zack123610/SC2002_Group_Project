@@ -1,23 +1,9 @@
 package movie.showtime;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import cineplex.Cineplex;
-<<<<<<< HEAD
 import cineplex.cinema.AbstractCinema;
 import input.Writable;
-=======
-import cineplex.CineplexController;
-import cineplex.cinema.AbstractCinema;
-import globals.Writable;
-import input.FileController;
->>>>>>> master
 import movie.Movie;
-import movie.MovieController;
 
 public class Showtime extends Writable {
 

@@ -4,10 +4,6 @@ import java.util.List;
 
 import cineplex.Cineplex;
 import cineplex.cinema.AbstractCinema;
-<<<<<<< HEAD
-=======
-import cineplex.cinema.Cinema;
->>>>>>> master
 import cineplex.cinema.Seat;
 import customer.Age;
 import customer.Customer;
@@ -18,11 +14,7 @@ import movie.Movie;
 import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
-<<<<<<< HEAD
 public class BookingController implements IBookingController {
-=======
-public class BookingController implements IBookingController{
->>>>>>> master
 	public BookingController() { }
 	
 	enum BookingState { SELECT_MOVIE, FILTER_CINEPLEX, SELECT_CINEPLEX, SELECT_SHOWTIME, SEAT_BOOKING, CONFIRMATION, FINISH }
@@ -152,12 +144,7 @@ public class BookingController implements IBookingController{
 				}
 				
 				
-<<<<<<< HEAD
 				for (int i=0; i<booking.getTickets().size(); i++) 
-=======
-				for (int i=0; i<booking.getTickets().size(); i++) {
-					//cinema.bookSeat(booking.getTickets().get(i).getSeat());
->>>>>>> master
 					movie.addTicketSold();
 				
 				System.out.println("Booking successful.");
@@ -168,8 +155,4 @@ public class BookingController implements IBookingController{
 				break;
 			}
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
