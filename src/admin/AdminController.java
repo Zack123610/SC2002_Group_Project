@@ -1,43 +1,43 @@
 package admin;
 
-import input.IntegerHandler;
+import input.NumberHandler;
 import input.StringHandler;
 import main.IAdminController;
 import main.MOBLIMA;
 
 /**
- * This class contains the methods used by the admin
+ * The admin controller class provides the implementation of the IAdminController class.
+ * @author Tan Say Hong
+ *
  */
-public class AdminController implements IAdminController{
-	/** Default system password */
+public class AdminController implements IAdminController {
 	private String password = "admin";
+	private byte top5Filter = 3;
 	
 	/**
-	 * This method displays the UI for the admin
+	 * This method displays the admin menu.
 	 */
 	private void displayAdminMenu() {
 		System.out.println(
 				"======================= Admin Menu =======================\n" + 
 				"1) Configure movie settings\n" + 
-				"2) Configure cinema showtimes\n" +
+				"2) Configure showtimes\n" +
 				"3) Configure system settings\n" +
 				"4) Configure top 5 display settings\n" +
 				"5) Change password\n" +
 				"6) Exit");
 		System.out.print("Please select an option: ");
 	}
-
-	/** Gets the users selection and runs the necessary function */
+	
 	public void run() {
-//		Comment out for convenience, uncomment when done
-//		if (!login())
-//			return;
+		if (!login())
+			return;
 		
 		boolean done = false;
 		do {
 			displayAdminMenu();
 			
-			switch (IntegerHandler.readInt(1, 6)) {
+			switch (NumberHandler.readInt(1, 6)) {
 			case 1:
 				configureMovies();
 				break;
@@ -67,8 +67,8 @@ public class AdminController implements IAdminController{
 	}
 	
 	/**
-	 * This method prompts user to enter a password
-	 * @return true if the password matches
+	 * This method handles the login when a user chooses to log in as admin
+	 * @return {@code true} if the user logs in using the correct password, {@code false} otherwise.
 	 */
 	private boolean login() {
 		System.out.print("Enter password: ");
@@ -78,17 +78,18 @@ public class AdminController implements IAdminController{
 			System.out.println("Wrong password. Exiting.");
 		return isValid;
 	}
-	/** This method changes the password */
+	/**
+	 * This method changes the password. Called when the admin selects the option to change password.
+	 */
 	private void changePassword() {
 		System.out.print("Enter new password: ");
 		password = StringHandler.readString();
 		System.out.println("Password changed.");
 	}
 	
-	
-	/** 
-	 * This method is called when admin configures movie settings
-	 * The admin can choose to create, update, remove a movie listing or delete a review
+	/**
+	 * This method displays the configure movie options. The admin can then choose to create, update, delete movie or delete movie review. 
+	 * Called when admin selects the option to configure movie settings. 
 	 */
 	private void configureMovies() {
 		boolean done = false;
@@ -102,7 +103,7 @@ public class AdminController implements IAdminController{
 					   "5) Back");
 			System.out.print("Please select an option: ");
 			
-			switch (IntegerHandler.readInt(1, 5)) {
+			switch (NumberHandler.readInt(1, 5)) {
 			case 1:
 				MOBLIMA.movieController.createMovie();
 				break;
@@ -125,21 +126,21 @@ public class AdminController implements IAdminController{
 			}
 		} while (!done);
 	}
-	/** 
-	 * This method is called when admin configures showtimes
-	 * The admin can choose to create, update or remove a showtime
+	/**
+	 * This method displays the configure showtimes. The admin can then choose to create, update or remove a showtime.
+	 * Called when admin selects the option to configure showtimes. 
 	 */
 	private void configureShowtimes() {
 		boolean done = false;
 		do {
-			System.out.println("Configuring Cinema Showtimes...\n" +
+			System.out.println("Configuring Showtimes...\n" +
 					   "1) Create new showtime\n" + 
 					   "2) Update existing showtime\n" +
 					   "3) Remove existing showtime\n" +
 					   "4) Back");
 			System.out.print("Please select an option: ");
 			
-			switch (IntegerHandler.readInt(1, 4)) {
+			switch (NumberHandler.readInt(1, 4)) {
 			case 1:
 				MOBLIMA.showtimeController.createShowtime();
 				break;
@@ -158,32 +159,29 @@ public class AdminController implements IAdminController{
 			}
 		} while (!done);
 	}
-	/** 
-	 * This method is called when admin configures the top 5 movies
-	 * The admin can choose to either display the movies in the order or ticket sales or ratings
+	public byte getTopFiveFilter() { return top5Filter; }
+	/**
+	 * This method manages the settings to configure top 5 listings. 
+	 * At least one type of display will be active at all times.
 	 */
 	private void configureTop5() {
-		byte num = MOBLIMA.movieController.getTopFiveFilter();
 		int flag;
 		
 		do {
 			System.out.println("--- Current Top 5 Display Status ---");
-			System.out.println("Display by Ticket Sales  : " + ((num & 2) != 0 ? "Active" : "Disabled"));
-			System.out.println("Display by Overall Rating: " + ((num & 1) != 0 ? "Active" : "Disabled"));
+			System.out.println("Display by Ticket Sales  : " + ((top5Filter & 2) != 0 ? "Active" : "Disabled"));
+			System.out.println("Display by Overall Rating: " + ((top5Filter & 1) != 0 ? "Active" : "Disabled"));
 			
 			System.out.println();
 			System.out.print("Select 2 to toggle sales, 1 to toggle rating, 0 to exit: ");
-			flag = IntegerHandler.readInt(2);
+			flag = NumberHandler.readInt(2);
 			
 			if (flag == 0)
 				break;
 			
-			if ((num ^ flag) == 0)
-				System.out.println("Unable to toggle. One display must be active at all times.");
-			else
-				num ^= flag;
+			top5Filter = (byte) ((top5Filter ^ flag) == 0
+					? 3 ^ top5Filter
+					: top5Filter ^ flag);
 		} while (true);
-		
-		MOBLIMA.movieController.setTopFiveFilter(num);
 	}
 }

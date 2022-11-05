@@ -1,12 +1,9 @@
 package booking;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import cineplex.Cineplex;
 import cineplex.cinema.AbstractCinema;
-import cineplex.cinema.Cinema;
 import cineplex.cinema.Seat;
 import customer.Age;
 import customer.Customer;
@@ -17,7 +14,7 @@ import movie.Movie;
 import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
-public class BookingController implements IBookingController{
+public class BookingController implements IBookingController {
 	public BookingController() { }
 	
 	enum BookingState { SELECT_MOVIE, FILTER_CINEPLEX, SELECT_CINEPLEX, SELECT_SHOWTIME, SEAT_BOOKING, CONFIRMATION, FINISH }
@@ -37,7 +34,7 @@ public class BookingController implements IBookingController{
 		AbstractCinema cinema = null;
 		Showtime showtime = null;
 		Booking booking = null;
-		ArrayList<Cineplex> cineplexList = null;
+		List<Cineplex> cineplexList = null;
 		
 		while (!done)
 			switch (state) {
@@ -138,20 +135,17 @@ public class BookingController implements IBookingController{
 						System.out.printf("%.0f%% Discount applied successfully!\nYour new Price: $%.2f\n", 100*discount, booking.getTotalPrice());
 						break;
 					}
-					if(inputCode.equals("N")){
+					if(inputCode.equals("N")) {
 						System.out.println("No Code entered");
 						break;
 					}
-					else{
+					else
 						System.out.println("Invalid code");
-					}
 				}
 				
 				
-				for (int i=0; i<booking.getTickets().size(); i++) {
-					//cinema.bookSeat(booking.getTickets().get(i).getSeat());
+				for (int i=0; i<booking.getTickets().size(); i++) 
 					movie.addTicketSold();
-				}
 				
 				System.out.println("Booking successful.");
 				customer.addBooking(booking);

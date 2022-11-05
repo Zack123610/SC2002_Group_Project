@@ -2,15 +2,13 @@ package cineplex.cinema;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-import globals.SeatBookingException;
-import globals.Writable;
+import input.Writable;
 import movie.ticket.IGetTicketAttribute;
 
 public abstract class AbstractCinema extends Writable implements IGetTicketAttribute {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5782367057189056125L;
 	protected int availSeat, totalSeats;
 	protected String cinemaCode;
@@ -52,16 +50,31 @@ public abstract class AbstractCinema extends Writable implements IGetTicketAttri
 		seat.setOccupied(false);
 	}
 	
-	// Compare whether two cinemas objects are referring to the same room 
-	public boolean equals(AbstractCinema other) {
-		return this.getCinemaCode().equals(other.getCinemaCode());
+	/**
+	 * This method checks whether two {@code AbstractCinema} objects are the same by comparing their cinema codes.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof AbstractCinema)
+			return this.getCinemaCode().equals(((AbstractCinema) obj).getCinemaCode());
+		return false;
 	}
-
+	/**
+	 * This method hashes the cinema code of the {@code AbstractCinema} object. 
+	 * Required for comparing between two {@code AbstractCinema} objects in a set.
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(cinemaCode);
+	}
+	
+	// Getters
 	public int getAvailSeat() { return availSeat; }
 	public int getTotalSeats() { return totalSeats; }
 	public String getCinemaCode() { return cinemaCode; }
 	public Map<Character, List<Seat>> getSeatMap() { return this.seatMap; };
 	
+	// Setters
 	public void setTotalSeats(int total) { totalSeats = total; }
 	public void setAvailSeat(int availSeat) { this.availSeat = availSeat; }
 	public void setCinemaCode(String cinemaCode) { this.cinemaCode = cinemaCode; }

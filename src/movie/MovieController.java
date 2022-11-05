@@ -14,9 +14,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import input.FileController;
-import input.IntegerHandler;
+import input.NumberHandler;
 import input.StringHandler;
 import main.IMovieController;
+import main.MOBLIMA;
 
 /**
  * The MovieController class implements the IMovieController interface.
@@ -25,21 +26,15 @@ import main.IMovieController;
  */
 public class MovieController implements IMovieController {
 	private List<Movie> movies;
-	private byte top5Filter = 3;
 	private Map<UUID, Movie> hm = new HashMap<>();
 	
-	// Initialisation Code
 	public MovieController() {
 		movies = FileController.read("./data/movie/");
 		for (Movie movie : movies) 
 			hm.put(movie.getID(), movie);
 	}
-	public void init() {
-		System.out.println("Movie Controller initialised successfully!");
-	}
 	public void exit() {
 		FileController.write(movies, "./data/movie/");
-		System.out.println("Movie Controller exited successfully!");
 	}
 	public Movie getMovieByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
@@ -57,7 +52,6 @@ public class MovieController implements IMovieController {
 	public void displayAllMovies() {
 		displayMovies(movies);
 	}
-	
 	public void displayAllAvailableMovies() {
 		List<Movie> temp = movies
 				.stream()
@@ -79,7 +73,7 @@ public class MovieController implements IMovieController {
 		}
 		
 		System.out.print("Please select a movie (0 to cancel): ");
-		int idx = IntegerHandler.readInt(movies.size());
+		int idx = NumberHandler.readInt(movies.size());
 		return idx == 0 ? null : movies.get(idx-1);
 	}
 
@@ -136,7 +130,7 @@ public class MovieController implements IMovieController {
                     "0) Back");
 			System.out.print("Please select an option: ");
 			
-			switch (IntegerHandler.readInt(8)) {
+			switch (NumberHandler.readInt(8)) {
 			case 0:
 				done = true;
 				break;
@@ -188,7 +182,7 @@ public class MovieController implements IMovieController {
 		List<Genre> availGenres = new ArrayList<>(Arrays.asList(Genre.values()));
 		
 		System.out.print("Enter number of new genres to add: ");
-		for (int i=0, num = IntegerHandler.readInt(), idx; i<num; i++) {
+		for (int i=0, num = NumberHandler.readInt(), idx; i<num; i++) {
 			if (availGenres.size() == 0) {
 				System.out.println("No more available genres to add. Exiting ");
 				break;
@@ -200,7 +194,7 @@ public class MovieController implements IMovieController {
 				System.out.printf("%d) %s\n", j+1, availGenres.get(j));
 			
 			System.out.print("Select an option: ");
-			idx = IntegerHandler.readInt(1, availGenres.size()) - 1;
+			idx = NumberHandler.readInt(1, availGenres.size()) - 1;
 			movie.addGenre(availGenres.remove(idx));
 		}
 	}
@@ -210,7 +204,7 @@ public class MovieController implements IMovieController {
 	 */
 	private void addCastsToMovie(Movie movie) {
 		System.out.print("Enter number of new cast to add: ");
-		for (int i=0, num = IntegerHandler.readInt(); i<num; i++) {
+		for (int i=0, num = NumberHandler.readInt(); i<num; i++) {
 			System.out.printf("Enter name of cast member %d: \n", i+1);
 			movie.addCast(StringHandler.readString());
 		}
@@ -225,7 +219,7 @@ public class MovieController implements IMovieController {
 		for (int i=0; i<movieRatings.length; i++)
 			System.out.printf("%d) %s\n", i+1, movieRatings[i]);
 		System.out.print("Please select a movie rating: ");
-		movie.setMovieRating(movieRatings[IntegerHandler.readInt(1, movieRatings.length) - 1]);
+		movie.setMovieRating(movieRatings[NumberHandler.readInt(1, movieRatings.length) - 1]);
 	}
 	/**
 	 * This method sets the {@code ShowStatus} attribute of a movie. Called when updating or creating a movie.
@@ -237,7 +231,7 @@ public class MovieController implements IMovieController {
 		for (int i=0; i<showStatus.length; i++)
 			System.out.printf("%d) %s\n", i+1, showStatus[i]);
 		System.out.print("Please select a show status: ");
-		movie.setShowStatus(showStatus[IntegerHandler.readInt(1, showStatus.length) - 1]);
+		movie.setShowStatus(showStatus[NumberHandler.readInt(1, showStatus.length) - 1]);
 	}
 	/**
 	 * This method sets the {@code releaseDate} attribute of a movie. Called when updating or creating a movie.
@@ -248,11 +242,9 @@ public class MovieController implements IMovieController {
 		boolean done = false;
 		
 		do {
-			System.out.println("Enter new release date (DD/MM/YYYY): ");
-			String newDate = StringHandler.readString();
-			
 			try {
-				LocalDate date = LocalDate.parse(newDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				System.out.print("Enter new release date (DD/MM/YYYY): ");
+				LocalDate date = LocalDate.parse(StringHandler.readString(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 				movie.setReleaseDate(date);
 				done = true;
 			} catch (DateTimeParseException e) {
@@ -321,11 +313,9 @@ public class MovieController implements IMovieController {
 		System.out.println("Movie listing removed");
 		curr.setShowStatus(ShowStatus.ENDOFSHOWING);
 	}
-	
-	public byte getTopFiveFilter() { return top5Filter; }
-	public void setTopFiveFilter(byte num) { top5Filter = num; }
 
 	public void listTopFive() {		
+		byte top5Filter = MOBLIMA.adminController.getTopFiveFilter();
 		Movie[] temp = new Movie[movies.size()];
 		movies.toArray(temp);
 		

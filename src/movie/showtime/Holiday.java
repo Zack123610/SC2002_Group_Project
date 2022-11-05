@@ -11,7 +11,8 @@ import movie.ticket.ITicketAttribute;
  */
 public enum Holiday implements ITicketAttribute {
 	NEW_YEAR(1, 1),
-	CHINESE_NEWYEAR(2, 2),
+	CHINESE_NEWYEAR1(1, 2),
+	CHINESE_NEWYEAR2(2, 2),
 	GOOD_FRIDAY(15, 4),
 	LABOUR_DAY(1, 5),
 	HARI_RAYA(3, 5),
@@ -37,11 +38,6 @@ public enum Holiday implements ITicketAttribute {
 			if (holiday.getDay() == day && holiday.getMonth() == month)
 				return holiday;
 		return null;
-	}
-	
-	public void changeDate(int day, int month) {
-		this.day = day;
-		this.month = month;
 	}
 
 	@Override

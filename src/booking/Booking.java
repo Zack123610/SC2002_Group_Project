@@ -14,9 +14,7 @@ import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
 public class Booking implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1252654829873622291L;
 	private String transactionID;
 	private Showtime showtime;
@@ -36,6 +34,7 @@ public class Booking implements Serializable {
 		transactionID = cinemaCode + dateFormat.format(date);
 		tickets = new ArrayList<>();
 	}
+	
 	public void displayBookingInfo() {
 		System.out.println("----------------------------");
 		System.out.println("TransactionID: " + transactionID);
@@ -50,35 +49,25 @@ public class Booking implements Serializable {
 	}
 
 	public String getTID() { return transactionID; }
-
-
-
+	public Showtime getShowtime() { return showtime; }
 	public double getTotalPrice() { return totalPrice * 1.07; }
-
-
 	public List<Ticket> getTickets() { return tickets; }
-
-
 	
-
+	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
+	
 	public void addTicket(Ticket ticket) {  
 		tickets.add(ticket); 
 		totalPrice += ticket.calculateFinalPrice();
 	}
-
-
-	public void applyDiscount(double discount){
+	
+	public void applyDiscount(double discount) {
 		this.discount = discount;
 		totalPrice *= (1-discount);
 	}
-
-
-	public double getDiscountValue(String discount){
+	public double getDiscountValue(String discount) {
 		return discountCodes.get(discount);
 	}
-
-
-	public boolean isDiscount(String discount){
+	public boolean isDiscount(String discount) {
 		return discountCodes.containsKey(discount);
 	}
 }

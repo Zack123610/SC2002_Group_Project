@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import cineplex.cinema.AbstractCinema;
-import cineplex.cinema.Cinema;
-import cineplex.cinema.Seat;
 import input.FileController;
-import input.IntegerHandler;
+import input.NumberHandler;
 import main.ICineplexController;
 import main.MOBLIMA;
 import movie.showtime.Showtime;
@@ -32,11 +29,9 @@ public class CineplexController implements ICineplexController {
 				temp.add(MOBLIMA.showtimeController.getShowtimeByID(showtime.getID()));
 			cineplex.setShowTimes(temp);
 		}
-		System.out.println("Cineplex Controller initialised successfully!");
 	}
 	public void exit() {
 		FileController.write(cineplexes, "./data/cineplex/");
-		System.out.println("Cineplex Controller exited successfully!");
 	}
 	public Cineplex getCineplexByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
@@ -44,16 +39,20 @@ public class CineplexController implements ICineplexController {
 	
 	
 	// Controller methods
-	public void displayCineplex(ArrayList<Cineplex> list) {
+	public void displayCineplex(List<Cineplex> list) {
 		System.out.println("--- Display Cineplexes ---");
 		for (int i=0; i<list.size(); i++)
 			System.out.printf("%d) %s\n", i+1, list.get(i).getName());
 	}
 	
-	public Cineplex selectCineplex(ArrayList<Cineplex> list) {
+	public Cineplex selectCineplex() {
+		return selectCineplex(cineplexes);
+	}
+	
+	public Cineplex selectCineplex(List<Cineplex> list) {
 		displayCineplex(list);
 		System.out.print("Enter Choice (0 to cancel): ");
-		int choice = IntegerHandler.readInt(list.size());
+		int choice = NumberHandler.readInt(list.size());
 		return choice == 0 ? null : list.get(choice - 1);
 	}
 }

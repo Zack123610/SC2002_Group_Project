@@ -1,23 +1,12 @@
 package movie.showtime;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import cineplex.Cineplex;
-import cineplex.CineplexController;
 import cineplex.cinema.AbstractCinema;
-import globals.Writable;
-import input.FileController;
+import input.Writable;
 import movie.Movie;
-import movie.MovieController;
 
 public class Showtime extends Writable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 134314070495203459L;
 	private Day day;
 	private Movie movie;

@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import globals.Writable;
+import input.Writable;
 import movie.review.Review;
 
 
 public class Movie extends Writable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 3685122323077146327L;
 	private int ticketsSold = 0;
 	private String title;
@@ -26,13 +24,17 @@ public class Movie extends Writable {
 	private double totalRating = 0.0;
 	private List<Review> reviews = new ArrayList<>();
 	
-	// Used to display the short description (Movie title | Status)
+	/**
+	 * Used to display the short description (Movie title | Status)
+	 */
 	@Override
 	public String toString() {
 		return String.format("Title: %-30s | Show Status: %s", title, showStatus);
 	}
 	
-	// Display the full information of the movie
+	/**
+	 * Displays the full information of the movie
+	 */
 	public void displayFullDetails() {
 		System.out.printf("%s\n", toString());
 		
@@ -58,7 +60,7 @@ public class Movie extends Writable {
 		System.out.println();
 	}
 	
-	//getters
+	//Getters
 	public int getTicketsSold() { return ticketsSold; }
 	public String getTitle() { return title; }
 	public List<Genre> getGenres() { return genres; }
@@ -77,7 +79,7 @@ public class Movie extends Writable {
 	
 	public boolean isEndofShowing() { return showStatus == ShowStatus.ENDOFSHOWING; }
 	
-	//setters
+	//Setters
 	public void setTitle(String title) { this.title = title; }
 	public void setShowStatus(ShowStatus showStatus) { this.showStatus = showStatus; }
 	public void setReleaseDate(LocalDate releaseDate) {this.releaseDate = releaseDate; }
@@ -85,7 +87,7 @@ public class Movie extends Writable {
 	public void setDirector(String director) { this.director = director; }
 	public void setMovieRating(MovieRating movieRating) { this.movieRating = movieRating; }
 	
-	//adders
+	//Adders
 	public void addTicketSold() { ticketsSold++; }
 	public void addGenre(Genre genre) { genres.add(genre); }
 	public void addCast(String cast) { casts.add(cast); }

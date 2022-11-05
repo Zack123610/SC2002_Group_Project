@@ -4,14 +4,12 @@ import java.util.Arrays;
 
 import cineplex.cinema.Seat;
 import customer.Age;
-import globals.Writable;
+import input.Writable;
 import movie.showtime.Showtime;
 
 
 public class Ticket extends Writable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -2094192433542790502L;
 	// basePrice: Base price that will be shared across all ticket classes
 	private static double basePrice = 10.00;

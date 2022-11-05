@@ -1,21 +1,17 @@
 package customer;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import booking.Booking;
-import globals.Writable;
+import input.Writable;
 
 
 public class Customer extends Writable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8733239562031385172L;
 	private String name, mobileNo, email;
 	private List<Booking> bookings;
-	
 	
 	public Customer() { 
 		bookings = new ArrayList<>();
@@ -33,15 +29,17 @@ public class Customer extends Writable {
 		System.out.println("Email : " + email);
 	}
 	
+	// Getetrs
 	public String getName() { return name; }
 	public String getMobileNo() { return mobileNo; }
 	public String getEmail() { return email; }
 	public List<Booking> getBookings() { return bookings; }
 
+	// Setters
 	public void setName(String name) { this.name = name; }
 	public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
 	public void setEmail(String email) { this.email = email; }
 	
+	// Adders
 	public void addBooking(Booking booking) { bookings.add(booking); }
-	public void setBookings(List<Booking>bookings){this.bookings = bookings;}
 }
