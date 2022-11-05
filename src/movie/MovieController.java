@@ -17,7 +17,10 @@ import input.FileController;
 import input.NumberHandler;
 import input.StringHandler;
 import main.IMovieController;
+<<<<<<< HEAD
 import main.MOBLIMA;
+=======
+>>>>>>> master
 
 /**
  * The MovieController class implements the IMovieController interface.
@@ -35,6 +38,10 @@ public class MovieController implements IMovieController {
 	}
 	public void exit() {
 		FileController.write(movies, "./data/movie/");
+<<<<<<< HEAD
+=======
+		System.out.println("Movie Controller exited successfully!");
+>>>>>>> master
 	}
 	public Movie getMovieByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
@@ -52,6 +59,10 @@ public class MovieController implements IMovieController {
 	public void displayAllMovies() {
 		displayMovies(movies);
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 	public void displayAllAvailableMovies() {
 		List<Movie> temp = movies
 				.stream()
@@ -313,6 +324,12 @@ public class MovieController implements IMovieController {
 		System.out.println("Movie listing removed");
 		curr.setShowStatus(ShowStatus.ENDOFSHOWING);
 	}
+<<<<<<< HEAD
+=======
+	
+	public byte getTopFiveFilter() { return top5Filter; }
+	public void setTopFiveFilter(byte num) { top5Filter = num; }
+>>>>>>> master
 
 	public void listTopFive() {		
 		byte top5Filter = MOBLIMA.adminController.getTopFiveFilter();

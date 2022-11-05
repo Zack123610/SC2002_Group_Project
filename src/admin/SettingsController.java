@@ -2,13 +2,29 @@ package admin;
 
 import cineplex.cinema.PlatinumCinema;
 import customer.Age;
+<<<<<<< HEAD
 import input.NumberHandler;
+=======
+import input.IntegerHandler;
+>>>>>>> master
 import main.ISettingsController;
 import movie.Genre;
 import movie.showtime.Holiday;
 import movie.ticket.Ticket;
 
 public class SettingsController implements ISettingsController {
+<<<<<<< HEAD
+=======
+	
+	// Initialisation Code
+	public SettingsController() { }
+	public void init() {
+		System.out.println("Settings Controller initialised successfully!");
+	}
+	public void exit() {
+		System.out.println("Settings Controller exited successfully!");
+	}
+>>>>>>> master
 	
 	private void displaySystemMenu() {
 		System.out.println(
@@ -43,7 +59,11 @@ public class SettingsController implements ISettingsController {
 					System.out.printf("%d) %-15s | Multiplier: %.2f\n", i+1, genres[i], genres[i].getMultiplier());
 				
 				System.out.print("Please select a genre (0 to cancel): ");
+<<<<<<< HEAD
 				int idx = NumberHandler.readInt(genres.length);
+=======
+				int idx = IntegerHandler.readInt(genres.length);
+>>>>>>> master
 				
 				if (idx == 0)
 					break;

@@ -8,4 +8,8 @@ import movie.ticket.Ticket;
 public interface ITicketController {
     public Ticket issueTicket(Age age, Seat seat, Showtime showtime);
     public Age getAge();
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

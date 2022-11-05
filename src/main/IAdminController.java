@@ -1,5 +1,6 @@
 package main;
 
+<<<<<<< HEAD
 /**
  * The IAdminController provides the interface for the admin controller. 
  * @author Tan Say Hong
@@ -21,4 +22,8 @@ public interface IAdminController {
 	 * @return the filter flag 
 	 */
 	public byte getTopFiveFilter();
+=======
+public interface IAdminController {
+    public void run();
+>>>>>>> master
 }

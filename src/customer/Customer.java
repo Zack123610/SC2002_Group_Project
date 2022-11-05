@@ -1,18 +1,33 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import booking.Booking;
+<<<<<<< HEAD
 import input.Writable;
 
 
 public class Customer extends Writable {
 
+=======
+import globals.Writable;
+
+
+public class Customer extends Writable {
+	/**
+	 * 
+	 */
+>>>>>>> master
 	private static final long serialVersionUID = -8733239562031385172L;
 	private String name, mobileNo, email;
 	private List<Booking> bookings;
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 	public Customer() { 
 		bookings = new ArrayList<>();
 	}
@@ -42,4 +57,5 @@ public class Customer extends Writable {
 	
 	// Adders
 	public void addBooking(Booking booking) { bookings.add(booking); }
+	public void setBookings(List<Booking>bookings){this.bookings = bookings;}
 }
