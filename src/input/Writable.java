@@ -1,4 +1,4 @@
-package globals;
+package input;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -9,8 +9,9 @@ import java.util.UUID;
  * @author Tan Say Hong
  *
  */
-@SuppressWarnings("serial")
 public abstract class Writable implements Serializable {
+
+	private static final long serialVersionUID = 4466585577321415631L;
 	private UUID id = UUID.randomUUID();
 	
 	public UUID getID() { return id; }

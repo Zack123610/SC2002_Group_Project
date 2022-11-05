@@ -4,14 +4,12 @@ import java.util.Arrays;
 
 import cineplex.cinema.Seat;
 import customer.Age;
-import globals.Writable;
+import input.Writable;
 import movie.showtime.Showtime;
 
 
 public class Ticket extends Writable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -2094192433542790502L;
 	// basePrice: Base price that will be shared across all ticket classes
 	private static double basePrice = 10.00;
@@ -65,10 +63,6 @@ public class Ticket extends Writable {
 	 * Prints the ticket information to the console.
 	 */
 	public void displayTicketInfo() {
-		System.out.println("Showtime: " + showtime.getDay().toString());
-		System.out.println("Seat: " + seat.getSeatCode());
-		System.out.printf("Price: $%.2f\n\n", calculateFinalPrice());
-		
+		System.out.printf("Seat: %s --- $%.2f\n", seat.getSeatCode(), calculateFinalPrice());
 	}
-
 }

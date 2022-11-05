@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlatinumCinema extends Cinema {
-	/**
-	 * 
-	 */
+import movie.ticket.ITicketAttribute;
+
+public class PlatinumCinema extends AbstractCinema implements ITicketAttribute {
+
 	private static final long serialVersionUID = 3292482853076350312L;
 	private static double multiplier = 1.5;
-
+	
 	public PlatinumCinema(String cinemaCode) {
 		super.setCinemaCode(cinemaCode);
-		super.setAvailSeat(10);
+		totalSeats = availSeat = 10;
 		
 		Map<Character, List<Seat>> seatMap = new HashMap<>();
 		
@@ -28,6 +28,10 @@ public class PlatinumCinema extends Cinema {
 		super.setSeatMap(seatMap);
 	}
 	
+	@Override
+	public AbstractCinema cloneCinema() {
+		return new PlatinumCinema(cinemaCode);
+	}
 	
 	@Override
 	public void displaySeatingLayout() {

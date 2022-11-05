@@ -2,7 +2,7 @@ package input;
 
 import java.util.Scanner;
 
-public class IntegerHandler{
+public class NumberHandler{
 	private static Scanner sc = new Scanner(System.in);
 	
 	// Takes in any non-negative integer ( >= 0)

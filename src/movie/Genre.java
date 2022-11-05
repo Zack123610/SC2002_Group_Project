@@ -10,8 +10,13 @@ public enum Genre implements ITicketAttribute, Serializable {
 	ADVENTURE("Adventure"),
 	ANIME("Anime"),
 	BLOCKBUSTER("Blockbuster"),
+	COMEDY("Comedy"),
+	DRAMA("Drama"),
 	FANTASY("Fantasy"),
 	HORROR("Horror"),
+	MYSTERY("Mystery"),
+	ROMANCE("Romance"),
+	THRILLER("Thriller"),
 	SCI_FI("Sci-Fi");
 
 	
@@ -25,13 +30,10 @@ public enum Genre implements ITicketAttribute, Serializable {
 		this.multipler = 1.0;
 	}
 
-	
-	//public String getName() { return name; }
 	@Override
 	public String toString() { return name; }
 	@Override
 	public double getMultiplier() { return multipler; }
-	
 	@Override
 	public void setMultiplier(double multiplier) { this.multipler = multiplier; }
 }

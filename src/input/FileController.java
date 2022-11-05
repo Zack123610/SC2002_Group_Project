@@ -10,8 +10,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import globals.Writable;
-
 
 public class FileController {
 	@SuppressWarnings("unchecked")
@@ -40,6 +38,7 @@ public class FileController {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("An error has occured");
 		}
 		
@@ -65,17 +64,13 @@ public class FileController {
 			  System.out.println("Error initializing stream"); 
 			  e.printStackTrace();
 		  } catch (Exception e) {
+			  e.printStackTrace();
 			  System.out.println("An error has occured.");
 		  }
 	}
 	
-	
 	public static void delete(String filepath) {
 		File file = new File(filepath);
-		
-		if (file.delete()) 
-            System.out.println("File deleted successfully");
-        else 
-            System.out.println("Failed to delete the file");
+		file.delete();
 	}
 }

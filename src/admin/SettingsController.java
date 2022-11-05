@@ -2,21 +2,13 @@ package admin;
 
 import cineplex.cinema.PlatinumCinema;
 import customer.Age;
-import input.IntegerHandler;
+import input.NumberHandler;
+import main.ISettingsController;
 import movie.Genre;
 import movie.showtime.Holiday;
 import movie.ticket.Ticket;
 
-public class SettingsController {
-	
-	// Initialisation Code
-	public SettingsController() { }
-	public void init() {
-		System.out.println("Settings Controller initialised successfully!");
-	}
-	public void exit() {
-		System.out.println("Settings Controller exited successfully!");
-	}
+public class SettingsController implements ISettingsController {
 	
 	private void displaySystemMenu() {
 		System.out.println(
@@ -30,18 +22,17 @@ public class SettingsController {
 		System.out.print("Please select an option: ");
 	}
 	
-	
 	public void run() {
 		boolean done = false;
 		
 		do {
 			displaySystemMenu();
 			
-			switch (IntegerHandler.readInt(1, 6)) {
+			switch (NumberHandler.readInt(1, 6)) {
 			case 1:
 				System.out.printf("Current base ticket price is $%.2f\n", Ticket.getBasePrice());
 				System.out.print("Enter new base ticket price: ");
-				Ticket.setBasePrice(IntegerHandler.readDouble());
+				Ticket.setBasePrice(NumberHandler.readDouble());
 				System.out.printf("New base ticket price is $%.2f\n", Ticket.getBasePrice());
 				break;
 
@@ -51,15 +42,15 @@ public class SettingsController {
 				for (int i=0; i<genres.length; i++)
 					System.out.printf("%d) %-15s | Multiplier: %.2f\n", i+1, genres[i], genres[i].getMultiplier());
 				
-				System.out.print("Please select a genre: (0 to cancel) ");
-				int idx = IntegerHandler.readInt(genres.length);
+				System.out.print("Please select a genre (0 to cancel): ");
+				int idx = NumberHandler.readInt(genres.length);
 				
 				if (idx == 0)
 					break;
 				
 				Genre genre = genres[idx-1];
 				System.out.print("Enter new multiplier: ");
-				genre.setMultiplier(IntegerHandler.readDouble());
+				genre.setMultiplier(NumberHandler.readDouble());
 				System.out.printf("New multiplier for %s is %.2f\n", genre, genre.getMultiplier());
 				break;
 				
@@ -70,7 +61,7 @@ public class SettingsController {
 								   "3) Child\n" +
 								   "4) Back");
 				
-				Age curr = switch (IntegerHandler.readInt(1, 4)) {
+				Age curr = switch (NumberHandler.readInt(1, 4)) {
 				case 1 -> Age.SENIOR;
 				case 2 -> Age.ADULT;
 				case 3 -> Age.CHILD;
@@ -82,22 +73,22 @@ public class SettingsController {
 				
 				System.out.printf("Current multiplier for %s is: %.2f\n", curr.toString(), curr.getMultiplier());
 				System.out.print("Enter new multipler: ");
-				curr.setMultiplier(IntegerHandler.readDouble());
+				curr.setMultiplier(NumberHandler.readDouble());
 				System.out.printf("New multiplier for %s is: %.2f\n", curr.toString(), curr.getMultiplier());
 				break;
 				
 			case 4:
-				System.out.printf("Current holiday multiplier is: %.2f\n", Holiday.CHINESE_NEWYEAR.getMultiplier());
+				System.out.printf("Current holiday multiplier is: %.2f\n", Holiday.CHINESE_NEWYEAR1.getMultiplier());
 				System.out.print("Enter new multipler: ");
-				Holiday.CHINESE_NEWYEAR.setMultiplier(IntegerHandler.readDouble());
-				System.out.printf("New holiday multiplier is: %.2f\n", Holiday.CHINESE_NEWYEAR.getMultiplier());
+				Holiday.CHINESE_NEWYEAR1.setMultiplier(NumberHandler.readDouble());
+				System.out.printf("New holiday multiplier is: %.2f\n", Holiday.CHINESE_NEWYEAR1.getMultiplier());
 				break;
 				
 			case 5:
 				PlatinumCinema temp = new PlatinumCinema("XXX");
 				System.out.printf("Current Platinum Cinema multiplier is: %.2f\n", temp.getMultiplier());
 				System.out.print("Enter new multipler: ");
-				temp.setMultiplier(IntegerHandler.readDouble());
+				temp.setMultiplier(NumberHandler.readDouble());
 				System.out.printf("New Platinum Cinema multiplier is: %.2f\n", temp.getMultiplier());
 				break;
 				

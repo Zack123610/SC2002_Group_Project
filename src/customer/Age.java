@@ -24,5 +24,4 @@ public enum Age implements ITicketAttribute, Serializable {
 	
 	@Override
 	public void setMultiplier(double multiplier) { this.multiplier = multiplier; }
-
 }

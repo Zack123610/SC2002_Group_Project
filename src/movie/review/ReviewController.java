@@ -2,23 +2,14 @@ package movie.review;
 
 import java.util.List;
 
-import input.IntegerHandler;
+import input.NumberHandler;
 import input.StringHandler;
+import main.IReviewController;
 import main.MOBLIMA;
 import movie.Movie;
 
-public class ReviewController {
+public class ReviewController implements IReviewController {
 	
-	// Initialisation Code
-	public ReviewController() { }
-	public void init() {
-		System.out.println("Review Controller initialised successfully!");
-	}
-	public void exit() {
-		System.out.println("Review Controller exited successfully!");
-	}
-	
-	// Controller methods
 	public void writeReview() {
 		Movie movie = MOBLIMA.movieController.selectMovie(3);
 		
@@ -26,7 +17,7 @@ public class ReviewController {
 			return;
 		
 		System.out.print("Enter a rating (1-5): ");
-		int rating = IntegerHandler.readInt(1, 5);
+		int rating = NumberHandler.readInt(1, 5);
 		
 		System.out.println("Enter description: ");
 		String description = StringHandler.readString();
@@ -52,7 +43,7 @@ public class ReviewController {
 			System.out.println(++cnt + ") " + review.toString());
 		
 		System.out.print("Please select a review (0 to cancel): ");
-		int idx = IntegerHandler.readInt(reviews.size());
+		int idx = NumberHandler.readInt(reviews.size());
 
 		if (idx == 0)
 			return;

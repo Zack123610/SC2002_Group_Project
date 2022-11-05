@@ -1,17 +1,16 @@
 package movie.ticket;
 import cineplex.cinema.Seat;
 import customer.Age;
-import input.IntegerHandler;
+import input.NumberHandler;
+import main.ITicketController;
 import movie.showtime.Showtime;
 
-public class TicketController {	
-	
-	public TicketController() { }
+public class TicketController implements ITicketController {	
 	
 	public Age getAge(){
-        System.out.println("Select Age: \n1)Senior \n2)Adult \n3)Children");
+        System.out.println("Select Age: \n1) Senior \n2) Adult \n3) Children");
         System.out.print("Please select an option: ");
-        return switch(IntegerHandler.readInt(1, 3)) {
+        return switch(NumberHandler.readInt(1, 3)) {
             case 1 -> Age.SENIOR;
             case 2 -> Age.ADULT;
             case 3 -> Age.CHILD;

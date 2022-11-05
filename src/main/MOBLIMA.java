@@ -16,51 +16,30 @@ import movie.ticket.TicketController;
  *
  */
 public class MOBLIMA {
-// Note: Change them into interfaces after whole project done
+	public static ICustomerController customerController = new CustomerController();
+	public static IAdminController adminController       = new AdminController();
+	public static ISettingsController settingsController = new SettingsController();
+	public static IBookingController bookingController   = new BookingController();
+	public static ICineplexController cineplexController = new CineplexController();
+	public static ICinemaController cinemaController     = new CinemaController();
+	public static IMovieController movieController       = new MovieController();
+	public static IReviewController reviewController     = new ReviewController();
+	public static IShowtimeController showtimeController = new ShowtimeController();
+	public static ITicketController ticketController     = new TicketController();
 	
-	public static CustomerController customerController;
-	public static AdminController adminController;
-	public static SettingsController settingsController;
-	public static BookingController bookingController;
-	public static CineplexController cineplexController;
-	public static CinemaController cinemaController;
-	public static MovieController movieController;
-	public static ReviewController reviewController;
-	public static ShowtimeController showtimeController;
-	public static TicketController ticketController;
-	
-	// Initialise all controllers
 	/**
-	 * Initialises all the required controllers.
+	 * Initialises the required controllers.
 	 */
 	private static void initAll() {
-		customerController = new CustomerController();
-		adminController = new AdminController();
-		settingsController = new SettingsController();
-		bookingController = new BookingController();
-		cineplexController = new CineplexController();
-		cinemaController = new CinemaController();
-		movieController = new MovieController();
-		reviewController = new ReviewController();
-		showtimeController = new ShowtimeController();
-		ticketController = new TicketController();
-	
-		
 		cineplexController.init();
-		//cinemaController.init();
-		reviewController.init();
-		movieController.init();
-		//ticketController.init();
 		showtimeController.init();
-		bookingController.init();
-		settingsController.init();
 	}
 	
-	// Exit all controllers
+	// Exits the required controllers
 	private static void exitAll() {
 		movieController.exit();
-		reviewController.exit();
 		showtimeController.exit();
+		customerController.exit();
 	}
 	
 	private static void displayMainMenu() {
@@ -79,9 +58,8 @@ public class MOBLIMA {
 		do {
 			displayMainMenu();
 			
-			switch (IntegerHandler.readInt(1, 3)) {
+			switch (NumberHandler.readInt(1, 3)) {
 			case 1: 
-				//admin controller login
 				adminController.run();
 				break;
 				
