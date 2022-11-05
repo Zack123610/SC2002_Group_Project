@@ -8,8 +8,12 @@ import movie.Genre;
 import movie.showtime.Holiday;
 import movie.ticket.Ticket;
 
+/**
+ * The settings controller class provides implementation of the ISettingsController interface
+ */
 public class SettingsController implements ISettingsController {
 	
+	/** This method displays the system setting menu */
 	private void displaySystemMenu() {
 		System.out.println(
 				"\n======================= System Settings =======================\n" + 
@@ -22,6 +26,11 @@ public class SettingsController implements ISettingsController {
 		System.out.print("Please select an option: ");
 	}
 	
+	/** This method gets and handles the admin selection
+	 * 1 - Update the base price
+	 * 2-5 - Update multipliers affecting the price
+	 * 6- Exit the settings console
+	 */
 	public void run() {
 		boolean done = false;
 		

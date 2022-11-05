@@ -6,11 +6,16 @@ import main.IAdminController;
 import main.MOBLIMA;
 
 /**
- * The admin controller class provides the implementation of the IAdminController class.
+ * The admin controller class provides the implementation of the IAdminController interface.
  * @author Tan Say Hong
  *
  */
 public class AdminController implements IAdminController {
+
+	/**
+	 * The password to access the admin controller
+	 * Default value = "admin"
+	 */
 	private String password = "admin";
 	private byte top5Filter = 3;
 	
@@ -29,6 +34,11 @@ public class AdminController implements IAdminController {
 		System.out.print("Please select an option: ");
 	}
 	
+	/** This method gets and handles the admins selection
+	 * 1-4 - Configure various settings
+	 * 5 - Change the admin password
+	 * 6 - Exit the admin console
+	 */
 	public void run() {
 		if (!login())
 			return;
@@ -67,7 +77,7 @@ public class AdminController implements IAdminController {
 	}
 	
 	/**
-	 * This method handles the login when a user chooses to log in as admin
+	 * Handles the login when a user chooses to log in as admin
 	 * @return {@code true} if the user logs in using the correct password, {@code false} otherwise.
 	 */
 	private boolean login() {
@@ -79,7 +89,7 @@ public class AdminController implements IAdminController {
 		return isValid;
 	}
 	/**
-	 * This method changes the password. Called when the admin selects the option to change password.
+	 * Changes the password of the admin controller
 	 */
 	private void changePassword() {
 		System.out.print("Enter new password: ");
@@ -159,7 +169,12 @@ public class AdminController implements IAdminController {
 			}
 		} while (!done);
 	}
+	/**
+	 * This method gets the way that the top 5 movies will be filtered ||||(IDK this)
+	 * @return a byte representing the filter
+	 */
 	public byte getTopFiveFilter() { return top5Filter; }
+
 	/**
 	 * This method manages the settings to configure top 5 listings. 
 	 * At least one type of display will be active at all times.

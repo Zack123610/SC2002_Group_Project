@@ -14,16 +14,34 @@ import movie.Movie;
 import movie.showtime.Showtime;
 import movie.ticket.Ticket;
 
+/**
+ * The booking controller class provides implementation for the IBookingController interface
+ */
 public class BookingController implements IBookingController {
+	/**
+	 * Empty Constructor
+	 */
 	public BookingController() { }
 	
+	/**
+	 * Represents the different states of the booking process
+	 */
 	enum BookingState { SELECT_MOVIE, FILTER_CINEPLEX, SELECT_CINEPLEX, SELECT_SHOWTIME, SEAT_SELECTION, CONFIRMATION, FINISH }
 	
-	
+	/**
+	 * This method calls the override method doBooking which does a booking if there is no movie selected beforehand
+	 * @param customer is the customer 
+	 */
 	public void doBooking(Customer customer) {
 		doBooking(customer, null);
 	}
 	
+	/**
+	 * This method overrides the doBooking method if there is a movie specified. It handles the entire booking process,
+	 * and adds a booking object to the customer
+	 * @param customer is the customer
+	 * @param movie is the movie, the default is null if no movie is selected beforehand
+	 */
 	public void doBooking(Customer customer, Movie movie) {
 		boolean done = false;
 		BookingState state = (movie == null) 

@@ -6,8 +6,16 @@ import input.NumberHandler;
 import input.StringHandler;
 import main.ICinemaController;
 
+/**
+ * The CinemaController class provides implementation of the ICinemaController interface
+ */
 public class CinemaController implements ICinemaController {
 	
+	/**
+	 * Books a seat in a cinema based on user selection
+	 * @param cinema is the cinema selected
+	 * @return a {@code Seat} object
+	 */
 	public Seat bookSeat(AbstractCinema cinema){
 		cinema.displaySeatingLayout();
 		System.out.println("Select Seat (row col)");
@@ -21,12 +29,21 @@ public class CinemaController implements ICinemaController {
 		return cinema.selectSeat(row, col-1);
 	}
 	
+	/**
+	 * Displays all Cinemas
+	 * @param list is a list of {@code AbstractCinema}
+	 */
 	public void displayCineplex(List<AbstractCinema> list) {
 		System.out.println("--- Display Cinemas ---");
 		for (int i=0; i<list.size(); i++)
 			System.out.printf("%d) %s\n", i+1, list.get(i).getCinemaCode());
 	}
 	
+	/**
+	 * Displays a list of {@code AbstractCinema} and prompts the user to select one
+	 * @param list is a list of {@code AbstractCinema}
+	 * @return a cinema selected
+	 */
 	public AbstractCinema selectCinema(List<AbstractCinema> list) {
 		list.sort((a,b) -> a.getCinemaCode().compareTo(b.getCinemaCode()));
 		displayCineplex(list);
