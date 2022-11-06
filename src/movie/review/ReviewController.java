@@ -8,6 +8,11 @@ import main.IReviewController;
 import main.MOBLIMA;
 import movie.Movie;
 
+/**
+ * The ReviewController class provides the implementation for the {@code IReviewController} interface
+ * @author Tan Say Hong
+ *
+ */
 public class ReviewController implements IReviewController {
 	
 	public void writeReview() {

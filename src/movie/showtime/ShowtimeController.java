@@ -23,6 +23,8 @@ import movie.Movie;
 
 /**
  * The ShowtimeController class provides the implementation for the {@code IShowtimeController} interface
+ * @author Tan Say Hong
+ *
  */
 public class ShowtimeController implements IShowtimeController {
 	/**
