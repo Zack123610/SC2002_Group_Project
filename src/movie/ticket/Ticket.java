@@ -7,33 +7,89 @@ import customer.Age;
 import input.Writable;
 import movie.showtime.Showtime;
 
-
+/**
+ * The {@code Ticket} class is a model class used to store ticket data when a customer does a booking.
+ * One {@code Ticket} is associated to one {@code Seat} and associated with the chosen {@code Showtime}.   
+ * @author Tan Say Hong
+ *
+ */
 public class Ticket extends Writable {
-
+	/**
+	 * A static final UUID for serializing {@code Ticket} objects
+	 */
 	private static final long serialVersionUID = -2094192433542790502L;
-	// basePrice: Base price that will be shared across all ticket classes
+	/**
+	 * Base price that will be shared across all ticket classes
+	 */
 	private static double basePrice = 10.00;
-	// finalPrice: The final price calculated for that particular ticket object
+	/**
+	 * The final price calculated for that particular ticket object
+	 */
 	private double finalPrice = 0.0;
+	/**
+	 * The age of seat owner
+	 */
 	private Age age;
+	/**
+	 * The seat object associated with the ticket
+	 */
 	private Seat seat;
+	/**
+	 * The showtime object associated with the ticket
+	 */
 	private Showtime showtime;
-	
+	/**
+	 * Constructor to create a new {@code Ticket} object based on the age, seat and showtime
+	 * @param age the age of the seat owner
+	 * @param seat the seat object
+	 * @param showtime the showtime object
+	 */
 	public Ticket(Age age, Seat seat, Showtime showtime){
 		this.age = age;
 		this.seat = seat;
 		this.showtime = showtime;
 		this.finalPrice = calculateFinalPrice();
 	}
-	
+	/**
+	 * Gets the base price of the {@code Ticket}
+	 * @return the base price
+	 */
 	public static double getBasePrice() { return basePrice; }
+	/**
+	 * Gets the seat of the {@code Ticket}
+	 * @return the {@code Seat} object
+	 */
 	public Seat getSeat() { return seat; }
+	/**
+	 * Gets the showtime of the {@code Ticket}
+	 * @return the {@code Showtime} object
+	 */
 	public Showtime getShowtime() { return showtime; }
+	/**
+	 * Gets the age of the {@code Ticket}
+	 * @return the {@code Age} enum
+	 */
     public Age getAge() { return age; }
     
+    /**
+     * Sets the base price of the {@code Ticket}
+     * @param basePrice the base price to set
+     */
     public static void setBasePrice(double basePrice) { Ticket.basePrice = basePrice; }
+    /**
+     * Sets the seat of the {@code Ticket}
+     * @param seat the {@code Seat} to set
+     */
 	public void setSeat(Seat seat) { this.seat = seat; }
+	/**
+	 * Sets the showtime of the {@code Ticket}
+	 * @param showtime the {@code Showtime} to set
+	 */
 	public void setShowtime(Showtime showtime) { this.showtime = showtime; }
+	/**
+	 * Sets the age of the {@code Ticket}
+	 * @param age the {@code Age} to set
+	 */
 	public void setAge(Age age) { this.age = age; }
 	
 	/**

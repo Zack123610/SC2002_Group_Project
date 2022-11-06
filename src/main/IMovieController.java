@@ -5,14 +5,22 @@ import java.util.UUID;
 import movie.Movie;
 
 /**
- * IMovieController provides the interface required for managing the Movie class.
+ * IMovieController provides the interface required for managing the {@code Movie} class.
  * It provides create, select, update and delete methods which other controllers can call.
  * It also provides the method to list top 5 movie rankings.
  * @author Tan Say Hong
  *
  */
 public interface IMovieController {
+	/**
+	 * Write all {@code Movie} in the movies list back to the data files
+	 */
 	public void exit();
+	/**
+	 * Gets the {@code Movie} object based on the input UUID
+	 * @param id the UUID to search for
+	 * @return the corresponding {@code Movie} object if it exists, {@code null} otherwise
+	 */
 	public Movie getMovieByID(UUID id);
 	/**
 	 * Method to display all the movies available in the system. Callable via admin.

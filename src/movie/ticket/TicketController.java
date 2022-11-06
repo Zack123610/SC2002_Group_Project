@@ -5,6 +5,11 @@ import input.NumberHandler;
 import main.ITicketController;
 import movie.showtime.Showtime;
 
+/**
+ * The TicketController provides the implementation for the {@code ITicketController} interface
+ * @author Tan Say Hong
+ *
+ */
 public class TicketController implements ITicketController {	
 	
 	public Age getAge(){

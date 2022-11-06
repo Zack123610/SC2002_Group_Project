@@ -7,11 +7,24 @@ import java.time.LocalTime;
 
 import movie.ticket.IGetTicketAttribute;
 
-
+/**
+ * The {@code Day} class stores the date and time
+ * @author Tan Say Hong
+ *
+ */
 public class Day implements IGetTicketAttribute, Serializable {
 
+	/**
+	 * A static final UUID for serializing {@code Day} objects
+	 */
 	private static final long serialVersionUID = -2137042328502058023L;
+	/**
+	 * The date of the {@code Day} object
+	 */
 	private LocalDate date;
+	/**
+	 * The time of the {@code Day} object
+	 */
 	private LocalTime time;
 	
 	public Day(LocalDate date, LocalTime time) {
@@ -19,12 +32,31 @@ public class Day implements IGetTicketAttribute, Serializable {
 		this.time = time;
 	}
 
+	/**
+	 * Gets the date field of the {@code Day} object
+	 * @return the date field
+	 */
 	public LocalDate getDate() { return date; }
+	/**
+	 * Gets the time field of the {@code Day} object
+	 * @return the time field
+	 */
 	public LocalTime getTime() { return time; }
 
+	/**
+	 * Sets the date field of the {@code Day} object
+	 * @param date the date to set
+	 */
 	public void setDate(LocalDate date) { this.date = date; }
+	/**
+	 * Sets the time field of the {@code Day} object
+	 * @param time the time to set
+	 */
 	public void setTime(LocalTime time) { this.time = time; }
 	
+	/**
+	 * Used to check whether two {@code Day} objects are refering to the same date
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Day) {
@@ -34,6 +66,9 @@ public class Day implements IGetTicketAttribute, Serializable {
 		return false;
 	}
 
+	/**
+	 * Returns the string of the {@code Day} object in the form YYYY-MM-DD HH:MM
+	 */
 	@Override
 	public String toString() {
 		return date.toString() + " " + time.toString();
