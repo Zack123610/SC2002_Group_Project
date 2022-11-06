@@ -37,10 +37,7 @@ public class CineplexController implements ICineplexController {
 		for (Cineplex cineplex : cineplexes) 
 			hm.put(cineplex.getID(), cineplex);
 	}
-	/**
-	 * Initializes each {@code Cineplex} from the list by adding their showtime information.
-	 * It is executed at the beginning of the program
-	 */
+
 	public void init() {
 		for (Cineplex cineplex : cineplexes) {
 			ArrayList<Showtime> temp = new ArrayList<>();
@@ -50,43 +47,28 @@ public class CineplexController implements ICineplexController {
 		}
 	}
 	
-	/**
-	 * Calls {@code FileController} to write all {@code Cineplex} in the cineplex list back to the data files
-	 */
 	public void exit() {
 		FileController.write(cineplexes, "./data/cineplex/");
 	}
 
-	/**
-	 * Gets the {@code Cineplex} associated with a certain UUID
-	 * @return a {@code Cineplex} if there is a match or {@code null} if there is none
-	 */
+
 	public Cineplex getCineplexByID(UUID id) {
 		return hm.containsKey(id) ? hm.get(id) : null;
 	}
 	
 	// Controller methods
-	/**
-	 * Displays all {@code Cineplex} in the list of cineplexes
-	 */
+
 	public void displayCineplex(List<Cineplex> list) {
 		System.out.println("--- Display Cineplexes ---");
 		for (int i=0; i<list.size(); i++)
 			System.out.printf("%d) %s\n", i+1, list.get(i).getName());
 	}
 	
-	/**
-	 * Selects a {@code Cineplex} from the list ||||(IDK)
-	 * @return a {@code Cineplex} that was selected
-	 */
+
 	public Cineplex selectCineplex() {
 		return selectCineplex(cineplexes);
 	}
 	
-	/**
-	 * Displays the list of cineplexes and prompts the user to select {@code Cineplex} from the list
-	 * @return a {@code Cineplex} that was selected 
-	 */
 	public Cineplex selectCineplex(List<Cineplex> list) {
 		displayCineplex(list);
 		System.out.print("Enter Choice (0 to cancel): ");

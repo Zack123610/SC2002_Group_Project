@@ -11,8 +11,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
+/**
+ * The FileController class contains methods to read, write and delete files
+ */
 public class FileController {
+
 	@SuppressWarnings("unchecked")
+	/**
+	 * Reads a file from filepath and return an ArrayList of objects. It makes the necessary error checking
+	 * 
+	 * @param <T> is the type of object to be read and returned
+	 * @param filepath is the relative filepath to be read
+	 * @return an arraylist of objects
+	 */
 	public static <T extends Writable> ArrayList<T> read(String filepath) {
 		
 		ArrayList<T> res = new ArrayList<>();
@@ -45,7 +56,12 @@ public class FileController {
 		return res;
 	}
 	
-	
+	/**
+	 * Writes an arraylist of objects to a file in filepath. It makes the necessary error checking
+	 * @param <T>  is the type of object to be written
+	 * @param data is the arraylist of objects
+	 * @param filepath is the relative filepath to be written to
+	 */
 	public static <T extends Writable> void write(Collection<T> data, String filepath) {
 		  try { 
 			  for (T curr : data) { 
@@ -69,6 +85,10 @@ public class FileController {
 		  }
 	}
 	
+	/**
+	 * Deletes a file from the filepath
+	 * @param filepath is the filepath of the file to be deleted
+	 */
 	public static void delete(String filepath) {
 		File file = new File(filepath);
 		file.delete();

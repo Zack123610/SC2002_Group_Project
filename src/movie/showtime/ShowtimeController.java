@@ -21,6 +21,9 @@ import main.IShowtimeController;
 import main.MOBLIMA;
 import movie.Movie;
 
+/**
+ * The ShowtimeController class provides implementation for the IShowtimeController interface
+ */
 public class ShowtimeController implements IShowtimeController {
 	private List<Showtime> showtimes;
 	private Map<UUID, Showtime> hm = new HashMap<>();
