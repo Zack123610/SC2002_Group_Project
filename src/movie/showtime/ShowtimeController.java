@@ -38,7 +38,7 @@ public class ShowtimeController implements IShowtimeController {
 	
 	/**
 	 * Contructor which calls {@code FileController} to read showtime data files,
-	 * and creates a list of {@code Showtime} and adds them to the map
+	 * creates a list of {@code Showtime} and adds them to the map
 	 */
 	public ShowtimeController() {
 		showtimes = FileController.read("./data/showtime/");

@@ -23,6 +23,7 @@ public enum Holiday implements ITicketAttribute {
 	CHRISTMAS(25, 12);
 
 	/**
+	 * The multiplier which affects the ticket price.
 	 * Initialises the default holiday multiplier of 1.3
 	 */
 	private static double multiplier = 1.3;
@@ -54,7 +55,10 @@ public enum Holiday implements ITicketAttribute {
 				return holiday;
 		return null;
 	}
-
+	
+	/**
+	 * Gets the multiplier of the Holiday 
+	 */
 	@Override
 	public double getMultiplier() { return multiplier; }
 	/**
