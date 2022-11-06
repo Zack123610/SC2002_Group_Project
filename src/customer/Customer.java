@@ -65,7 +65,6 @@ public class Customer extends Writable {
 		System.out.println("Email : " + email);
 	}
 	
-	// Getetrs
 	/**
 	 * Gets the name of the customer
 	 * @return the name of the customer
@@ -90,8 +89,6 @@ public class Customer extends Writable {
 	 */
 	public List<Booking> getBookings() { return bookings; }
 
-	// Setters
-
 	/**
 	 * Sets the name of the customer
 	 * @param name is the name of the customer
@@ -110,7 +107,6 @@ public class Customer extends Writable {
 	 */
 	public void setEmail(String email) { this.email = email; }
 	
-	// Adders
 	/**
 	 * Adds a {@code Booking} to the list of customer's bookings
 	 * @param booking is a {@code Booking} to be added
