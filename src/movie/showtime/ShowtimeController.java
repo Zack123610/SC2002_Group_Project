@@ -25,10 +25,19 @@ import movie.Movie;
  * The ShowtimeController class provides implementation for the IShowtimeController interface
  */
 public class ShowtimeController implements IShowtimeController {
+	/**
+	 * A list of {@code Showtime}
+	 */
 	private List<Showtime> showtimes;
+	/**
+	 * A map of UUIDs and showtimes
+	 */
 	private Map<UUID, Showtime> hm = new HashMap<>();
 	
-	// Initialisation Code
+	/**
+	 * Contructor which calls {@code FileController} to read showtime data files,
+	 * creates a list of {@code Showtime} and adds them to the map
+	 */
 	public ShowtimeController() {
 		showtimes = FileController.read("./data/showtime/");
 		for (Showtime showtime : showtimes) 
@@ -105,8 +114,17 @@ public class ShowtimeController implements IShowtimeController {
 			System.out.println("Cancelled creation of new showtime.");
 	}
 	
+	/**
+	 * Represents the different states of the create showtime process
+	 */
 	enum CreateState { SELECT_DATE, SELECT_CINEPLEX, SELECT_TIME, FILTER_TIME, SELECT_CINEMA, SELECT_MOVIE, FINISH }
-	
+	/**
+	 * This internal method handles the creation process of asking the user to select the relevant
+	 * information required to create a new showtime.
+	 * This internal method is called during creation and updating of showtime.
+	 * @return a {@code Showtime} object if creation was successful, 
+	 * {@code null} if user chooses to cancel during the creation process
+	 */
 	private Showtime create() {
 		boolean done = false;
 		CreateState state = CreateState.SELECT_DATE;
@@ -192,7 +210,12 @@ public class ShowtimeController implements IShowtimeController {
 			}
 		return result;
 	}
-	
+	/**
+	 * Internal method used to get a date for the showtime. 
+	 * A validation check is included to ensure the user inputs a date of a valid format (DD/MM/YYYY)
+	 * and the input date is after the user's current date 
+	 * @return
+	 */
 	private LocalDate getDateAfterToday() {
 		boolean done = false;
 		LocalDate date = null;
@@ -220,7 +243,7 @@ public class ShowtimeController implements IShowtimeController {
 	/**
 	 * Method to delete the showtime by removing from the showtimes list,
 	 * and deleting it from the data folder.
-	 * This method is called internally after admin confirms to delete showtime. 
+	 * This method is called internally after user confirms to delete showtime. 
 	 * @param showtime the {@code Showtime} object to be deleted.
 	 */
 	private void delete(Showtime showtime) {

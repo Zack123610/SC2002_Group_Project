@@ -20,14 +20,24 @@ import main.IMovieController;
 import main.MOBLIMA;
 
 /**
- * The MovieController class implements the IMovieController interface.
+ * The MovieController class provides the implementation for the {@code IMovieController} interface
  * @author Tan Say Hong
  *
  */
 public class MovieController implements IMovieController {
+	/**
+	 * A list of {@code Movie}
+	 */
 	private List<Movie> movies;
+	/**
+	 * A map of UUIDs and movies
+	 */
 	private Map<UUID, Movie> hm = new HashMap<>();
 	
+	/**
+	 * Contructor which calls {@code FileController} to read movie data files,
+	 * creates a list of {@code Movie} and adds them to the map
+	 */
 	public MovieController() {
 		movies = FileController.read("./data/movie/");
 		for (Movie movie : movies) 
