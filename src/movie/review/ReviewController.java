@@ -60,7 +60,7 @@ public class ReviewController implements IReviewController {
 		if (StringHandler.readString("Y", "N").equals("N"))
 			return;
 
-		movie.getReviews().remove(review);
+		movie.deleteReview(review);
 		System.out.println("Review successfully removed.\n");
 	}
 }

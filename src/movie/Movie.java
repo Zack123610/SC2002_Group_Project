@@ -93,7 +93,7 @@ public class Movie extends Writable {
 		else
 			System.out.printf("%.1f★\n", getOverallRating());
 		
-		if (reviews.size() > 0) {
+		if (reviews.size() > 1) {
 			System.out.println("---------------------------");
 			for (Review review : reviews)
 				System.out.println(review.toString());
@@ -219,6 +219,15 @@ public class Movie extends Writable {
 	public void addReview(Review review) { 
 		reviews.add(review);
 		totalRating += review.getRating();
+	}
+
+	/**
+	 * Deletes a review from the list of reviews and decrements the total rating of the movie
+	 * @param review the {@code Review} to delete
+	 */
+	public void deleteReview(Review review) {
+		reviews.remove(review);
+		totalRating -= review.getRating();
 	}
 	
 	/**
