@@ -1,14 +1,12 @@
 package customer;
 
-import java.io.Serializable;
-
 import movie.ticket.ITicketAttribute;
 
 /**
  * The enum Age provides implementation for ITicketAttribute interface.
  * It represents the different Age categories and their price multipliers
  */
-public enum Age implements ITicketAttribute, Serializable {
+public enum Age implements ITicketAttribute {
 
 	/**
 	 * SENIOR has default multiplier of 0.8

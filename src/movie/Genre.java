@@ -1,7 +1,5 @@
 package movie;
 
-import java.io.Serializable;
-
 import movie.ticket.ITicketAttribute;
 
 /**
@@ -9,7 +7,7 @@ import movie.ticket.ITicketAttribute;
  * @author Tan Say Hong
  *
  */
-public enum Genre implements ITicketAttribute, Serializable {
+public enum Genre implements ITicketAttribute {
 	THREED("3D"),
 	ACTION("Action"),
 	ADVENTURE("Adventure"),

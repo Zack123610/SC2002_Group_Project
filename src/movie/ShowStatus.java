@@ -1,13 +1,11 @@
 package movie;
 
-import java.io.Serializable;
-
 /**
  * This Enum represents the different show statuses a movie can have 
  * @author Tan Say Hong
  *
  */
-enum ShowStatus implements Serializable {
+enum ShowStatus {
 	COMINGSOON("Coming Soon"), 
 	PREVIEW("Preview"),
 	NOWSHOWING("Now Showing"), 

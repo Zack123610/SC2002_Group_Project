@@ -1,14 +1,12 @@
 package movie;
 
-import java.io.Serializable;
-
 /**
  * This enum represents the different classifications ratings a movie can have.
  * This information is retrived from the Info-communications Media Development Authority of Singapore (IMDA)
  * @author Tan Say Hong
  *
  */
-public enum MovieRating implements Serializable {
+public enum MovieRating {
 	G("G"),
 	PG("PG"),
 	PG13("PG13"),
