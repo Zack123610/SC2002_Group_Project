@@ -47,7 +47,7 @@ public class SettingsController implements ISettingsController {
 				Genre[] genres = Genre.class.getEnumConstants();
 				System.out.println("--- Display All Genres ---");
 				for (int i=0; i<genres.length; i++)
-					System.out.printf("%d) %-15s | Multiplier: %.2f\n", i+1, genres[i], genres[i].getMultiplier());
+					System.out.printf("%2d) %-15s | Multiplier: %.2f\n", i+1, genres[i], genres[i].getMultiplier());
 				
 				System.out.print("Please select a genre (0 to cancel): ");
 				int idx = NumberHandler.readInt(genres.length);
