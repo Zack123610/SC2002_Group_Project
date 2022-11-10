@@ -156,7 +156,7 @@ public class Movie extends Writable {
 	 * @return the overall review rating
 	 */
 	public double getOverallRating() { 
-		return reviews.size() == 0 
+		return reviews.size() <= 1 
 			? 0.0 
 			: totalRating / reviews.size();
 	}
