@@ -1,7 +1,5 @@
 package main;
 
-import movie.Movie;
-
 /**
  * The interface ICustomerController provides the interface for the customer controller
  */
