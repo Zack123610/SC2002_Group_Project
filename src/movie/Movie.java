@@ -71,7 +71,7 @@ public class Movie extends Writable {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Title: %-30s | Show Status: %s", title, showStatus);
+		return String.format("Title: %-45s | Show Status: %s", title, showStatus);
 	}
 	/**
 	 * Displays the full information of the movie

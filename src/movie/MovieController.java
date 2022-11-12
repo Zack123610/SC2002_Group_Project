@@ -57,7 +57,7 @@ public class MovieController implements IMovieController {
 	private void displayMovies(List<Movie> movies) {
 		System.out.println("--- Displaying Movies ---");
 		for (int i=0; i<movies.size(); i++) 
-			System.out.printf("%d) %s\n", i+1, movies.get(i).toString());
+			System.out.printf("%2d) %s\n", i+1, movies.get(i).toString());
 	}
 	public void displayAllMovies() {
 		displayMovies(movies);
