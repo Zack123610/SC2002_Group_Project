@@ -14,10 +14,24 @@ import main.MOBLIMA;
 import movie.Movie;
 import movie.showtime.Showtime;
 
+/**
+ * The class CustomerController provides implementation for the ICustomerController interface
+ */
 public class CustomerController implements ICustomerController {
+
+	/**
+	 * A map containing mobile numbers and {@code Customer} objects
+	 */
 	private Map<Integer, Customer> accounts;
+
+	/**
+	 * A {@code Customer} object representing current customer interacting with the controller 
+	 */
 	private Customer customer; 
 	
+	/**
+	 * Constructor for CustomerController, which calls {@code FileController} to read all existing {@code Customer} and add them to the map
+	 */
 	public CustomerController() {
 		accounts = new HashMap<>();
 		List<Customer> customers = FileController.read("./data/customer/");
@@ -29,6 +43,9 @@ public class CustomerController implements ICustomerController {
 		FileController.write(accounts.values(), "./data/customer/");
 	}
 	
+	/**
+	 * Displays the menu of options that the customer can choose from
+	 */
 	private void displayCustomerMenu() {
 		System.out.println(
 				"======================= Customer Menu =======================\n" + 
@@ -100,7 +117,11 @@ public class CustomerController implements ICustomerController {
 		} while (!done);
 	}
 	
-	public void displayMovieOptions() {
+	/**
+	 * Displays the options of a searched movie.
+	 * It is called during {@code handleMovieOptions}
+	 */
+	private void displayMovieOptions() {
 		System.out.println("--- Options ---");
 		System.out.println(	"1) Display movie details\n" +
 							"2) Book movie\n" + 
@@ -109,7 +130,11 @@ public class CustomerController implements ICustomerController {
 		System.out.print("Please select an option: ");
 	}
 	
-	public void handleMovieOptions(Movie movie) {
+	/**
+	 * Displays the movie options of a selected movie and handles the option chosen by the user
+	 * @param movie is a {@code Movie} selected
+	 */
+	private void handleMovieOptions(Movie movie) {
 		while(true) {
 			displayMovieOptions();
 			switch(NumberHandler.readInt(1, 4)) {
@@ -141,6 +166,9 @@ public class CustomerController implements ICustomerController {
 		}				
 	}
 	
+	/**
+	 * Creates a new {@code Customer} object with the required information
+	 */
 	private void createNewAccount() {
 		while (true) {
 			System.out.print("Enter Name: ");
@@ -165,6 +193,10 @@ public class CustomerController implements ICustomerController {
 		}
 	}
 	
+	/**
+	 * Prompts the user for a mobile number and retrieves the account associated with the number.
+	 * If there are no accounts found, it would prompt the user to create a new account a default account
+	 */
 	private void getCustomerByMobile() {
 		if (customer != null)
 			return;
@@ -179,6 +211,11 @@ public class CustomerController implements ICustomerController {
 			createNewAccount();
 	}
 	
+	/**
+	 * Validifies a mobile number entered by the user.
+	 * The input number should start with 8 or 9 and have 8 digits
+	 * @return a String of a valid mobile number
+	 */
 	private String getMobileWithValidation() {
 		String text;
 		Pattern pattern = Pattern.compile("[89]\\d{7}");
@@ -191,6 +228,11 @@ public class CustomerController implements ICustomerController {
 		return text;
 	}
 	
+	/**
+	 * Validifies a email entered by the user.
+	 * The input email should be in a appropriate format 
+	 * @return a String of a valid email
+	 */
 	private String getEmailWithValidation() {
 		String text;
 		Pattern pattern = Pattern.compile("^(.+)@(\\S+)$");

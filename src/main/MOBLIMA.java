@@ -35,13 +35,18 @@ public class MOBLIMA {
 		showtimeController.init();
 	}
 	
-	// Exits the required controllers
+	/**
+	 * Exits all required controllers
+	 */
 	private static void exitAll() {
 		movieController.exit();
 		showtimeController.exit();
 		customerController.exit();
 	}
 	
+	/**
+	 * Displays the main menu
+	 */
 	private static void displayMainMenu() {
 		System.out.println(
 				"======================= Welcome to MOBLIMA =======================\n" +

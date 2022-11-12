@@ -169,10 +169,7 @@ public class AdminController implements IAdminController {
 			}
 		} while (!done);
 	}
-	/**
-	 * This method gets the way that the top 5 movies will be filtered ||||(IDK this)
-	 * @return a byte representing the filter
-	 */
+	
 	public byte getTopFiveFilter() { return top5Filter; }
 
 	/**

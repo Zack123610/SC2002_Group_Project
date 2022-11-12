@@ -1,7 +1,7 @@
 package main;
 
 /**
- * The IAdminController provides the interface for the admin controller. 
+ * The IAdminController provides the interface for the admin controller.
  * @author Tan Say Hong
  *
  */

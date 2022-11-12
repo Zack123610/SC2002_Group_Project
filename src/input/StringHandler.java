@@ -4,10 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The StringHandler class handles string inputs and does error handling
+ */
 public class StringHandler{
+	/**
+	 * Initialize a scanner object
+	 */
 	private static Scanner sc = new Scanner(System.in);
 	
-	// Takes in any string input except empty string / whitespace
+	/**
+	 * Reads a string input.
+	 * Displays an error message if the input is empty
+	 * @return a non-empty string
+	 */
 	public static String readString() {
 		boolean done = false;
 		String next = "";
@@ -22,7 +32,11 @@ public class StringHandler{
 		return next;
 	}
 	
-	// Takes in a string input specified in args
+	/**
+	 * Takes a string input specified in args
+	 * @param args are the valid string inputs to check 
+	 * @return a valid string
+	 */
 	public static String readString(String ... args) {
 		List<String> valid = Arrays.asList(args);
 		
@@ -33,7 +47,10 @@ public class StringHandler{
 		return next;
 	}
 	
-	// Takes in a character
+	/**
+	 * Reads a character input. Displays error message if input is not a character
+	 * @return a character
+	 */
 	public static Character readCharacter() {
 		boolean done = false;
 		String next = "";

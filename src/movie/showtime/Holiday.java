@@ -22,15 +22,31 @@ public enum Holiday implements ITicketAttribute {
 	DEEPAVALI(24, 10),
 	CHRISTMAS(25, 12);
 
-	// Initialise holiday multiplier
+	/**
+	 * The multiplier which affects the ticket price.
+	 * Initialises the default holiday multiplier of 1.3
+	 */
 	private static double multiplier = 1.3;
+	/**
+	 * The month and day of the enum respectively
+	 */
 	private int month, day;
 	
+	/**
+	 * Constructor to create a new {@code Holiday} enum
+	 * @param day the day of the holiday
+	 * @param month the month of the holiday
+	 */
 	Holiday(int day, int month) {
 		this.day = day;
 		this.month = month;
 	}
 	
+	/**
+	 * Checks whether a given date is a holiday. If it is, then returns the corresponding {@code Holiday} enum
+	 * @param date the date to check whether it is a holiday
+	 * @return the {@code Holiday} enum if the date is a holiday, {@code null} otherwise
+	 */
 	public static Holiday isHoliday(LocalDate date) {
 		int day = date.getDayOfMonth(), month = date.getMonthValue();
 		
@@ -39,10 +55,21 @@ public enum Holiday implements ITicketAttribute {
 				return holiday;
 		return null;
 	}
-
+	
+	/**
+	 * Gets the multiplier of the Holiday 
+	 */
 	@Override
 	public double getMultiplier() { return multiplier; }
+	/**
+	 * Gets the month of the {@code Holiday} enum
+	 * @return the month of the holiday
+	 */
 	public int getMonth() { return month; }
+	/**
+	 * Gets the day of the {@code Holiday} enum
+	 * @return the day of the holiday
+	 */
 	public int getDay() { return day; }
 
 	@Override

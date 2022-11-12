@@ -2,10 +2,19 @@ package input;
 
 import java.util.Scanner;
 
+/**
+ * The NumberHandle class handles number inputs, and does error handling
+ */
 public class NumberHandler{
+	/**
+	 * Initializing a scanner object
+	 */
 	private static Scanner sc = new Scanner(System.in);
 	
-	// Takes in any non-negative integer ( >= 0)
+	/** Reads an integer input.
+	 *  Throws error if it is invalid 
+	 * @return an integer between 0-9
+	 */
 	public static int readInt() {
 		int choice = -1;
 		boolean done = false;
@@ -28,12 +37,21 @@ public class NumberHandler{
 		return choice;
 	}
 	
-	// Takes in any positive integer between 0 and hi
+	/**
+	 * Reads an input between 0 to hi, with error checking
+	 * @param hi is the upper bound of the input inclusive
+	 * @return an integer between 0 to hi
+	 */
 	public static int readInt(int hi) {
 		return readInt(0, hi);
 	}
 	
-	// Takes in any positive integer between lo and hi
+	/**
+	 * Reads an input between lo and hi, with error checking
+	 * @param lo is the lower bound inclusive
+	 * @param hi is the upper bound inclusive
+	 * @return an integer between lo to hi
+	 */
 	public static int readInt(int lo, int hi) {
 		int choice = -1;
 		
@@ -47,7 +65,11 @@ public class NumberHandler{
 		return choice;
 	}
 	
-	// Takes in any non-negative double ( >= 0.0 )
+	/**
+	 * Reads a double input, and checks if the value is positive.
+	 * Throws error if the value is not positive
+	 * @return a positive double value
+	 */
 	public static double readDouble() {
 		double choice = -1.0;
 		boolean done = false;

@@ -8,6 +8,11 @@ import main.IReviewController;
 import main.MOBLIMA;
 import movie.Movie;
 
+/**
+ * The ReviewController class provides the implementation for the {@code IReviewController} interface
+ * @author Tan Say Hong
+ *
+ */
 public class ReviewController implements IReviewController {
 	
 	public void writeReview() {
@@ -55,7 +60,7 @@ public class ReviewController implements IReviewController {
 		if (StringHandler.readString("Y", "N").equals("N"))
 			return;
 
-		movie.getReviews().remove(review);
+		movie.deleteReview(review);
 		System.out.println("Review successfully removed.\n");
 	}
 }
