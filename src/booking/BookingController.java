@@ -93,6 +93,11 @@ public class BookingController implements IBookingController {
 				state = BookingState.SEAT_SELECTION;
 				
 			case SEAT_SELECTION:
+				if (cinema.isFull()) {
+					System.out.println("There are no more available seats, proceeding to confirmation page ...");
+					state = BookingState.CONFIRMATION;
+					break;
+				}
 				Seat seat = MOBLIMA.cinemaController.bookSeat(cinema);
 				
 				if (seat == null) 
@@ -114,7 +119,7 @@ public class BookingController implements IBookingController {
 				System.out.print("Select another seat? (Y/N) ");
 				state = StringHandler.readString("Y", "N").equals("Y") 
 						? BookingState.SEAT_SELECTION 
-						: (booking.getTotalPrice() == 0)? BookingState.FINISH : BookingState.CONFIRMATION;
+						: (booking.getTotalPrice() == 0) ? BookingState.FINISH : BookingState.CONFIRMATION;
 				break;
 				
 			case CONFIRMATION:
