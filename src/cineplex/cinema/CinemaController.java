@@ -21,7 +21,6 @@ public class CinemaController implements ICinemaController {
 		
 		System.out.print("Enter col number: ");
 		int col = NumberHandler.readInt();
-		
 		return cinema.selectSeat(row, col-1);
 	}
 	
